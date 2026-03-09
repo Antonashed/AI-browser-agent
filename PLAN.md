@@ -19,7 +19,7 @@
 
 **Архитектурное решение:** Браузером управляет внешний MCP-сервер (`@playwright/mcp`). Наш код — LLM-логика, контекст, память и ReAct-цикл. Browser tools приходят от MCP автоматически.
 
-**Жёсткие запреты (из ТЗ):**
+**Жёсткие запреты:**
 - ❌ Заготовленные шаги для конкретных задач
 - ❌ Преднаписанные CSS-селекторы
 - ❌ Захардкоженные URL/подсказки по элементам
@@ -155,7 +155,7 @@ DELIVERY_ADDRESS=
 
 ### Шаг 1.1: Инфраструктура
 
-- [ ] Создать `requirements.txt`:
+- [x] Создать `requirements.txt`:
 ```
 anthropic==0.52.0
 python-dotenv==1.1.0
@@ -163,10 +163,10 @@ pytest==8.3.4
 pytest-asyncio==0.25.3
 mcp>=1.0.0
 ```
-- [ ] Установить: `pip install -r requirements.txt`
-- [ ] Установить MCP-сервер: `npm install -g @playwright/mcp` (требуется Node.js)
-- [ ] Создать `.env.example`, `agent/__init__.py`, `tests/__init__.py`
-- [ ] Проверить: `python -c "import anthropic; import mcp; print('OK')"`
+- [x] Установить: `pip install -r requirements.txt`
+- [x] Установить MCP-сервер: `npm install -g @playwright/mcp` (требуется Node.js)
+- [x] Создать `.env.example`, `agent/__init__.py`, `tests/__init__.py`
+- [x] Проверить: `python -c "import anthropic; import mcp; print('OK')"`
 
 ---
 
@@ -205,7 +205,7 @@ def load_config() -> Config: ...
 - Пустой `ANTHROPIC_API_KEY` → `raise ValueError`
 - Типы: `"true"/"false"` → bool, числа → int
 
-- [ ] Тест → код → `pytest tests/test_config.py -v` ✅
+- [x] Тест → код → `pytest tests/test_config.py -v` ✅
 
 ---
 
@@ -261,14 +261,14 @@ def _convert_tool(self, mcp_tool) -> dict:
     }
 ```
 
-- [ ] Тест → код → `pytest tests/test_mcp_client.py -v` ✅
+- [x] Тест → код → `pytest tests/test_mcp_client.py -v` ✅
 
 ---
 
 ### Шаг 1.4: Финальная проверка блока 1
 
-- [ ] `python -m pytest -v` → все тесты зелёные
-- [ ] CHANGELOG.md
+- [x] `python -m pytest -v` → все тесты зелёные
+- [x] CHANGELOG.md
 
 ---
 
