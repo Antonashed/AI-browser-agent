@@ -437,7 +437,7 @@ class ContextManager:
 - Если шагов > 10: первые (N-10) сжимаются в текстовую суммаризацию внутри первого user message
 - Оценка токенов: `len(text) // 4`
 
-- [ ] Тест → код → `pytest tests/test_context.py -v` ✅
+- [x] Тест → код → `pytest tests/test_context.py -v` ✅
 
 ---
 
@@ -496,7 +496,7 @@ def build_system_prompt(config=None) -> str:
     return prompt
 ```
 
-- [ ] Создать `agent/prompts.py`
+- [x] Создать `agent/prompts.py`
 
 ---
 
@@ -541,14 +541,14 @@ class AgentLoop:
 {"step": 1, "tool": "browser_navigate", "args": {"url": "..."}, "result": "...", "timestamp": "..."}
 ```
 
-- [ ] Тест → код → `pytest tests/test_core.py -v` ✅
+- [x] Тест → код → `pytest tests/test_core.py -v` ✅
 
 ---
 
 ### Шаг 3.4: Финальная проверка блока 3
 
-- [ ] `python -m pytest -v` → все тесты зелёные (блоки 1 + 2 + 3)
-- [ ] CHANGELOG.md
+- [x] `python -m pytest -v` → все тесты зелёные (блоки 1 + 2 + 3)
+- [x] CHANGELOG.md
 
 ---
 

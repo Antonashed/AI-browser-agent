@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [2026-03-09] — Блок 3: Ядро агента — context, prompts, core
+
+- Создан `agent/context.py` — `ContextManager` + `Step`: история шагов, build_messages() в формате Anthropic (goal → tool_use/tool_result пары), оценка токенов, суммаризация
+- Создан `agent/prompts.py` — системный промпт для ReAct-агента с описанием MCP и кастомных tools, `build_system_prompt(config)` с инъекцией конфигурации
+- Создан `agent/core.py` — `AgentLoop.run()`: ReAct-цикл (LLM → tool call → result → repeat), обработка done/ask_user/confirm/show_preview, audit log в agent_log.jsonl
+- Написаны тесты: 9 для context, 7 для core — все 41 тест проходят (блоки 1+2+3)
+
 ## [2026-03-09] — Блок 2: LLM-клиент, инструменты и исполнитель
 
 - Создан `agent/tools.py` — 6 кастомных tools (remember, recall, ask_user, show_preview, confirm, done) в формате Anthropic + `merge_tools()` для объединения с MCP tools
