@@ -302,7 +302,7 @@ def merge_tools(mcp_tools: list[dict]) -> list[dict]  # mcp_tools + CUSTOM_TOOLS
 
 **Реализация:** 6 JSON-схем. Описания на английском.
 
-- [ ] Тест → код → `pytest tests/test_tools.py -v` ✅
+- [x] Тест → код → `pytest tests/test_tools.py -v` ✅
 
 ---
 
@@ -345,7 +345,7 @@ class LLMClient:
 - `_parse_response`: итерирует `response.content` → text/tool_use блоки
 - Токены из `response.usage`
 
-- [ ] Тест → код → `pytest tests/test_llm_client.py -v` ✅
+- [x] Тест → код → `pytest tests/test_llm_client.py -v` ✅
 
 ---
 
@@ -382,14 +382,14 @@ async def execute(self, tool_call: ToolCall) -> str:
         return f"Error: {e}"
 ```
 
-- [ ] Тест → код → `pytest tests/test_tool_executor.py -v` ✅
+- [x] Тест → код → `pytest tests/test_tool_executor.py -v` ✅
 
 ---
 
 ### Шаг 2.4: Финальная проверка блока 2
 
-- [ ] `python -m pytest -v` → все тесты зелёные (блоки 1 + 2)
-- [ ] CHANGELOG.md
+- [x] `python -m pytest -v` → все тесты зелёные (блоки 1 + 2)
+- [x] CHANGELOG.md
 
 ---
 

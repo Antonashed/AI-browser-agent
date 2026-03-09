@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [2026-03-09] — Блок 2: LLM-клиент, инструменты и исполнитель
+
+- Создан `agent/tools.py` — 6 кастомных tools (remember, recall, ask_user, show_preview, confirm, done) в формате Anthropic + `merge_tools()` для объединения с MCP tools
+- Создан `agent/llm_client.py` — обёртка Anthropic API: `LLMClient.send_message()`, парсинг text/thinking/tool_use блоков, dataclass `ToolCall` и `LLMResponse`
+- Создан `agent/tool_executor.py` — роутер tool calls: MCP tools → `mcp_client.call_tool()`, remember/recall → `Memory`, unknown → сообщение об ошибке
+- Создан `agent/memory.py` — персистентное key-value хранилище (JSON файл), поддержка env defaults
+- Написаны тесты: 6 для tools, 5 для llm_client, 5 для tool_executor — все 25 тестов проходят
+
 ## [2026-03-09] — Блок 1: Фундамент — config, mcp_client
 
 - Создан `requirements.txt` с зависимостями: anthropic, python-dotenv, pytest, pytest-asyncio, mcp
