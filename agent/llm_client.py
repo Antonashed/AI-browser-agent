@@ -21,6 +21,8 @@ class LLMResponse:
     tool_calls: list[ToolCall] = field(default_factory=list)
     input_tokens: int = 0
     output_tokens: int = 0
+    cache_creation_input_tokens: int = 0
+    cache_read_input_tokens: int = 0
 
 
 class LLMClient:
@@ -35,15 +37,29 @@ class LLMClient:
         system: str,
         tools: list[dict],
     ) -> LLMResponse:
+        cached_system = [
+            {"type": "text", "text": system, "cache_control": {"type": "ephemeral"}}
+        ]
+        cached_tools = self._apply_cache_to_tools(tools)
+
         response = await asyncio.to_thread(
             self._client.messages.create,
             model=self._model,
             max_tokens=self._max_tokens,
-            system=system,
+            system=cached_system,
             messages=messages,
-            tools=tools,
+            tools=cached_tools,
         )
         return self._parse_response(response)
+
+    @staticmethod
+    def _apply_cache_to_tools(tools: list[dict]) -> list[dict]:
+        """Copy tools list and add cache_control to the last tool."""
+        if not tools:
+            return tools
+        cached = [dict(t) for t in tools]
+        cached[-1] = {**cached[-1], "cache_control": {"type": "ephemeral"}}
+        return cached
 
     def _parse_response(self, response: Any) -> LLMResponse:
         text_parts: list[str] = []
@@ -66,4 +82,6 @@ class LLMClient:
             tool_calls=tool_calls,
             input_tokens=response.usage.input_tokens,
             output_tokens=response.usage.output_tokens,
+            cache_creation_input_tokens=getattr(response.usage, "cache_creation_input_tokens", 0) or 0,
+            cache_read_input_tokens=getattr(response.usage, "cache_read_input_tokens", 0) or 0,
         )

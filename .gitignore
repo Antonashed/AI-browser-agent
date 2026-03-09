@@ -11,3 +11,4 @@
 *.log
 agent_log.jsonl
 memory.json
+browser_state.json

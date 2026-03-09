@@ -1,6 +1,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from agent.llm_client import LLMClient
 
 
 @dataclass
@@ -89,3 +93,29 @@ class ContextManager:
             })
 
         return messages
+
+    async def compress_old_steps(self, llm_client: LLMClient, keep_recent: int = 10) -> None:
+        """Summarize old steps via LLM, keeping only the most recent ones."""
+        if len(self._steps) <= keep_recent:
+            return
+
+        old_steps = self._steps[:-keep_recent]
+        recent_steps = self._steps[-keep_recent:]
+
+        old_text = "\n".join(
+            f"- {s.action}: {(s.result or '')[:200]}" for s in old_steps
+        )
+
+        existing = f"Previous summary:\n{self._summary}\n\n" if self._summary else ""
+        prompt = (
+            f"{existing}Summarize these agent steps concisely (2-3 sentences):\n{old_text}"
+        )
+
+        response = await llm_client.send_message(
+            messages=[{"role": "user", "content": prompt}],
+            system="You are a concise summarizer. Summarize the agent's steps in 2-3 sentences.",
+            tools=[],
+        )
+
+        self._summary = response.text or old_text[:500]
+        self._steps = recent_steps

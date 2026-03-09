@@ -18,6 +18,7 @@ class Config:
     browser_headless: bool = False
     browser_viewport_width: int = 1280
     browser_viewport_height: int = 900
+    browser_storage_path: str = ""
     max_emails_to_scan: int = 20
     max_vacancies: int = 5
 
@@ -44,6 +45,7 @@ def load_config() -> Config:
         browser_headless=_parse_bool(os.environ.get("BROWSER_HEADLESS", "false")),
         browser_viewport_width=int(os.environ.get("BROWSER_VIEWPORT_WIDTH", "1280")),
         browser_viewport_height=int(os.environ.get("BROWSER_VIEWPORT_HEIGHT", "900")),
+        browser_storage_path=os.environ.get("BROWSER_STORAGE_PATH", "").strip(),
         max_emails_to_scan=int(os.environ.get("MAX_EMAILS_TO_SCAN", "20")),
         max_vacancies=int(os.environ.get("MAX_VACANCIES", "5")),
     )

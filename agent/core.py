@@ -41,6 +41,10 @@ class AgentLoop:
         self._context.set_goal(task)
 
         for step_num in range(1, self._config.max_agent_steps + 1):
+            # Compress old steps if context is too large
+            if self._context.estimate_tokens() > 30000:
+                await self._context.compress_old_steps(self._llm)
+
             messages = self._context.build_messages()
             response = await self._llm.send_message(
                 messages, self._system_prompt, self._all_tools

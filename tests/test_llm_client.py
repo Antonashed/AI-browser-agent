@@ -109,6 +109,12 @@ class TestSendMessage:
             mock_client_instance.messages.create.assert_called_once()
             call_kwargs = mock_client_instance.messages.create.call_args
             assert call_kwargs.kwargs["model"] == "claude-test"
-            assert call_kwargs.kwargs["system"] == "You are helpful."
+            # system is now a list with cache_control for prompt caching
+            assert call_kwargs.kwargs["system"] == [
+                {"type": "text", "text": "You are helpful.", "cache_control": {"type": "ephemeral"}}
+            ]
+            # last tool should have cache_control
+            tools_sent = call_kwargs.kwargs["tools"]
+            assert tools_sent[-1]["cache_control"] == {"type": "ephemeral"}
             assert call_kwargs.kwargs["messages"] == [{"role": "user", "content": "Hi"}]
             assert result.text == "OK"

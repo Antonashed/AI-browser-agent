@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import os
 import sys
 
 from agent.config import load_config
@@ -26,6 +27,11 @@ async def main() -> None:
     if config.browser_headless:
         mcp_args.append("--headless")
     mcp_args.append(f"--viewport-size={config.browser_viewport_width},{config.browser_viewport_height}")
+    if config.browser_storage_path:
+        storage = config.browser_storage_path
+        if os.path.exists(storage):
+            mcp_args.append(f"--storage-state={storage}")
+        mcp_args.append(f"--save-storage={storage}")
 
     print("🚀 Запускаю MCP-сервер (Playwright)…")
     try:

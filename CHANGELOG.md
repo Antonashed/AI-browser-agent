@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [2026-03-09] — Блок 6: Оптимизация и полировка
+
+- **Prompt caching** в `llm_client.py`: system prompt и последний tool с `cache_control: ephemeral`, отслеживание `cache_creation_input_tokens` и `cache_read_input_tokens` в `LLMResponse`
+- **Сжатие контекста** в `context.py`: метод `compress_old_steps(llm_client, keep_recent=10)` — суммаризация старых шагов через LLM; вызов из `core.py` при `estimate_tokens() > 30000`
+- **Сохранение сессии браузера**: `BROWSER_STORAGE_PATH` в config, передача `--save-storage`/`--storage-state` в MCP-сервер
+- **README.md**: описание проекта, установка, использование, конфигурация, архитектура
+- Добавлен `browser_state.json` в `.gitignore`
+- 51 тест проходит (блоки 1–6)
+
 ## [2026-03-09] — Блок 5: CLI интерфейс (main.py)
 
 - Создан `main.py` — CLI точка входа: load_config → Memory → MCPClient.start → merge_tools → AgentLoop.run

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import pytest
+from unittest.mock import AsyncMock, MagicMock
 
 from agent.context import ContextManager, Step
 
@@ -93,3 +94,34 @@ class TestSetSummary:
         msgs = ctx.build_messages()
         # Goal message should contain both the goal and the summary
         assert "Summary of previous steps" in msgs[0]["content"]
+
+
+class TestCompressOldSteps:
+    @pytest.mark.asyncio
+    async def test_compress_reduces_steps(self):
+        ctx = ContextManager()
+        ctx.set_goal("task")
+        for i in range(15):
+            ctx.add_step(Step(action=f"step_{i}", result=f"result_{i}"))
+
+        mock_llm = AsyncMock()
+        mock_response = MagicMock()
+        mock_response.text = "Summary: did steps 0-4"
+        mock_llm.send_message = AsyncMock(return_value=mock_response)
+
+        await ctx.compress_old_steps(mock_llm, keep_recent=10)
+        assert ctx.get_step_count() == 10
+        msgs = ctx.build_messages()
+        assert "Summary: did steps 0-4" in msgs[0]["content"]
+
+    @pytest.mark.asyncio
+    async def test_compress_skips_when_few_steps(self):
+        ctx = ContextManager()
+        ctx.set_goal("task")
+        for i in range(5):
+            ctx.add_step(Step(action=f"step_{i}", result=f"result_{i}"))
+
+        mock_llm = AsyncMock()
+        await ctx.compress_old_steps(mock_llm, keep_recent=10)
+        assert ctx.get_step_count() == 5
+        mock_llm.send_message.assert_not_called()
