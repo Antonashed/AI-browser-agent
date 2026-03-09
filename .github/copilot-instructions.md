@@ -7,6 +7,8 @@
 ## Code Style
 - Follow PEP 8; use type annotations for all public functions and classes.
 - Keep agent logic modular: separate concerns into distinct files (e.g. `agent.py`, `tools.py`, `memory.py`).
+- Adhere to **SOLID** principles: single responsibility, open/closed, Liskov substitution, interface segregation, dependency inversion.
+- Apply **DRY** (Don't Repeat Yourself): extract repeated logic into reusable functions or classes instead of duplicating code.
 
 ## Build and Test
 ```bash
@@ -23,6 +25,20 @@ python main.py
 python -m pytest
 ```
 
+## Testing Workflow
+- **After completing every task**, run the full test suite:
+  ```bash
+  python -m pytest
+  ```
+- If any tests fail, **fix the implementation code** to make them pass.
+- **Never modify test files** to make tests pass — only change source/implementation code.
+- Tests are the source of truth; the code must conform to them, not the other way around.
+
+## Changelog
+- **After completing every task**, append a brief summary of what was done to `CHANGELOG.md`.
+- Format: `## [date] — <short task title>` followed by a bullet list of changes made.
+- Do **not** include test run results in the changelog — only describe code/feature changes.
+
 ## Project Conventions
 - Store configuration (API keys, model names) in a `.env` file; load with `python-dotenv`. Never commit `.env`.
 - Add `.env`, `__pycache__/`, and `*.pyc` to `.gitignore`.
@@ -34,3 +50,4 @@ python -m pytest
 ## Security
 - Never hardcode secrets or API keys in source files.
 - Validate and sanitize any external input before passing to tools or the LLM.
+
