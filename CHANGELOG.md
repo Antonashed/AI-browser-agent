@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## [2026-03-09] — Блок 5: CLI интерфейс (main.py)
+
+- Создан `main.py` — CLI точка входа: load_config → Memory → MCPClient.start → merge_tools → AgentLoop.run
+- CLI-команды: ввод задачи, `memory`/`память` для просмотра памяти, `quit`/`exit`/`выход` для завершения
+- Каждая задача создаёт свой ContextManager + AgentLoop
+- Graceful shutdown: MCP-сервер корректно останавливается в finally
+- 49 тестов проходят (блоки 1–5)
+
+## [2026-03-09] — Блок 4: Персистентная память
+
+- Написаны тесты `tests/test_memory.py` (8 шт.): save/load, has/delete, list_keys, persistence между рестартами, загрузка env defaults, защита от перезаписи
+- `agent/memory.py` уже был реализован в блоке 2 — все 8 тестов прошли сразу
+- Итого: 49 тестов проходят (блоки 1+2+3+4)
+
 ## [2026-03-09] — Блок 3: Ядро агента — context, prompts, core
 
 - Создан `agent/context.py` — `ContextManager` + `Step`: история шагов, build_messages() в формате Anthropic (goal → tool_use/tool_result пары), оценка токенов, суммаризация

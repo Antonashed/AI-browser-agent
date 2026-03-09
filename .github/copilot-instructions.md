@@ -39,6 +39,14 @@ python -m pytest
 - Format: `## [date] — <short task title>` followed by a bullet list of changes made.
 - Do **not** include test run results in the changelog — only describe code/feature changes.
 
+## Post-Task Workflow
+- **After each successfully completed task**, execute `/compact` to compress the conversation context.
+- **Before starting a new task**, commit all current changes with a short descriptive message in the user's style (e.g. `Block N complete`, `Added feature X`, `Fix Y`):
+  ```bash
+  git add -A
+  git commit -m "<short descriptive message>"
+  ```
+
 ## Project Conventions
 - Store configuration (API keys, model names) in a `.env` file; load with `python-dotenv`. Never commit `.env`.
 - Add `.env`, `__pycache__/`, and `*.pyc` to `.gitignore`.

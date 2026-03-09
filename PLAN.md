@@ -502,7 +502,7 @@ def build_system_prompt(config=None) -> str:
 
 ### Шаг 3.3: core.py (TDD)
 
-**Что делает:** ReAct-цикл — LLM думает, вызывает tools, получает результат, повторяет.
+**Что делает:** ReAct цикл — LLM думает, вызывает tools, получает результат, повторяет.
 
 **Интерфейс:**
 ```python
@@ -588,14 +588,14 @@ class Memory:
 - `_persist()` → записать, `_load_from_file()` → прочитать
 - `load_env_defaults=True`: проверяет `USER_FULL_NAME`, `USER_PHONE`, `USER_EMAIL`, `DELIVERY_ADDRESS` — пишет только если ключа нет
 
-- [ ] Тест → код → `pytest tests/test_memory.py -v` ✅
+- [x] Тест → код → `pytest tests/test_memory.py -v` ✅
 
 ---
 
 ### Шаг 4.2: Финальная проверка блока 4
 
-- [ ] `python -m pytest -v` ✅
-- [ ] CHANGELOG.md
+- [x] `python -m pytest -v` ✅
+- [x] CHANGELOG.md
 
 ---
 
@@ -630,7 +630,7 @@ class Memory:
 - `memory` — содержимое памяти
 - `quit` / `exit` / `выход` — завершение
 
-- [ ] Создать `main.py`
+- [x] Создать `main.py`
 - [ ] Проверить: `python main.py` → MCP-сервер стартует, CLI работает
 - [ ] Тестовая задача: «Перейди на google.com»
 
@@ -638,9 +638,9 @@ class Memory:
 
 ### Шаг 5.2: Финальная проверка блока 5
 
-- [ ] `python -m pytest -v` ✅
+- [x] `python -m pytest -v` ✅
 - [ ] `python main.py` работает
-- [ ] CHANGELOG.md
+- [x] CHANGELOG.md
 
 ---
 
