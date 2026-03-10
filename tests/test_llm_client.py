@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import field
 from unittest.mock import AsyncMock, MagicMock, patch
 
+import anthropic
 import pytest
 
 from agent.llm_client import LLMClient, LLMResponse, ToolCall
@@ -118,3 +119,76 @@ class TestSendMessage:
             assert tools_sent[-1]["cache_control"] == {"type": "ephemeral"}
             assert call_kwargs.kwargs["messages"] == [{"role": "user", "content": "Hi"}]
             assert result.text == "OK"
+
+
+def _make_ok_response() -> MagicMock:
+    """Build a minimal successful Anthropic response mock."""
+    text_block = MagicMock()
+    text_block.type = "text"
+    text_block.text = "OK"
+    resp = MagicMock()
+    resp.content = [text_block]
+    resp.usage = MagicMock(input_tokens=5, output_tokens=10)
+    return resp
+
+
+@pytest.mark.asyncio
+class TestRetryOnRateLimit:
+    async def test_retry_on_rate_limit(self) -> None:
+        """429 → 429 → 200: should succeed on third attempt."""
+        rate_limit_error = anthropic.RateLimitError(
+            message="rate limited",
+            response=MagicMock(status_code=429, headers={}, json=MagicMock(return_value={})),
+            body={"type": "error", "error": {"type": "rate_limit_error", "message": "rate limited"}},
+        )
+        ok_response = _make_ok_response()
+
+        with patch("agent.llm_client.anthropic") as mock_anthropic:
+            mock_client_instance = MagicMock()
+            mock_anthropic.Anthropic.return_value = mock_client_instance
+            # re-expose exception classes so retry logic can see them
+            mock_anthropic.RateLimitError = anthropic.RateLimitError
+            mock_anthropic.InternalServerError = anthropic.InternalServerError
+            mock_anthropic.APIConnectionError = anthropic.APIConnectionError
+
+            mock_client_instance.messages.create.side_effect = [
+                rate_limit_error, rate_limit_error, ok_response,
+            ]
+
+            client = LLMClient(api_key="sk-test", model="claude-test")
+            with patch("agent.llm_client.asyncio.sleep", new_callable=AsyncMock):
+                result = await client.send_message(
+                    messages=[{"role": "user", "content": "Hi"}],
+                    system="sys",
+                    tools=[],
+                )
+            assert result.text == "OK"
+            assert mock_client_instance.messages.create.call_count == 3
+
+    async def test_no_retry_on_auth_error(self) -> None:
+        """401 Unauthorized → raise immediately, no retry."""
+        auth_error = anthropic.AuthenticationError(
+            message="invalid key",
+            response=MagicMock(status_code=401, headers={}, json=MagicMock(return_value={})),
+            body={"type": "error", "error": {"type": "authentication_error", "message": "invalid key"}},
+        )
+
+        with patch("agent.llm_client.anthropic") as mock_anthropic:
+            mock_client_instance = MagicMock()
+            mock_anthropic.Anthropic.return_value = mock_client_instance
+            mock_anthropic.RateLimitError = anthropic.RateLimitError
+            mock_anthropic.InternalServerError = anthropic.InternalServerError
+            mock_anthropic.APIConnectionError = anthropic.APIConnectionError
+            mock_anthropic.AuthenticationError = anthropic.AuthenticationError
+
+            mock_client_instance.messages.create.side_effect = auth_error
+
+            client = LLMClient(api_key="bad-key", model="claude-test")
+            with pytest.raises(anthropic.AuthenticationError):
+                with patch("agent.llm_client.asyncio.sleep", new_callable=AsyncMock):
+                    await client.send_message(
+                        messages=[{"role": "user", "content": "Hi"}],
+                        system="sys",
+                        tools=[],
+                    )
+            assert mock_client_instance.messages.create.call_count == 1

@@ -1,3 +1,5 @@
+import asyncio
+
 import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
 from contextlib import asynccontextmanager
@@ -126,3 +128,20 @@ class TestMCPClient:
                 await client.start(command="npx", args=["@playwright/mcp"])
                 with pytest.raises(Exception, match="fly_to_moon"):
                     await client.call_tool("fly_to_moon", {})
+
+    async def test_call_tool_timeout(self):
+        """If call_tool hangs longer than timeout, asyncio.TimeoutError is raised."""
+        session = _build_mocked_session()
+
+        async def _hang(*args, **kwargs):
+            await asyncio.sleep(10)
+
+        session.call_tool = _hang
+        with (
+            patch("agent.mcp_client.stdio_client", side_effect=_fake_stdio_client),
+            patch("agent.mcp_client.ClientSession", return_value=session),
+        ):
+            async with MCPClient() as client:
+                await client.start(command="npx", args=["@playwright/mcp"])
+                with pytest.raises(asyncio.TimeoutError):
+                    await client.call_tool("browser_navigate", {"url": "https://example.com"}, timeout=0.1)

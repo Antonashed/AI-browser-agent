@@ -12,6 +12,8 @@ from agent.llm_client import ToolCall
 class ToolExecutor:
     """Routes tool calls: MCP tools → mcp_client, custom tools → local handlers."""
 
+    MAX_SNAPSHOT_CHARS = 8000
+
     def __init__(self, mcp_client: MCPClient, memory: Memory) -> None:
         self._mcp = mcp_client
         self._memory = memory
@@ -25,7 +27,10 @@ class ToolExecutor:
     async def execute(self, tool_call: ToolCall) -> str:
         try:
             if tool_call.name in self._mcp_tool_names:
-                return await self._mcp.call_tool(tool_call.name, tool_call.args)
+                result = await self._mcp.call_tool(tool_call.name, tool_call.args)
+                if tool_call.name == "browser_snapshot":
+                    result = self._truncate_snapshot(result)
+                return result
 
             match tool_call.name:
                 case "remember":
@@ -42,4 +47,20 @@ class ToolExecutor:
                 case _:
                     return f"Unknown tool: {tool_call.name}"
         except Exception as e:
-            return f"Error: {e}"
+            return f"[ERROR] {e}"
+
+    @staticmethod
+    def _truncate_snapshot(text: str, max_chars: int = 8000) -> str:
+        """Truncate long a11y snapshots, keeping structure."""
+        if len(text) <= max_chars:
+            return text
+        lines = text.split("\n")
+        output: list[str] = []
+        total = 0
+        for line in lines:
+            if total + len(line) > max_chars:
+                break
+            output.append(line)
+            total += len(line) + 1
+        output.append(f"\n... [truncated — {len(text) - total} chars omitted]")
+        return "\n".join(output)

@@ -13,21 +13,6 @@ SYSTEM_PROMPT = """You are an autonomous AI agent controlling a web browser via 
 3. Take ONE action via a tool
 4. Observe result, repeat
 
-## Browser Tools (from MCP)
-- **Observe:** browser_snapshot (a11y tree with ref markers), browser_take_screenshot
-- **Navigate:** browser_navigate(url), browser_go_back, browser_go_forward
-- **Interact:** browser_click(ref), browser_hover(ref), browser_type(ref, text),
-  browser_select_option(ref, values), browser_press_key(key)
-- **Tabs:** browser_tab_list, browser_tab_new(url), browser_tab_select(index),
-  browser_tab_close(index)
-- **Advanced:** browser_handle_dialog(accept), browser_file_upload(paths),
-  browser_wait, browser_resize
-
-## Custom Tools
-- **Memory:** remember(key, value), recall(key)
-- **User:** ask_user(question), show_preview(title, items), confirm(question)
-- **Done:** done(summary)
-
 ## Important Rules
 1. ALWAYS start with browser_snapshot to see the page
 2. Use ref="..." from snapshot to identify elements — NEVER guess
@@ -42,6 +27,14 @@ SYSTEM_PROMPT = """You are an autonomous AI agent controlling a web browser via 
 
 ## Language
 - Think in English, communicate with user in Russian
+"""
+
+PLAN_PROMPT = """Analyze the task and create a step-by-step plan (5-10 steps).
+Do NOT execute — only plan. Use available tool names.
+Format:
+1. tool_name: description
+2. tool_name: description
+...
 """
 
 

@@ -1,5 +1,55 @@
 # CHANGELOG
 
+## [2026-03-10] — Блок 12: UX + полировка
+
+- **BUG-6** (`config.py`): Валидация числовых env — `_parse_int()` с понятным `ValueError` вместо голого `int()` для `LLM_MAX_TOKENS`, `MAX_AGENT_STEPS`, `BROWSER_VIEWPORT_*`, `MAX_EMAILS_TO_SCAN`, `MAX_VACANCIES`
+- **BUG-5** (`mcp_client.py`): Логирование ошибок в `stop()` — уже реализовано в блоке 9 (`logger.debug` с `exc_info=True`)
+- **Signal handling** (`main.py`): `KeyboardInterrupt` корректно перехватывается при `input()` и `agent.run()`, `finally` гарантирует `mcp.stop()`
+- **CLI подсказка** (`main.py`): При ошибке CDP-подключения — понятное сообщение с командой запуска Chrome (уже реализовано в блоке 8)
+- **Русские алиасы** (`main.py`): Добавлены `план <задача>` и `выполняй` как алиасы для `plan` / `go`
+- 2 новых теста: `test_invalid_int_raises`, `test_invalid_viewport_raises`
+
+## [2026-03-10] — Блок 11: Фичи (smart retry, трекер токенов, dry-run)
+
+- **FEAT-1** (`context.py`, `core.py`, `tool_executor.py`): Smart Retry — `Step` получил поле `is_error`, ошибочные tool_result отправляются с `is_error: true` в Anthropic API; ошибки в `tool_executor` возвращаются с префиксом `[ERROR]`
+- **FEAT-2** (`core.py`, `main.py`): Трекер расхода токенов — `AgentLoop` аккумулирует `input_tokens`/`output_tokens`/`steps`, метод `get_usage()`; CLI выводит статистику после каждой задачи
+- **FEAT-3** (`prompts.py`, `core.py`, `main.py`): Режим dry-run — `PLAN_PROMPT` + метод `plan(task)` для генерации плана без выполнения; CLI команда `plan <задача>`, затем `go` для запуска
+- 5 новых тестов: `test_error_result_has_is_error_flag`, `test_success_result_no_is_error_flag`, `test_usage_tracking`, `test_plan_returns_text` + расширение существующих
+
+## [2026-03-10] — Блок 10: Оптимизация токенов
+
+- **OPT-1** (`context.py`): `thinking` убран из `build_messages()` и `estimate_tokens()` — остаётся только в audit log, экономия ~15-25%
+- **OPT-3** (`context.py`): `compress_old_steps()` — детерминированная локальная суммаризация по умолчанию (без LLM call), `keep_recent=7`; LLM-сжатие доступно при передаче `llm_client`
+- **OPT-5** (`core.py`): порог сжатия снижен с 30000 до 15000 токенов — раньше срабатывает, меньше расход
+- **OPT-2** (`tool_executor.py`): `_truncate_snapshot()` обрезает a11y tree `browser_snapshot` до 8000 символов с маркером `[truncated]`
+- **OPT-4** (`prompts.py`): убраны секции «Browser Tools» и «Custom Tools» из system prompt — описания уже есть в JSON-схемах, экономия ~300 токенов
+- 2 новых теста: `test_truncate_snapshot_short`, `test_truncate_snapshot_long`
+
+## [2026-03-10] — Блок 9: Надёжность (retry, таймауты, logging)
+
+- **Retry с backoff** (`llm_client.py`): 3 попытки с задержкой 1→2→4с для 429/500/529/APIConnectionError; 401/403 — сразу raise
+- **Таймаут MCP** (`mcp_client.py`): `call_tool()` получил параметр `timeout=60.0`, оборачивает вызов в `asyncio.wait_for()`
+- **Logging** (`main.py`): `logging.basicConfig()` с форматом `HH:MM:SS [LEVEL] name: message`
+- **MCP stop() логирование** (`mcp_client.py`): `except Exception: pass` → `logger.debug(..., exc_info=True)`
+- **Graceful error recovery** (`core.py`): `_executor.execute()` обёрнут в try/except, ошибки возвращаются LLM как `[ERROR] ...`
+- **mcp зафиксирован** (`requirements.txt`): `mcp>=1.0.0` → `mcp==1.26.0`
+- 4 новых теста: `test_retry_on_rate_limit`, `test_no_retry_on_auth_error`, `test_call_tool_timeout` + расширение существующих
+
+## [2026-03-10] — Блок 8: CDP по умолчанию + Real-Time браузер
+
+- **CDP как режим по умолчанию** (`config.py`): поле `cdp_endpoint` с дефолтом `http://localhost:9222`, значение `none` → автономный режим
+- **main.py**: формирование MCP args с `--cdp-endpoint`, информативные сообщения о режиме, подсказка при ошибке подключения к CDP
+- **.env.example**: добавлена секция CDP с комментариями
+- **README.md**: новая секция «Подключение к открытому браузеру», обновлена таблица конфигурации
+- 4 новых теста: `test_cdp_endpoint_default`, `test_cdp_endpoint_none`, `test_cdp_endpoint_none_case_insensitive`, `test_cdp_endpoint_custom`
+
+## [2026-03-10] — Блок 7: Критические баги
+
+- **BUG-1** (`context.py`): `build_messages()` теперь группирует tool_use из одного LLM-ответа в одно assistant message, а tool_result — в одно user message (поле `group_id` в `Step`)
+- **BUG-2** (`core.py`, `context.py`): текстовые ответы LLM (без tool calls) записываются в контекст через `add_text_response()`, не теряются и не нарушают чередование user/assistant
+- **BUG-3** (`core.py`): `input()` заменён на `await asyncio.to_thread(input, ...)` — event loop больше не блокируется при ожидании ввода пользователя
+- 4 новых теста: группировка tool_use, смешанные группы, текстовый ответ в контексте, текстовый ответ между tool calls
+
 ## [2026-03-09] — Блок 6: Оптимизация и полировка
 
 - **Prompt caching** в `llm_client.py`: system prompt и последний tool с `cache_control: ephemeral`, отслеживание `cache_creation_input_tokens` и `cache_read_input_tokens` в `LLMResponse`

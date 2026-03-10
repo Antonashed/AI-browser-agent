@@ -96,6 +96,100 @@ class TestSetSummary:
         assert "Summary of previous steps" in msgs[0]["content"]
 
 
+class TestGroupedToolCalls:
+    def test_multiple_tool_calls_single_message(self):
+        """Two tool_use with same group_id → 1 assistant msg + 1 user msg."""
+        ctx = ContextManager()
+        ctx.set_goal("task")
+        ctx.add_step(Step(action="browser_navigate", result="nav_done", tool_call_id="tc1", group_id="resp_1"))
+        ctx.add_step(Step(action="browser_click", result="clicked", tool_call_id="tc2", group_id="resp_1"))
+        msgs = ctx.build_messages()
+        # goal (user) + 1 assistant (2 tool_use) + 1 user (2 tool_result) = 3
+        assert len(msgs) == 3
+        assert msgs[1]["role"] == "assistant"
+        assert len(msgs[1]["content"]) == 2
+        assert msgs[1]["content"][0]["type"] == "tool_use"
+        assert msgs[1]["content"][1]["type"] == "tool_use"
+        assert msgs[2]["role"] == "user"
+        assert len(msgs[2]["content"]) == 2
+
+    def test_mixed_groups(self):
+        """Steps from different LLM responses → different message groups."""
+        ctx = ContextManager()
+        ctx.set_goal("task")
+        ctx.add_step(Step(action="a1", result="r1", tool_call_id="tc1", group_id="resp_1"))
+        ctx.add_step(Step(action="a2", result="r2", tool_call_id="tc2", group_id="resp_1"))
+        ctx.add_step(Step(action="a3", result="r3", tool_call_id="tc3", group_id="resp_2"))
+        msgs = ctx.build_messages()
+        # goal (user) + group1 (assistant + user) + group2 (assistant + user) = 5
+        assert len(msgs) == 5
+        # Group 1: 2 tool_use blocks
+        assert len(msgs[1]["content"]) == 2
+        # Group 2: 1 tool_use block
+        assert len(msgs[3]["content"]) == 1
+
+
+class TestTextResponse:
+    def test_text_response_in_context(self):
+        """Text-only LLM response appears in build_messages()."""
+        ctx = ContextManager()
+        ctx.set_goal("task")
+        ctx.add_text_response("Let me think about this...")
+        msgs = ctx.build_messages()
+        # goal (user) + assistant (text) + user (Continue.) = 3
+        assert len(msgs) == 3
+        assert msgs[1]["role"] == "assistant"
+        assert msgs[1]["content"] == "Let me think about this..."
+        assert msgs[2]["role"] == "user"
+        assert msgs[2]["content"] == "Continue."
+
+    def test_text_response_between_tool_calls(self):
+        """Text response interleaved with tool calls."""
+        ctx = ContextManager()
+        ctx.set_goal("task")
+        ctx.add_step(Step(action="a1", result="r1", tool_call_id="tc1"))
+        ctx.add_text_response("Thinking...")
+        ctx.add_step(Step(action="a2", result="r2", tool_call_id="tc2"))
+        msgs = ctx.build_messages()
+        # goal + (assistant+user) + (assistant+user) + (assistant+user) = 7
+        assert len(msgs) == 7
+        roles = [m["role"] for m in msgs]
+        assert roles == ["user", "assistant", "user", "assistant", "user", "assistant", "user"]
+
+
+class TestIsErrorFlag:
+    def test_error_result_has_is_error_flag(self):
+        """Step with is_error=True → tool_result has is_error: true in messages."""
+        ctx = ContextManager()
+        ctx.set_goal("task")
+        ctx.add_step(Step(
+            action="browser_click",
+            result="[ERROR] Element not found",
+            tool_call_id="tc1",
+            is_error=True,
+        ))
+        msgs = ctx.build_messages()
+        # user (goal) + assistant (tool_use) + user (tool_result)
+        assert len(msgs) == 3
+        tool_result = msgs[2]["content"][0]
+        assert tool_result["is_error"] is True
+        assert "[ERROR]" in tool_result["content"]
+
+    def test_success_result_no_is_error_flag(self):
+        """Step with is_error=False → tool_result has no is_error key."""
+        ctx = ContextManager()
+        ctx.set_goal("task")
+        ctx.add_step(Step(
+            action="browser_click",
+            result="clicked",
+            tool_call_id="tc1",
+            is_error=False,
+        ))
+        msgs = ctx.build_messages()
+        tool_result = msgs[2]["content"][0]
+        assert "is_error" not in tool_result
+
+
 class TestCompressOldSteps:
     @pytest.mark.asyncio
     async def test_compress_reduces_steps(self):

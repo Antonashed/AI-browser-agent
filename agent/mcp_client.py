@@ -1,10 +1,14 @@
 from __future__ import annotations
 
+import asyncio
+import logging
 from contextlib import asynccontextmanager
 from typing import Any
 
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
+
+logger = logging.getLogger(__name__)
 
 
 class MCPClient:
@@ -28,13 +32,13 @@ class MCPClient:
             try:
                 await self._session.__aexit__(None, None, None)
             except Exception:
-                pass
+                logger.debug("Error closing MCP session", exc_info=True)
             self._session = None
         if self._stdio_context is not None:
             try:
                 await self._stdio_context.__aexit__(None, None, None)
             except Exception:
-                pass
+                logger.debug("Error closing MCP stdio transport", exc_info=True)
             self._stdio_context = None
 
     async def list_tools(self) -> list[dict]:
@@ -43,10 +47,12 @@ class MCPClient:
         result = await self._session.list_tools()
         return [self._convert_tool(t) for t in result.tools]
 
-    async def call_tool(self, name: str, arguments: dict) -> str:
+    async def call_tool(self, name: str, arguments: dict, timeout: float = 60.0) -> str:
         if self._session is None:
             raise RuntimeError("MCPClient not started")
-        result = await self._session.call_tool(name, arguments)
+        result = await asyncio.wait_for(
+            self._session.call_tool(name, arguments), timeout=timeout,
+        )
         return self._extract_text(result)
 
     async def __aenter__(self) -> MCPClient:

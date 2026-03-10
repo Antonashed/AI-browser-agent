@@ -72,3 +72,17 @@ class TestToolExecutor:
         tc = ToolCall(id="5", name="fly_to_moon", args={})
         result = await executor.execute(tc)
         assert "unknown tool" in result.lower()
+
+
+class TestTruncateSnapshot:
+    def test_truncate_snapshot_short(self) -> None:
+        """Text shorter than max_chars → returned unchanged."""
+        short = "line1\nline2\nline3"
+        assert ToolExecutor._truncate_snapshot(short) == short
+
+    def test_truncate_snapshot_long(self) -> None:
+        """Text longer than max_chars → truncated with marker."""
+        long_text = "\n".join(f"line {i}: {'x' * 80}" for i in range(200))
+        result = ToolExecutor._truncate_snapshot(long_text, max_chars=500)
+        assert len(result) <= 600  # some slack for truncation marker
+        assert "truncated" in result.lower()

@@ -52,18 +52,33 @@ copy .env.example .env     # Windows
 
 ## Использование
 
-```bash
-# Активировать venv
-venv\Scripts\activate
+### Подключение к открытому браузеру (по умолчанию)
 
-# Запустить агента
+Агент по умолчанию подключается к уже запущенному Chrome через CDP — вы видите все действия агента в реальном времени.
+
+1. Запустите Chrome с удалённой отладкой:
+
+```bash
+# Windows
+"C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222
+
+# macOS
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222
+
+# Linux
+google-chrome --remote-debugging-port=9222
+```
+
+2. Запустите агента:
+
+```bash
 python main.py
 ```
 
-После запуска введите задачу:
+Для автономного режима (MCP запускает свой браузер) установите в `.env`:
 
-```
-📝 Задача > Найди 5 вакансий AI-инженера на hh.ru
+```env
+CDP_ENDPOINT=none
 ```
 
 ### Команды CLI
@@ -89,6 +104,7 @@ python main.py
 | `BROWSER_VIEWPORT_WIDTH` | Ширина окна | `1280` |
 | `BROWSER_VIEWPORT_HEIGHT` | Высота окна | `900` |
 | `BROWSER_STORAGE_PATH` | Файл сессии браузера | *(пусто)* |
+| `CDP_ENDPOINT` | CDP-эндпоинт браузера (`none` = автономный) | `http://localhost:9222` |
 
 ## Архитектура
 

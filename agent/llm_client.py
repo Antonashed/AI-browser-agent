@@ -1,10 +1,22 @@
 from __future__ import annotations
 
 import asyncio
+import logging
 from dataclasses import dataclass, field
 from typing import Any
 
 import anthropic
+
+logger = logging.getLogger(__name__)
+
+MAX_RETRIES = 3
+RETRY_DELAYS = [1, 2, 4]
+
+_RETRYABLE_ERRORS = (
+    anthropic.RateLimitError,
+    anthropic.InternalServerError,
+    anthropic.APIConnectionError,
+)
 
 
 @dataclass
@@ -42,15 +54,29 @@ class LLMClient:
         ]
         cached_tools = self._apply_cache_to_tools(tools)
 
-        response = await asyncio.to_thread(
-            self._client.messages.create,
-            model=self._model,
-            max_tokens=self._max_tokens,
-            system=cached_system,
-            messages=messages,
-            tools=cached_tools,
-        )
-        return self._parse_response(response)
+        last_error: Exception | None = None
+        for attempt in range(MAX_RETRIES):
+            try:
+                response = await asyncio.to_thread(
+                    self._client.messages.create,
+                    model=self._model,
+                    max_tokens=self._max_tokens,
+                    system=cached_system,
+                    messages=messages,
+                    tools=cached_tools,
+                )
+                return self._parse_response(response)
+            except _RETRYABLE_ERRORS as exc:
+                last_error = exc
+                if attempt < MAX_RETRIES - 1:
+                    delay = RETRY_DELAYS[attempt]
+                    logger.warning(
+                        "Anthropic API error (attempt %d/%d): %s — retrying in %ds",
+                        attempt + 1, MAX_RETRIES, exc, delay,
+                    )
+                    await asyncio.sleep(delay)
+
+        raise last_error  # type: ignore[misc]
 
     @staticmethod
     def _apply_cache_to_tools(tools: list[dict]) -> list[dict]:
