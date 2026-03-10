@@ -199,9 +199,13 @@ async def main() -> None:
                     pass
             except KeyboardInterrupt:
                 cli.print_error("Прервано пользователем.")
-            except (anthropic.APIStatusError, anthropic.APIConnectionError) as exc:
-                cli.print_error(f"API ошибка: {exc} — повторяю через 60с...")
+            except anthropic.RateLimitError as exc:
+                cli.print_error(f"Rate limit: {exc} — повторяю через 60с...")
                 await asyncio.sleep(60)
+                continue
+            except (anthropic.APIStatusError, anthropic.APIConnectionError) as exc:
+                cli.print_error(f"API ошибка: {exc} — повторяю через 20с...")
+                await asyncio.sleep(20)
                 continue
             except Exception as exc:
                 cli.print_error(f"Ошибка: {exc}")
