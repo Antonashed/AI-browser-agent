@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import asyncio
+import json
 import logging
 import os
 import sys
+from pathlib import Path
 
 from agent.cli import CLI
 from agent.config import load_config
@@ -16,6 +18,8 @@ from agent.mcp_client import MCPClient
 from agent.memory import Memory
 from agent.tool_executor import ToolExecutor
 from agent.tools import merge_tools
+
+METRICS_LOG_PATH = Path("session_metrics.jsonl")
 
 
 async def main() -> None:
@@ -141,13 +145,13 @@ async def main() -> None:
                 continue
 
             # Execute last plan
-            if lower in ("/go", "go", "выполняй") and last_plan_task:
-                task = last_plan_task
-                last_plan_task = None
-
-            if lower in ("/go", "go", "выполняй") and not task:
-                cli.print_error("Нет плана для выполнения. Используйте /plan <задача>")
-                continue
+            if lower in ("/go", "go", "выполняй"):
+                if last_plan_task:
+                    task = last_plan_task
+                    last_plan_task = None
+                else:
+                    cli.print_error("Нет плана для выполнения. Используйте /plan <задача>")
+                    continue
 
             # --- Execute task ---
             task_history.append(task)
@@ -155,6 +159,7 @@ async def main() -> None:
             agent = AgentLoop(
                 llm, executor, context, config, all_tools,
                 on_event=cli.handle_event,
+                memory=memory,
             )
 
             try:
@@ -164,6 +169,14 @@ async def main() -> None:
                 session_input_tokens += usage["input_tokens"]
                 session_output_tokens += usage["output_tokens"]
                 cli.print_usage(usage["steps"], usage["input_tokens"], usage["output_tokens"])
+
+                # Save session metrics
+                metrics = agent.export_metrics()
+                try:
+                    with open(METRICS_LOG_PATH, "a", encoding="utf-8") as f:
+                        f.write(json.dumps(metrics, ensure_ascii=False) + "\n")
+                except OSError:
+                    pass
             except KeyboardInterrupt:
                 cli.print_error("Прервано пользователем.")
             except Exception as exc:

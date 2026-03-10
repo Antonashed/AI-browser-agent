@@ -15,6 +15,7 @@ class EventType(Enum):
     ASK_USER = "ask_user"
     CONFIRM = "confirm"
     SHOW_PREVIEW = "show_preview"
+    CAPTCHA_DETECTED = "captcha_detected"
     DONE = "done"
     ERROR = "error"
     STATUS = "status"

@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## [2026-03-10] — Блок 14: Функциональные доработки (CAPTCHA, аудит, маскирование, метрики)
+
+- **CAPTCHA/2FA** (`prompts.py`, `events.py`): Добавлены инструкции в system prompt для обнаружения CAPTCHA/reCAPTCHA/2FA → остановка + `ask_user()`; новый `EventType.CAPTCHA_DETECTED`
+- **Payment Safety** (`prompts.py`): Эксплицитное правило — NEVER execute payment/checkout без `confirm()`
+- **Session ID** (`core.py`): `run()` генерирует UUID `session_id`; включается в каждую запись `agent_log.jsonl`
+- **Audit Export** (`core.py`): Метод `export_audit()` — фильтрует записи по `session_id` из лог-файла
+- **Secret Masking** (`core.py`): `_mask_sensitive()` — маскирует значения из Memory, где ключ содержит password/token/key/secret → `***MASKED***` в audit log (и args, и result)
+- **Session Metrics** (`core.py`, `main.py`): `export_metrics()` возвращает `{session_id, task, steps, input_tokens, output_tokens, errors_count, duration_seconds, success}`; `main.py` сохраняет метрики в `session_metrics.jsonl`
+- 9 новых тестов: session_id в audit log, маскирование секретов, export_metrics (success + failure), export_audit, CAPTCHA keywords в prompt, payment stop в prompt, CAPTCHA_DETECTED event, SENSITIVE_KEY_PATTERNS
+
+## [2026-03-10] — Ревью и отладка
+
+- **BUG** (`main.py`): Исправлена команда `/go` без плана — раньше "/go" молча отправлялась как задача агенту вместо показа ошибки; переписана на `if/else` с корректной обработкой
+- **FIX** (`.gitignore`): Исправлена опечатка `/__pycahce__` → `__pycache__/`
+- **FIX**: Создан `pyproject.toml` с конфигурацией pytest-asyncio (`asyncio_default_fixture_loop_scope = "function"`) — убран deprecation warning
+
 ## [2026-03-10] — Блок 13: Bugfix + CLI Redesign + Streaming
 
 ### Phase 1: Bug Fixes

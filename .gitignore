@@ -1,7 +1,7 @@
 .venv
 .env
 /venv
-/__pycahce__
+__pycache__/
 /.vscode
 *.pyc
 *.pyo
@@ -12,3 +12,4 @@
 agent_log.jsonl
 memory.json
 browser_state.json
+test_scenario.md

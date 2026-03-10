@@ -1,11 +1,15 @@
 from __future__ import annotations
 
+import json
 import pytest
+from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock, patch
 
-from agent.core import AgentLoop
+from agent.core import AgentLoop, AUDIT_LOG_PATH, SENSITIVE_KEY_PATTERNS
 from agent.context import ContextManager
+from agent.events import EventType
 from agent.llm_client import LLMResponse, ToolCall
+from agent.memory import Memory
 
 
 def _make_loop(
@@ -172,3 +176,166 @@ async def test_plan_returns_text():
     usage = loop.get_usage()
     assert usage["input_tokens"] == 200
     assert usage["output_tokens"] == 50
+
+
+# --- Block 14 Tests ---
+
+
+@pytest.mark.asyncio
+async def test_session_id_in_audit_log(tmp_path, monkeypatch):
+    """run() generates a UUID session_id and includes it in every audit log entry."""
+    log_file = tmp_path / "agent_log.jsonl"
+    monkeypatch.setattr("agent.core.AUDIT_LOG_PATH", log_file)
+
+    responses = [
+        LLMResponse(tool_calls=[ToolCall(id="1", name="browser_navigate", args={"url": "https://example.com"})]),
+        LLMResponse(tool_calls=[ToolCall(id="2", name="done", args={"summary": "Done"})]),
+    ]
+    loop, _, _ = _make_loop(responses)
+    await loop.run("Test task")
+
+    assert log_file.exists()
+    entries = [json.loads(line) for line in log_file.read_text(encoding="utf-8").strip().split("\n")]
+    assert len(entries) == 2
+    # All entries share the same session_id (UUID format)
+    sid = entries[0]["session_id"]
+    assert len(sid) == 36  # UUID format
+    assert all(e["session_id"] == sid for e in entries)
+
+
+@pytest.mark.asyncio
+async def test_mask_sensitive_in_audit_log(tmp_path, monkeypatch):
+    """Sensitive memory values (keys containing 'password', 'token', etc.) are masked in audit log."""
+    log_file = tmp_path / "agent_log.jsonl"
+    monkeypatch.setattr("agent.core.AUDIT_LOG_PATH", log_file)
+
+    mem_file = tmp_path / "memory.json"
+    memory = Memory(filepath=mem_file)
+    memory.save("api_token", "SECRET_ABC_123")
+    memory.save("user_password", "MyP@ssw0rd")
+    memory.save("user_name", "Alice")  # not sensitive key
+
+    responses = [
+        LLMResponse(tool_calls=[ToolCall(id="1", name="browser_fill", args={"ref": "5", "value": "SECRET_ABC_123"})]),
+        LLMResponse(tool_calls=[ToolCall(id="2", name="done", args={"summary": "Done"})]),
+    ]
+    llm_client = AsyncMock()
+    llm_client.send_message = AsyncMock(side_effect=responses)
+    tool_executor = AsyncMock()
+    tool_executor.execute = AsyncMock(return_value="filled SECRET_ABC_123 into field")
+    context = ContextManager()
+    config = MagicMock()
+    config.max_agent_steps = 10
+    all_tools = []
+
+    loop = AgentLoop(
+        llm_client=llm_client,
+        tool_executor=tool_executor,
+        context=context,
+        config=config,
+        all_tools=all_tools,
+        memory=memory,
+    )
+    await loop.run("Fill form")
+
+    entries = [json.loads(line) for line in log_file.read_text(encoding="utf-8").strip().split("\n")]
+    fill_entry = entries[0]
+    # The sensitive value should be masked in args and result
+    assert "SECRET_ABC_123" not in json.dumps(fill_entry)
+    assert "***MASKED***" in json.dumps(fill_entry)
+    # Non-sensitive values remain
+    assert "Alice" not in json.dumps(fill_entry)  # wasn't in the tool call anyway
+
+
+@pytest.mark.asyncio
+async def test_export_metrics_structure():
+    """export_metrics() returns dict with all required fields."""
+    responses = [
+        LLMResponse(
+            tool_calls=[ToolCall(id="1", name="browser_navigate", args={"url": "https://example.com"})],
+            input_tokens=500,
+            output_tokens=100,
+        ),
+        LLMResponse(
+            tool_calls=[ToolCall(id="2", name="done", args={"summary": "Done"})],
+            input_tokens=600,
+            output_tokens=150,
+        ),
+    ]
+    loop, _, _ = _make_loop(responses)
+    await loop.run("Test metrics")
+
+    metrics = loop.export_metrics()
+    assert metrics["session_id"]
+    assert len(metrics["session_id"]) == 36
+    assert metrics["task"] == "Test metrics"
+    assert metrics["steps"] == 2
+    assert metrics["input_tokens"] == 1100
+    assert metrics["output_tokens"] == 250
+    assert metrics["errors_count"] == 0
+    assert metrics["duration_seconds"] >= 0
+    assert metrics["success"] is True
+
+
+@pytest.mark.asyncio
+async def test_export_metrics_failure():
+    """export_metrics() reports success=False when agent hits step limit."""
+    responses = [
+        LLMResponse(tool_calls=[ToolCall(id=str(i), name="browser_click", args={"ref": "1"})]) for i in range(5)
+    ]
+    loop, _, _ = _make_loop(responses, max_steps=3)
+    await loop.run("Failing task")
+
+    metrics = loop.export_metrics()
+    assert metrics["success"] is False
+
+
+@pytest.mark.asyncio
+async def test_export_audit(tmp_path, monkeypatch):
+    """export_audit() returns only entries for the current session."""
+    log_file = tmp_path / "agent_log.jsonl"
+    monkeypatch.setattr("agent.core.AUDIT_LOG_PATH", log_file)
+
+    # Pre-write an entry from a "different" session
+    old_entry = {"session_id": "old-session", "step": 1, "tool": "browser_click", "args": {}, "result": "ok", "timestamp": "2026-01-01T00:00:00Z"}
+    log_file.write_text(json.dumps(old_entry) + "\n", encoding="utf-8")
+
+    responses = [
+        LLMResponse(tool_calls=[ToolCall(id="1", name="browser_navigate", args={"url": "https://test.com"})]),
+        LLMResponse(tool_calls=[ToolCall(id="2", name="done", args={"summary": "OK"})]),
+    ]
+    loop, _, _ = _make_loop(responses)
+    await loop.run("Audit test")
+
+    audit = loop.export_audit()
+    assert len(audit) == 2
+    assert all(e["session_id"] == loop._session_id for e in audit)
+
+
+def test_captcha_keywords_in_prompt():
+    """System prompt contains CAPTCHA detection instructions."""
+    from agent.prompts import SYSTEM_PROMPT
+    prompt_lower = SYSTEM_PROMPT.lower()
+    for keyword in ["captcha", "recaptcha", "2fa", "ask_user"]:
+        assert keyword in prompt_lower, f"Missing keyword '{keyword}' in system prompt"
+
+
+def test_payment_stop_in_prompt():
+    """System prompt contains payment safety rules."""
+    from agent.prompts import SYSTEM_PROMPT
+    prompt_lower = SYSTEM_PROMPT.lower()
+    assert "payment" in prompt_lower or "checkout" in prompt_lower
+    assert "confirm" in prompt_lower
+
+
+def test_captcha_detected_event_type():
+    """CAPTCHA_DETECTED exists in EventType."""
+    assert EventType.CAPTCHA_DETECTED.value == "captcha_detected"
+
+
+def test_sensitive_key_patterns():
+    """SENSITIVE_KEY_PATTERNS covers expected keywords."""
+    assert "password" in SENSITIVE_KEY_PATTERNS
+    assert "token" in SENSITIVE_KEY_PATTERNS
+    assert "key" in SENSITIVE_KEY_PATTERNS
+    assert "secret" in SENSITIVE_KEY_PATTERNS

@@ -4,6 +4,7 @@ import asyncio
 import json
 import logging
 import time
+import uuid
 from collections.abc import Callable
 from datetime import datetime, timezone
 from pathlib import Path
@@ -12,6 +13,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from agent.config import Config
     from agent.llm_client import LLMClient, LLMResponse, ToolCall
+    from agent.memory import Memory
     from agent.tool_executor import ToolExecutor
 
 from agent.context import ContextManager, Step
@@ -21,6 +23,8 @@ from agent.prompts import build_system_prompt, PLAN_PROMPT
 logger = logging.getLogger(__name__)
 
 AUDIT_LOG_PATH = Path("agent_log.jsonl")
+
+SENSITIVE_KEY_PATTERNS = {"password", "token", "key", "secret"}
 
 
 class AgentLoop:
@@ -34,6 +38,7 @@ class AgentLoop:
         config: Config,
         all_tools: list[dict],
         on_event: Callable[[AgentEvent], None] | None = None,
+        memory: Memory | None = None,
     ) -> None:
         self._llm = llm_client
         self._executor = tool_executor
@@ -44,7 +49,13 @@ class AgentLoop:
         self._total_input_tokens: int = 0
         self._total_output_tokens: int = 0
         self._total_steps: int = 0
+        self._errors_count: int = 0
         self._on_event = on_event
+        self._memory = memory
+        self._session_id: str = ""
+        self._start_time: float = 0.0
+        self._task: str = ""
+        self._success: bool = False
 
     def _emit(self, event: AgentEvent) -> None:
         if self._on_event:
@@ -70,6 +81,11 @@ class AgentLoop:
         )
 
     async def run(self, task: str) -> str:
+        self._session_id = str(uuid.uuid4())
+        self._start_time = time.monotonic()
+        self._task = task
+        self._success = False
+        self._errors_count = 0
         self._context.set_goal(task)
         consecutive_text = 0
         consecutive_errors = 0
@@ -105,11 +121,13 @@ class AgentLoop:
                 result = await self._handle_tool_call(tc, step_num)
 
                 if tc.name == "done":
+                    self._success = True
                     return tc.args.get("summary", "")
 
                 is_error = result.startswith("[ERROR]") if result else False
                 if is_error:
                     step_had_error = True
+                    self._errors_count += 1
 
                 self._context.add_step(Step(
                     action=tc.name,
@@ -137,7 +155,40 @@ class AgentLoop:
             "steps": self._total_steps,
             "input_tokens": self._total_input_tokens,
             "output_tokens": self._total_output_tokens,
+            "session_id": self._session_id,
         }
+
+    def export_metrics(self) -> dict:
+        """Export session metrics as a dict."""
+        duration = time.monotonic() - self._start_time if self._start_time else 0.0
+        return {
+            "session_id": self._session_id,
+            "task": self._task,
+            "steps": self._total_steps,
+            "input_tokens": self._total_input_tokens,
+            "output_tokens": self._total_output_tokens,
+            "errors_count": self._errors_count,
+            "duration_seconds": round(duration, 2),
+            "success": self._success,
+        }
+
+    def export_audit(self) -> list[dict]:
+        """Export audit log entries for current session."""
+        entries: list[dict] = []
+        if not AUDIT_LOG_PATH.exists():
+            return entries
+        try:
+            with open(AUDIT_LOG_PATH, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    entry = json.loads(line)
+                    if entry.get("session_id") == self._session_id:
+                        entries.append(entry)
+        except (OSError, json.JSONDecodeError):
+            logger.warning("Failed to read audit log for export")
+        return entries
 
     async def plan(self, task: str) -> str:
         """Generate an execution plan without running any tools."""
@@ -193,11 +244,15 @@ class AgentLoop:
         return result
 
     def _write_audit_log(self, step_num: int, tc: ToolCall, result: str) -> None:
+        masked_args = json.dumps(tc.args, ensure_ascii=False)
+        masked_args = self._mask_sensitive(masked_args)
+        masked_result = self._mask_sensitive(result[:500])
         entry = {
+            "session_id": self._session_id,
             "step": step_num,
             "tool": tc.name,
-            "args": tc.args,
-            "result": result[:500],
+            "args": json.loads(masked_args),
+            "result": masked_result,
             "timestamp": datetime.now(timezone.utc).isoformat(),
         }
         try:
@@ -205,3 +260,14 @@ class AgentLoop:
                 f.write(json.dumps(entry, ensure_ascii=False) + "\n")
         except OSError:
             logger.warning("Failed to write audit log")
+
+    def _mask_sensitive(self, text: str) -> str:
+        """Replace sensitive values from memory in text with ***MASKED***."""
+        if not self._memory:
+            return text
+        for key in self._memory.list_keys():
+            if any(kw in key.lower() for kw in SENSITIVE_KEY_PATTERNS):
+                value = self._memory.load(key)
+                if value:
+                    text = text.replace(value, "***MASKED***")
+        return text
