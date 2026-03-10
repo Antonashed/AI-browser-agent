@@ -92,8 +92,8 @@ class AgentLoop:
 
         for step_num in range(1, self._config.max_agent_steps + 1):
             # Compress old steps if context is too large
-            if self._context.estimate_tokens() > 15000:
-                await self._context.compress_old_steps()
+            if self._context.estimate_tokens() > 6000:
+                await self._context.compress_old_steps(keep_recent=4)
 
             messages = self._context.build_messages()
             response = await self._get_response(messages)

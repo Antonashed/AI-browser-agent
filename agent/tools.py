@@ -108,6 +108,23 @@ _CUSTOM_TOOL_NAMES: set[str] = {t["name"] for t in CUSTOM_TOOLS}
 _COMPOUND_TOOL_NAMES: set[str] = {t["name"] for t in COMPOUND_TOOLS}
 _ALL_LOCAL_NAMES: set[str] = _CUSTOM_TOOL_NAMES | _COMPOUND_TOOL_NAMES
 
+# MCP tools actually used by the agent. Others are stripped to save tokens.
+_MCP_TOOL_WHITELIST: set[str] = {
+    "browser_navigate",
+    "browser_click",
+    "browser_snapshot",
+    "browser_type",
+    "browser_tab_list",
+    "browser_tab_close",
+    "browser_go_back",
+    "browser_wait",
+    "browser_hover",
+    "browser_select_option",
+    "browser_press_key",
+    "browser_drag",
+    "browser_take_screenshot",
+}
+
 
 def get_custom_tool_names() -> list[str]:
     return [t["name"] for t in CUSTOM_TOOLS]
@@ -120,5 +137,9 @@ def merge_tools(mcp_tools: list[dict]) -> list[dict]:
 
 def get_all_tools(mcp_tools: list[dict]) -> list[dict]:
     """Merge MCP, custom, and compound tools into one list for the LLM."""
-    filtered = [t for t in mcp_tools if t["name"] not in _ALL_LOCAL_NAMES]
+    filtered = [
+        t for t in mcp_tools
+        if t["name"] not in _ALL_LOCAL_NAMES
+        and t["name"] in _MCP_TOOL_WHITELIST
+    ]
     return filtered + list(CUSTOM_TOOLS) + list(COMPOUND_TOOLS)

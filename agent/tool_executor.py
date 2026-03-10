@@ -13,7 +13,7 @@ from agent.page_parser import extract_zone, parse_zones, zone_summary
 class ToolExecutor:
     """Routes tool calls: MCP tools → mcp_client, custom tools → local handlers."""
 
-    MAX_SNAPSHOT_CHARS = 8000
+    MAX_SNAPSHOT_CHARS = 4000
 
     def __init__(self, mcp_client: MCPClient, memory: Memory) -> None:
         self._mcp = mcp_client

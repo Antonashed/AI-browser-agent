@@ -14,6 +14,7 @@ from agent.events import AgentEvent, EventType
 logger = logging.getLogger(__name__)
 
 MAX_RETRY_DELAY = 30
+RATE_LIMIT_DELAY = 60
 
 _RETRYABLE_ERRORS = (
     anthropic.RateLimitError,
@@ -27,6 +28,13 @@ _RETRYABLE_ERRORS = (
 # it arrives as APIStatusError with status_code=529.
 _RETRYABLE_STATUS_CODES = {529}
 _APIStatusError = anthropic.APIStatusError
+
+
+def _retry_delay(exc: Exception, attempt: int) -> int:
+    """Choose delay based on error type: 60s for rate-limit, exponential backoff otherwise."""
+    if isinstance(exc, anthropic.RateLimitError):
+        return RATE_LIMIT_DELAY
+    return min(attempt * 2, MAX_RETRY_DELAY)
 
 
 @dataclass
@@ -85,7 +93,7 @@ class LLMClient:
                 return self._parse_response(response)
             except _RETRYABLE_ERRORS as exc:
                 attempt += 1
-                delay = min(attempt * 2, MAX_RETRY_DELAY)
+                delay = _retry_delay(exc, attempt)
                 logger.warning(
                     "Anthropic API error (attempt %d): %s — retrying in %ds",
                     attempt, exc, delay,
@@ -94,7 +102,7 @@ class LLMClient:
             except _APIStatusError as exc:
                 if exc.status_code in _RETRYABLE_STATUS_CODES:
                     attempt += 1
-                    delay = min(attempt * 2, MAX_RETRY_DELAY)
+                    delay = _retry_delay(exc, attempt)
                     logger.warning(
                         "Anthropic API overloaded (attempt %d): %s — retrying in %ds",
                         attempt, exc, delay,
@@ -226,7 +234,7 @@ class LLMClient:
                 return
             except _RETRYABLE_ERRORS as exc:
                 attempt += 1
-                delay = min(attempt * 2, MAX_RETRY_DELAY)
+                delay = _retry_delay(exc, attempt)
                 logger.warning(
                     "Anthropic streaming error (attempt %d): %s — retrying in %ds",
                     attempt, exc, delay,
@@ -235,7 +243,7 @@ class LLMClient:
             except _APIStatusError as exc:
                 if exc.status_code in _RETRYABLE_STATUS_CODES:
                     attempt += 1
-                    delay = min(attempt * 2, MAX_RETRY_DELAY)
+                    delay = _retry_delay(exc, attempt)
                     logger.warning(
                         "Anthropic streaming overloaded (attempt %d): %s — retrying in %ds",
                         attempt, exc, delay,

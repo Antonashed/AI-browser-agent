@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## [2026-03-10] — Максимальная экономия токенов
+
+- `tool_executor.py`: MAX_SNAPSHOT_CHARS 8000 → 4000 (снапшоты вдвое компактнее)
+- `context.py`: MAX_RESULT_CHARS=3000 — обрезка tool_result при добавлении в контекст
+- `context.py`: `_truncate_args()` — строковые значения args > 200 символов обрезаются в истории
+- `context.py`: MAX_SUMMARY_CHARS 4000 → 2000
+- `core.py`: порог компрессии 15000 → 6000, keep_recent 7 → 4
+- `llm_client.py`: `_retry_delay()` — при RateLimitError (429) ждать 60с вместо backoff
+- `tools.py`: whitelist MCP tools — отправляются только 13 актуальных из 22
+- `.env`: LLM_MAX_TOKENS 4096 → 2048
+- 89 тестов проходят
+
 ## [2026-03-10] — Бесконечные retry для LLM-запросов
 
 - `llm_client.py`: `send_message()` и `send_message_stream()` теперь используют `while True` вместо ограниченного числа попыток

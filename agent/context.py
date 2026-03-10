@@ -4,7 +4,9 @@ from dataclasses import dataclass, field
 from typing import Any
 
 
-MAX_SUMMARY_CHARS = 4000
+MAX_SUMMARY_CHARS = 2000
+MAX_RESULT_CHARS = 3000
+_MAX_ARG_VALUE_LEN = 200
 
 
 @dataclass
@@ -31,6 +33,8 @@ class ContextManager:
         self._goal = goal
 
     def add_step(self, step: Step) -> None:
+        if step.result and len(step.result) > MAX_RESULT_CHARS:
+            step.result = step.result[:MAX_RESULT_CHARS] + "\n... [truncated]"
         self._steps.append(step)
 
     def add_text_response(self, text: str) -> None:
@@ -113,7 +117,7 @@ class ContextManager:
                     "type": "tool_use",
                     "id": tool_call_id,
                     "name": s.action or "unknown",
-                    "input": s.args or {},
+                    "input": _truncate_args(s.args) if s.args else {},
                 })
                 tool_result: dict = {
                     "type": "tool_result",
@@ -172,3 +176,16 @@ class ContextManager:
             self._summary = self._summary[-MAX_SUMMARY_CHARS:]
 
         self._steps = recent_steps
+
+
+def _truncate_args(args: dict[str, Any] | None) -> dict[str, Any]:
+    """Truncate long string values in tool args to save tokens."""
+    if not args:
+        return {}
+    out: dict[str, Any] = {}
+    for k, v in args.items():
+        if isinstance(v, str) and len(v) > _MAX_ARG_VALUE_LEN:
+            out[k] = v[:_MAX_ARG_VALUE_LEN] + "..."
+        else:
+            out[k] = v
+    return out
