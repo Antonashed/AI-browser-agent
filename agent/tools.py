@@ -123,6 +123,7 @@ _MCP_TOOL_WHITELIST: set[str] = {
     "browser_press_key",
     "browser_drag",
     "browser_take_screenshot",
+    "browser_resize",
 }
 
 

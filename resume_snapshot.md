@@ -1,0 +1,463 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e1372]:
+      - link [ref=e1373] [cursor=pointer]:
+        - /url: /?hhtmFrom=resume
+      - generic [ref=e1376]:
+        - button [ref=e1378] [cursor=pointer]:
+          - img [ref=e1385]
+        - group
+      - button "Москва" [ref=e1390] [cursor=pointer]:
+        - generic [ref=e1396]:
+          - img [ref=e1397]
+          - generic [ref=e1402]: Москва
+      - button "3" [ref=e1405] [cursor=pointer]:
+        - generic [ref=e1410]:
+          - img [ref=e1414]
+          - generic [ref=e1417]: "3"
+          - img
+      - link [ref=e1420] [cursor=pointer]:
+        - /url: /applicant/favorite_vacancies?hhtmFrom=resume&hhtmFromLabel=header
+        - img [ref=e1427]
+      - button "1" [ref=e1432] [cursor=pointer]:
+        - generic [ref=e1437]:
+          - img [ref=e1441]
+          - generic [ref=e1443]: "1"
+          - img
+      - button "Создать резюме" [ref=e1445] [cursor=pointer]:
+        - generic [ref=e1448]: Создать резюме
+      - button [ref=e1451] [cursor=pointer]:
+        - generic [ref=e1456]:
+          - img [ref=e1460]
+          - img
+    - generic [ref=e1466]:
+      - generic [ref=e1467]:
+        - generic:
+          - generic:
+            - menu [ref=e1471]:
+              - button [ref=e1476] [cursor=pointer]:
+                - img [ref=e1478]
+              - generic [ref=e1483]:
+                - button [ref=e1487] [cursor=pointer]:
+                  - img [ref=e1489]
+                - button [ref=e1496] [cursor=pointer]:
+                  - img [ref=e1498]
+            - generic:
+              - separator
+        - generic [ref=e1508]:
+          - generic [ref=e1513]:
+            - generic [ref=e1514] [cursor=pointer]:
+              - generic "profile-avatar" [ref=e1516]
+              - img [ref=e1520]
+            - generic [ref=e1526]:
+              - heading "Python-разработчик" [level=1] [ref=e1527]
+              - generic [ref=e1530]: Уровень дохода не указан · Подработка, Постоянная работа и ещё 1 · Удалённо, Вахта и ещё 3 · Не имеет значения · Могу приезжать в командировки
+            - button "Редактировать" [ref=e1531] [cursor=pointer]:
+              - generic [ref=e1534]: Редактировать
+          - generic [ref=e1538]:
+            - heading "Завершённость резюме" [level=3] [ref=e1540]
+            - progressbar [ref=e1542]
+            - generic [ref=e1544]:
+              - generic [ref=e1546]: Ещё вы можете добавить
+              - generic [ref=e1548]:
+                - button "Дополнительное образование" [ref=e1549] [cursor=pointer]:
+                  - generic [ref=e1552]: Дополнительное образование
+                - button "Пройденные тесты и экзамены" [ref=e1553] [cursor=pointer]:
+                  - generic [ref=e1556]: Пройденные тесты и экзамены
+                - button "Электронные сертификаты" [ref=e1557] [cursor=pointer]:
+                  - generic [ref=e1560]: Электронные сертификаты
+                - button "Категория прав" [ref=e1561] [cursor=pointer]:
+                  - generic [ref=e1564]: Категория прав
+                - button "Наличие автомобиля" [ref=e1565] [cursor=pointer]:
+                  - generic [ref=e1568]: Наличие автомобиля
+                - button "Фотографию" [ref=e1569] [cursor=pointer]:
+                  - generic [ref=e1572]: Фотографию
+                - button "Портфолио" [ref=e1573] [cursor=pointer]:
+                  - generic [ref=e1576]: Портфолио
+                - button "Рекомендации" [ref=e1577] [cursor=pointer]:
+                  - generic [ref=e1580]: Рекомендации
+                - button "Желаемую зарплату" [ref=e1581] [cursor=pointer]:
+                  - generic [ref=e1584]: Желаемую зарплату
+          - generic [ref=e1585]:
+            - generic [ref=e1590]:
+              - generic [ref=e1596]:
+                - img [ref=e1599]
+                - generic [ref=e1602]:
+                  - generic [ref=e1609]: Поднятие резюме
+                  - generic [ref=e1616]: Последнее — 23 февраля в 18:37
+              - button "Поднять в поиске" [ref=e1618] [cursor=pointer]:
+                - generic [ref=e1621]: Поднять в поиске
+            - button "Видимость резюме Видно всем работодателям, зарегистрированным на hh.ru" [ref=e1622] [cursor=pointer]:
+              - generic [ref=e1626]:
+                - generic [ref=e1627]:
+                  - img [ref=e1630]
+                  - generic [ref=e1633]:
+                    - generic [ref=e1640]: Видимость резюме
+                    - generic [ref=e1647]: Видно всем работодателям, зарегистрированным на hh.ru
+                - img [ref=e1650]
+            - button "Подобрали для вас 2436 подходящих вакансий" [ref=e1653] [cursor=pointer]:
+              - generic [ref=e1657]:
+                - generic [ref=e1658]:
+                  - img [ref=e1661]
+                  - generic [ref=e1672]: Подобрали для вас 2436 подходящих вакансий
+                - img [ref=e1675]
+          - generic [ref=e1678]:
+            - heading "Контакты" [level=4] [ref=e1680]
+            - generic [ref=e1685]:
+              - generic [ref=e1686]:
+                - generic [ref=e1689]:
+                  - generic [ref=e1690]: Мобильный телефон — предпочитаемый способ связи
+                  - link "+7 993 624-54-93" [ref=e1692]:
+                    - /url: tel:+79936245493
+                    - generic [ref=e1694]: +7 993 624-54-93
+                - generic [ref=e1696]:
+                  - generic [ref=e1697]: Электронная почта
+                  - link "artur.baskevich@icloud.com" [ref=e1699]:
+                    - /url: mailto:artur.baskevich@icloud.com
+                    - generic [ref=e1701]: artur.baskevich@icloud.com
+              - button "Посмотреть всё" [ref=e1702] [cursor=pointer]:
+                - generic [ref=e1705]: Посмотреть всё
+          - generic [ref=e1706]:
+            - 'heading "Опыт работы: 3 года 8 месяцев" [level=4] [ref=e1709]':
+              - generic [ref=e1710]:
+                - text: "Опыт работы:"
+                - generic [ref=e1711]: 3 года
+                - text: 8 месяцев
+            - generic [ref=e1715]:
+              - generic [ref=e1720]:
+                - generic [ref=e1721]:
+                  - generic [ref=e1722]:
+                    - list [ref=e1725]:
+                      - listitem [ref=e1726]:
+                        - img [ref=e1727]:
+                          - generic "Коммерческий банк КЫРГЫЗСТАН" [ref=e1731]:
+                            - img "Коммерческий банк КЫРГЫЗСТАН" [ref=e1732]
+                      - listitem:
+                        - img
+                    - generic [ref=e1736]:
+                      - generic [ref=e1743]: Коммерческий банк КЫРГЫЗСТАН
+                      - generic [ref=e1751]:
+                        - generic [ref=e1752]: 1 год
+                        - text: и 10 месяцев
+                  - generic [ref=e1754]:
+                    - list [ref=e1757]:
+                      - listitem [ref=e1758]:
+                        - img [ref=e1759]:
+                          - img [ref=e1762]
+                      - listitem:
+                        - img
+                    - generic [ref=e1764]:
+                      - generic [ref=e1767]:
+                        - generic [ref=e1774]: Python Backend разработчик
+                        - generic [ref=e1782]:
+                          - text: Март 2024 — Декабрь 2025 (
+                          - generic [ref=e1783]: 1 год
+                          - text: и 10 месяцев)
+                      - generic [ref=e1787]:
+                        - text: Работал в команде разработки внутреннего сервиса компании, обеспечивающего взаимодействие отдела поддержки и разработки.
+                        - text: "- Оптимизировал сценарий обработки обращений, сократил время от обращения до решения на 20%"
+                        - text: "- Увеличил покрытие unit-тестами с ~50% до 83%"
+                        - text: "- Разработал инструменты для работы с критическими ошибками, ускорил диагностику и уменьшил время реакции на опасные ситуации"
+                        - text: "- Оптимизировал ключевые цепочки тикетов, снизил количество ручных шагов и повысил предсказуемость результата"
+                        - text: "- Внедрил интеграции внутреннего чата с Jira, ускорил создание/эскалацию задач"
+                        - text: "- Внедрил метрики работы отдела поддержки, сделал эффективность процессов измеримыми и управляемыми"
+                        - text: "Стек: FastAPI, PostgreSQL, Redis, SQLAlchemy, Grafana, Prometheus, Doker, Git, ClickHouse, PyTest, Unittest, openAPI, aiohttp, RabbitMQ, Celery, Poetry, Protobuff, Mypy, Alembic, архитектура микросервисы DDD, agile"
+                - generic [ref=e1789]:
+                  - generic [ref=e1790]:
+                    - list [ref=e1793]:
+                      - listitem [ref=e1794]:
+                        - img [ref=e1795]:
+                          - generic "Groot Eco" [ref=e1799]
+                      - listitem:
+                        - img
+                    - generic [ref=e1804]:
+                      - generic [ref=e1811]: Groot Eco
+                      - generic [ref=e1819]: 6 месяцев
+                  - generic [ref=e1821]:
+                    - list [ref=e1824]:
+                      - listitem [ref=e1825]:
+                        - img [ref=e1826]:
+                          - img [ref=e1829]
+                      - listitem:
+                        - img
+                    - generic [ref=e1831]:
+                      - generic [ref=e1834]:
+                        - generic [ref=e1841]: Python-разработчик
+                        - generic [ref=e1849]: Июнь 2023 — Ноябрь 2023 (6 месяцев)
+                      - generic [ref=e1853]:
+                        - text: Работал в аграрной компании специализирующейся на экзотических фруктах. Запустил e-commerce и внутренние цифровые сервисы с нуля
+                        - text: "- Разработал и запустил интернет-магазин с нуля на Django"
+                        - text: "- Реализовал ключевые модули: каталог, корзина, карточки товаров, админ-контур, платежный шлюз"
+                        - text: "- Ускорил обработку заказов и сократил ручные операции"
+                        - text: "- Внедрил рассылки и триггерные коммуникации, повысил повторные касания и поддержал рост продаж"
+                        - text: "- Подключил бизнес метрики и регулярную отчётность"
+                        - text: "- Оптимизировал критичные запросы к БД, ускорил работу витрины на 60%"
+                        - text: "Стек: Django Rest Framework, PostgreSQL, DjangoORM, Git, OAuth2, JWT, Grafana, Prometheus, Nginx, Kafka, gRPC, Doker, PyTest, монолитная архитектура, kanban"
+                - generic [ref=e1855]:
+                  - generic [ref=e1856]:
+                    - list [ref=e1859]:
+                      - listitem [ref=e1860]:
+                        - img [ref=e1861]:
+                          - generic "Мобильный оператор О!" [ref=e1865]
+                      - listitem:
+                        - img
+                    - generic [ref=e1870]:
+                      - generic [ref=e1877]: Мобильный оператор О!
+                      - generic [ref=e1885]:
+                        - generic [ref=e1886]: 1 год
+                        - text: и 4 месяца
+                  - generic [ref=e1888]:
+                    - list [ref=e1891]:
+                      - listitem [ref=e1892]:
+                        - img [ref=e1893]:
+                          - img [ref=e1896]
+                    - generic [ref=e1898]:
+                      - generic [ref=e1901]:
+                        - generic [ref=e1908]: Python-разработчик
+                        - generic [ref=e1916]:
+                          - text: Февраль 2022 — Май 2023 (
+                          - generic [ref=e1917]: 1 год
+                          - text: и 4 месяца)
+                      - generic [ref=e1921]:
+                        - text: "Работал в крупнейшем мобильном операторе в зоне охвата которой проживают более 99,8% населения страны. Разрабатывал функциональность клиентского сайта: тарифный конфигуратор, производительность, улучшение инженерных практик."
+                        - text: "- Расширил функциональность тарифного конфигуратора: увеличил число параметров с 3 до 7"
+                        - text: "- Обеспечил поддержку более сложных тарифных сценариев"
+                        - text: "- Переработал структуру и обработку входных параметров конфигуратора: снизил количество некорректных комбинаций"
+                        - text: "- Провел анализ узких мест запросов к базе данных: сократил время отклика на 25%"
+                        - text: "- Ускорил прохождение задач по пайплайну и повысил предсказуемость поставки изменений"
+                        - text: "Стек: Python, SQL, Django Rest Framework, Git, EXPLAIN, PostgreSQL, SQLAlchemy, asyncio, aiohttp, JWT, OAuth2, микросервисная архитектура, scrum/agile"
+              - button "Редактировать" [ref=e1923] [cursor=pointer]:
+                - generic [ref=e1926]: Редактировать
+          - heading "Навыки" [level=4] [ref=e1928]
+          - generic [ref=e1934]:
+            - generic [ref=e1937]:
+              - generic [ref=e1938]: Продвинутый уровень
+              - generic [ref=e1940]:
+                - generic [ref=e1942]: Python
+                - generic [ref=e1944]: GitHub
+                - generic [ref=e1946]: Django Rest Framework
+                - generic [ref=e1948]: REST API
+                - generic [ref=e1950]: Agile
+                - generic [ref=e1952]: ...
+            - generic [ref=e1954]:
+              - button "Указать уровни" [ref=e1955] [cursor=pointer]:
+                - generic [ref=e1958]: Указать уровни
+              - button "Редактировать" [ref=e1959] [cursor=pointer]:
+                - generic [ref=e1962]: Редактировать
+          - generic [ref=e1963]:
+            - heading "Образование" [level=4] [ref=e1966]
+            - generic [ref=e1971]:
+              - generic [ref=e1975]:
+                - generic [ref=e1982]: КЭДИС
+                - generic [ref=e1989]: 2024 · Среднее специальное
+              - button "Посмотреть всё" [ref=e1991] [cursor=pointer]:
+                - generic [ref=e1994]: Посмотреть всё
+          - generic [ref=e2003]:
+            - heading "Подтверждение навыков" [level=5] [ref=e2009]
+            - generic [ref=e2014]: Подтверждайте навыки — это выделит вас среди других кандидатов
+            - generic [ref=e2019]:
+              - generic [ref=e2022]: API
+              - generic [ref=e2025]: Docker
+              - generic [ref=e2028]: Linux
+              - generic [ref=e2031]: PostgreSQL
+              - generic [ref=e2034]: Python
+              - generic [ref=e2037]: SQL
+            - button "Перейти к тестам" [ref=e2039] [cursor=pointer]:
+              - generic [ref=e2042]: Перейти к тестам
+          - generic [ref=e2052]:
+            - generic [ref=e2053]:
+              - heading "Курсы по профессии «Python-разработчик»" [level=6] [ref=e2056]
+              - paragraph [ref=e2057]: Посмотрите на карьерной платформе от hh.ru
+            - button "Посмотреть" [ref=e2061] [cursor=pointer]:
+              - generic [ref=e2064]: Посмотреть
+          - generic [ref=e2065]:
+            - heading "О себе" [level=4] [ref=e2067]
+            - generic [ref=e2072]:
+              - paragraph [ref=e2078]:
+                - text: "Middle Python backend-разработчик (3+ года коммерческого опыта). Фокус — надёжность и скорость поставки: оптимизация SQL и бизнес-сценариев, снижение задержек и повышение стабильности сервисов. Усиливаю качество через системное unit-тестирование (покрытие, регрессии, изоляция зависимостей), а также через метрики и прозрачность процессов. Делал интеграции внутренних инструментов с Jira и настраивал измеримые показатели работы (скорость обработки/узкие места), чтобы сокращать время реакции и улучшать взаимодействие поддержки и разработки. Умею работать в кросс-функциональных командах (Agile/Scrum/Kanban), быстро погружаюсь в домен, аккуратно веду изменения и довожу задачи до измеримого результата."
+                - text: "предпочитаю телеграм: @mscwnrsleep1"
+              - button "Посмотреть всё" [ref=e2079] [cursor=pointer]:
+                - generic [ref=e2082]: Посмотреть всё
+      - generic [ref=e2088]:
+        - generic [ref=e2089]:
+          - generic [ref=e2091]:
+            - generic [ref=e2092]: HeadHunter
+            - list [ref=e2094]:
+              - listitem [ref=e2095]:
+                - link "О компании" [ref=e2097]:
+                  - /url: /article/28?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2099]: О компании
+              - listitem [ref=e2100]:
+                - link "Помощь" [ref=e2102]:
+                  - /url: https://feedback.hh.ru/ticket/add?utm_source=hh.ru&utm_medium=referral&utm_campaign=from_footer_new
+                  - generic [ref=e2104]: Помощь
+              - listitem [ref=e2105]:
+                - link "Наши вакансии" [ref=e2107]:
+                  - /url: /employer/1455?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2109]: Наши вакансии
+              - listitem [ref=e2110]:
+                - link "Реклама на сайте" [ref=e2112]:
+                  - /url: /article/promoproducts?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2114]: Реклама на сайте
+              - listitem [ref=e2115]:
+                - link "Требования к ПО" [ref=e2117]:
+                  - /url: /article/176?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2119]: Требования к ПО
+              - listitem [ref=e2120]:
+                - link "Безопасный HeadHunter" [ref=e2122]:
+                  - /url: /safety?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2124]: Безопасный HeadHunter
+              - listitem [ref=e2125]:
+                - link "HeadHunter API" [ref=e2127]:
+                  - /url: https://dev.hh.ru/?utm_source=hh.ru&utm_medium=referral&utm_campaign=from_footer_new
+                  - generic [ref=e2129]: HeadHunter API
+              - listitem [ref=e2130]:
+                - link "Партнерам" [ref=e2132]:
+                  - /url: /partners?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2134]: Партнерам
+              - listitem [ref=e2135]:
+                - link "Инвесторам" [ref=e2137]:
+                  - /url: https://investor.hh.ru/
+                  - generic [ref=e2139]: Инвесторам
+              - listitem [ref=e2140]:
+                - link "Каталог компаний" [ref=e2142]:
+                  - /url: /employers_company?hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2144]: Каталог компаний
+              - listitem [ref=e2145]:
+                - link "Поиск по вакансиям в Москве" [ref=e2147]:
+                  - /url: /vacancies
+                  - generic [ref=e2149]: Поиск по вакансиям в Москве
+              - listitem [ref=e2150]:
+                - link "Работа рядом с метро" [ref=e2152]:
+                  - /url: /metro?hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2154]: Работа рядом с метро
+              - listitem [ref=e2155]:
+                - 'button "Сетка: соцсеть для нетворкинга" [ref=e2157]':
+                  - generic [ref=e2162]: "Сетка: соцсеть для нетворкинга"
+          - generic [ref=e2165]:
+            - generic [ref=e2166]: Соискателям
+            - list [ref=e2168]:
+              - listitem [ref=e2169]:
+                - link "hh PRO" [ref=e2171]:
+                  - /url: /applicant-services/hhpro?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2173]: hh PRO
+              - listitem [ref=e2174]:
+                - link "Готовое резюме" [ref=e2176]:
+                  - /url: /article/expert_resume?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2178]: Готовое резюме
+              - listitem [ref=e2179]:
+                - link "Все сервисы" [ref=e2181]:
+                  - /url: /services?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2183]: Все сервисы
+              - listitem [ref=e2184]:
+                - link "Профориентация" [ref=e2186]:
+                  - /url: /article/proforientation_promo?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2188]: Профориентация
+              - listitem [ref=e2189]:
+                - link "Хочу у вас работать" [ref=e2191]:
+                  - /url: /applicant-services/hhpro?rte=true&from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2193]: Хочу у вас работать
+              - listitem [ref=e2194]:
+                - link "Производственный календарь" [ref=e2196]:
+                  - /url: /calendar?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2198]: Производственный календарь
+              - listitem [ref=e2199]:
+                - link "Экспертная рекомендация" [ref=e2201]:
+                  - /url: /article/resume_audit?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2203]: Экспертная рекомендация
+            - generic [ref=e2205]: Новости и статьи
+            - list [ref=e2207]:
+              - listitem [ref=e2208]:
+                - link "Рынок труда" [ref=e2210]:
+                  - /url: /articles/labour-market?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2212]: Рынок труда
+              - listitem [ref=e2213]:
+                - link "О компаниях в игровой форме" [ref=e2215]:
+                  - /url: /articles/guide-to-companies/special-projects?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2217]: О компаниях в игровой форме
+              - listitem [ref=e2218]:
+                - link "Жизнь в компании" [ref=e2220]:
+                  - /url: /articles/guide-to-companies/insider?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2222]: Жизнь в компании
+              - listitem [ref=e2223]:
+                - link "ИТ-проекты" [ref=e2225]:
+                  - /url: /articles/guide-to-companies/it-projects?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2227]: ИТ-проекты
+              - listitem [ref=e2228]:
+                - link "Рейтинг работодателей России" [ref=e2230]:
+                  - /url: https://rating.hh.ru/poll?utm_source=hh.ru&utm_medium=referral&utm_campaign=from_footer_new
+                  - generic [ref=e2232]: Рейтинг работодателей России
+          - generic [ref=e2235]:
+            - generic [ref=e2236]: Молодым специалистам
+            - list [ref=e2238]:
+              - listitem [ref=e2239]:
+                - link "Карьера для молодых специалистов" [ref=e2241]:
+                  - /url: /students?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+                  - generic [ref=e2243]: Карьера для молодых специалистов
+              - listitem [ref=e2244]:
+                - link "Школа программистов" [ref=e2246]:
+                  - /url: http://school.hh.ru/?utm_source=hh.ru&utm_medium=referral&utm_campaign=from_footer_new
+                  - generic [ref=e2248]: Школа программистов
+              - listitem [ref=e2249]:
+                - link "Карьера в некоммерческих организациях" [ref=e2251]:
+                  - /url: https://nko.hh.ru/?utm_source=hh.ru&utm_medium=referral&utm_campaign=from_footer_new
+                  - generic [ref=e2253]: Карьера в некоммерческих организациях
+            - list [ref=e2255]:
+              - listitem [ref=e2256]:
+                - generic [ref=e2257]: Боты для уведомлений
+                - generic [ref=e2259]:
+                  - button "chatBotTelegram" [ref=e2260] [cursor=pointer]:
+                    - img "chatBotTelegram" [ref=e2264]
+                  - button "chatBotViber" [ref=e2266] [cursor=pointer]:
+                    - img "chatBotViber" [ref=e2270]
+                  - button "chatBotVk" [ref=e2273] [cursor=pointer]:
+                    - img "chatBotVk" [ref=e2277]
+            - generic [ref=e2282]: Мобильное приложение
+        - list [ref=e2288]:
+          - listitem [ref=e2289]:
+            - link "Этика и комплаенс" [ref=e2291]:
+              - /url: /article/compliance?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+              - generic [ref=e2293]: Этика и комплаенс
+          - listitem [ref=e2294]:
+            - link "Оказание услуг" [ref=e2296]:
+              - /url: /conditions?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+              - generic [ref=e2298]: Оказание услуг
+          - listitem [ref=e2299]:
+            - link "Использование сайтов" [ref=e2301]:
+              - /url: /terms?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+              - generic [ref=e2303]: Использование сайтов
+          - listitem [ref=e2304]:
+            - link "Защита персональных данных" [ref=e2306]:
+              - /url: /article/personal_data?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+              - generic [ref=e2308]: Защита персональных данных
+          - listitem [ref=e2309]:
+            - link "Пользовательское соглашение" [ref=e2311]:
+              - /url: /account/agreement?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+              - generic [ref=e2313]: Пользовательское соглашение
+          - listitem [ref=e2314]:
+            - link "ИТ аккредитация" [ref=e2316]:
+              - /url: /article/it-accreditation?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=resume
+              - generic [ref=e2318]: ИТ аккредитация
+        - generic [ref=e2324]:
+          - text: На информационном ресурсе hh.ru
+          - link "применяются рекомендательные технологии" [ref=e2325] [cursor=pointer]:
+            - /url: /article/recommendation_technologies?hhtmFrom=resume
+          - text: (информационные технологии предоставления информации на основе сбора, систематизации и анализа сведений, относящихся к предпочтениям пользователей сети «Интернет», находящихся на территории Российской Федерации)
+        - generic [ref=e2330]:
+          - generic [ref=e2331]:
+            - button [ref=e2332] [cursor=pointer]
+            - button "vk" [ref=e2340] [cursor=pointer]:
+              - img "vk" [ref=e2347]
+            - button "dzen" [ref=e2350] [cursor=pointer]:
+              - img "dzen" [ref=e2357]
+            - button "telegram" [ref=e2360] [cursor=pointer]:
+              - img "telegram" [ref=e2367]
+          - generic [ref=e2370]:
+            - list [ref=e2371]:
+              - listitem [ref=e2372]:
+                - button "Русский" [ref=e2374]:
+                  - generic [ref=e2378]:
+                    - img [ref=e2379]
+                    - text: Русский
+            - generic [ref=e2383]: © 2026 ООО «Хэдхантер»
+  - iframe

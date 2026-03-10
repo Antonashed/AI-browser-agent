@@ -9,6 +9,8 @@ import os
 import sys
 from pathlib import Path
 
+import anthropic
+
 from agent.cli import CLI
 from agent.config import Config, load_config
 from agent.context import ContextManager
@@ -197,6 +199,10 @@ async def main() -> None:
                     pass
             except KeyboardInterrupt:
                 cli.print_error("Прервано пользователем.")
+            except (anthropic.APIStatusError, anthropic.APIConnectionError) as exc:
+                cli.print_error(f"API ошибка: {exc} — повторяю через 60с...")
+                await asyncio.sleep(60)
+                continue
             except Exception as exc:
                 cli.print_error(f"Ошибка: {exc}")
     finally:
