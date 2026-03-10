@@ -31,7 +31,7 @@ class TestLoadConfig:
         monkeypatch.delenv("MAX_EMAILS_TO_SCAN", raising=False)
         monkeypatch.delenv("MAX_VACANCIES", raising=False)
         cfg = load_config()
-        assert cfg.llm_model == "claude-haiku-4-20250414"
+        assert cfg.llm_model == "claude-haiku-4-5-20251001"
         assert cfg.llm_model_strong == "claude-sonnet-4-20250514"
         assert cfg.llm_max_tokens == 4096
         assert cfg.max_agent_steps == 50
