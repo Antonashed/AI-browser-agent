@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## [2026-03-10] — Блок 13: Bugfix + CLI Redesign + Streaming
+
+### Phase 1: Bug Fixes
+- **BUG-1.1** (`context.py`, `core.py`): `Step` получил поле `args` → `build_messages()` передаёт реальные аргументы инструментов вместо `{}`, `estimate_tokens()` учитывает args
+- **BUG-1.2** (`llm_client.py`): Retry для 529 Overloaded — ловится через `APIStatusError` с `status_code=529` (в SDK v0.52 нет отдельного `OverloadedError`)
+- **BUG-1.3** (`core.py`): Защита от бесконечного цикла text-only ответов — nudge при 3, abort при 5 подряд
+- **BUG-1.4** (`context.py`): `MAX_SUMMARY_CHARS=4000` — summary обрезается при переполнении, предотвращая бесконтрольный рост
+- **BUG-1.5** (`core.py`): Circuit breaker — 5 consecutive errors → автоматический abort с сообщением
+
+### Phase 2: Streaming + Event System
+- **events.py** (NEW): `AgentEvent(type, data)` + `EventType` enum — thinking_delta, text_delta, tool_start, tool_result, ask_user, confirm, done, error, status
+- **llm_client.py**: `send_message_stream()` — async generator поверх `AsyncAnthropic.messages.stream()`, yields `AgentEvent` для thinking/text deltas, финальный `LLMResponse`; retry logic переиспользуется
+- **core.py**: `AgentLoop.__init__` принимает `on_event: Callable | None`; `_get_response()` маршрутизирует streaming/sync; `_handle_tool_call()` emit'ит события вместо print(); таймер на каждый tool call
+
+### Phase 3: Rich CLI
+- **requirements.txt**: +`rich==14.0.0`
+- **cli.py** (NEW): `CLI` класс — Rich-based UI: `print_banner`, `print_help`, `handle_event`, `print_result`, `print_usage`, `print_session_cost`, `print_history`, `prompt_task`
+- **main.py**: полный рефакторинг — slash-команды (`/help`, `/memory`, `/plan`, `/go`, `/history`, `/cost`, `/exit`), session-level usage tracking, Rich UI, streaming events
+
 ## [2026-03-10] — Блок 12: UX + полировка
 
 - **BUG-6** (`config.py`): Валидация числовых env — `_parse_int()` с понятным `ValueError` вместо голого `int()` для `LLM_MAX_TOKENS`, `MAX_AGENT_STEPS`, `BROWSER_VIEWPORT_*`, `MAX_EMAILS_TO_SCAN`, `MAX_VACANCIES`

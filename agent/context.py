@@ -4,6 +4,9 @@ from dataclasses import dataclass, field
 from typing import Any
 
 
+MAX_SUMMARY_CHARS = 4000
+
+
 @dataclass
 class Step:
     action: str | None = None
@@ -13,6 +16,7 @@ class Step:
     tool_call_id: str | None = None
     group_id: str | None = None
     is_error: bool = False
+    args: dict[str, Any] | None = None
 
 
 class ContextManager:
@@ -46,6 +50,8 @@ class ContextManager:
             for val in (s.action, s.result, s.observation):
                 if val:
                     text += val
+            if s.args:
+                text += str(s.args)
         return len(text) // 4
 
     def reset(self) -> None:
@@ -107,7 +113,7 @@ class ContextManager:
                     "type": "tool_use",
                     "id": tool_call_id,
                     "name": s.action or "unknown",
-                    "input": {},
+                    "input": s.args or {},
                 })
                 tool_result: dict = {
                     "type": "tool_result",
@@ -160,5 +166,9 @@ class ContextManager:
             self._summary += "\n" + summary_text
         else:
             self._summary = summary_text
+
+        # Cap summary size to prevent unbounded growth
+        if self._summary and len(self._summary) > MAX_SUMMARY_CHARS:
+            self._summary = self._summary[-MAX_SUMMARY_CHARS:]
 
         self._steps = recent_steps

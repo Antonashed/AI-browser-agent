@@ -1,4 +1,4 @@
-"""CLI entry point: load config → start MCP → run agent loop."""
+"""CLI entry point: load config → start MCP → run agent loop with Rich UI."""
 
 from __future__ import annotations
 
@@ -7,6 +7,7 @@ import logging
 import os
 import sys
 
+from agent.cli import CLI
 from agent.config import load_config
 from agent.context import ContextManager
 from agent.core import AgentLoop
@@ -24,19 +25,19 @@ async def main() -> None:
         datefmt="%H:%M:%S",
     )
 
+    cli = CLI()
     config = load_config()
     memory = Memory(load_env_defaults=True)
 
     mcp = MCPClient()
 
-    # Build MCP server args: package + CDP or headless/viewport flags
+    # Build MCP server args
     mcp_args = [config.mcp_browser_args]
 
     if config.cdp_endpoint:
-        # CDP mode: connect to an already-running browser
         mcp_args.append(f"--cdp-endpoint={config.cdp_endpoint}")
+        cli.print_connecting("cdp", config.cdp_endpoint)
     else:
-        # Standalone mode: MCP launches its own browser
         if config.browser_headless:
             mcp_args.append("--headless")
         mcp_args.append(f"--viewport-size={config.browser_viewport_width},{config.browser_viewport_height}")
@@ -45,24 +46,18 @@ async def main() -> None:
             if os.path.exists(storage):
                 mcp_args.append(f"--storage-state={storage}")
             mcp_args.append(f"--save-storage={storage}")
+        cli.print_connecting(f"headless={config.browser_headless}")
 
-    if config.cdp_endpoint:
-        print(f"🌐 Режим: подключение к открытому браузеру ({config.cdp_endpoint})")
-        print(f"   Убедитесь, что Chrome запущен с --remote-debugging-port=9222")
-    else:
-        print(f"🌐 Режим: MCP запускает свой браузер (headless={config.browser_headless})")
-
-    print("🚀 Запускаю MCP-сервер (Playwright)…")
+    cli.print_status("Запускаю MCP-сервер (Playwright)…")
     try:
         await mcp.start(config.mcp_browser_command, mcp_args)
     except Exception as exc:
         if config.cdp_endpoint:
-            print(f"❌ Не удалось подключиться к браузеру ({config.cdp_endpoint}).")
-            print(f"   Запустите Chrome: chrome.exe --remote-debugging-port=9222")
+            cli.print_error(f"Не удалось подключиться к браузеру ({config.cdp_endpoint}).")
+            cli.print_status("Запустите Chrome: chrome.exe --remote-debugging-port=9222")
         else:
-            print(f"❌ Не удалось запустить MCP-сервер: {exc}")
+            cli.print_error(f"Не удалось запустить MCP-сервер: {exc}")
         sys.exit(1)
-    print("✅ MCP-сервер запущен.")
 
     try:
         executor = ToolExecutor(mcp, memory)
@@ -75,78 +70,107 @@ async def main() -> None:
             max_tokens=config.llm_max_tokens,
         )
 
-        print(f"🔧 Загружено tools: {len(all_tools)} (MCP: {len(mcp_tools)}, кастомных: {len(all_tools) - len(mcp_tools)})")
-        print("Введите задачу для агента (или 'выход' для завершения, 'memory' для просмотра памяти, 'plan <задача>' для планирования).\n")
+        mode = f"CDP ({config.cdp_endpoint})" if config.cdp_endpoint else "Standalone"
+        cli.print_banner(len(all_tools), len(mcp_tools), mode)
 
+        # Session tracking
+        session_input_tokens = 0
+        session_output_tokens = 0
+        task_history: list[str] = []
         last_plan_task: str | None = None
+
         while True:
             try:
-                task = input("📝 Задача > ").strip()
+                task = cli.prompt_task()
             except (EOFError, KeyboardInterrupt):
-                print("\nЗавершение…")
+                cli.print_status("Завершение…")
                 break
 
             if not task:
                 continue
 
-            if task.lower() in ("quit", "exit", "выход"):
-                print("Завершение…")
+            # --- Slash commands ---
+            lower = task.lower()
+
+            if lower in ("/exit", "/quit", "/q", "quit", "exit", "выход"):
+                cli.print_status("Завершение…")
                 break
 
-            if task.lower() in ("memory", "память"):
-                keys = memory.list_keys()
-                if not keys:
-                    print("  (память пуста)")
-                else:
-                    for key in keys:
-                        print(f"  {key}: {memory.load(key)}")
-                print()
+            if lower in ("/help", "/h"):
+                cli.print_help()
                 continue
 
-            # Dry-run planning mode
-            plan_prefix = None
-            lower = task.lower()
-            if lower.startswith("plan "):
-                plan_prefix = 5
-            elif lower.startswith("\u043f\u043b\u0430\u043d "):
-                plan_prefix = len("\u043f\u043b\u0430\u043d ")
+            if lower in ("/memory", "/m", "memory", "память"):
+                keys = memory.list_keys()
+                data = {k: memory.load(k) or "" for k in keys}
+                cli.print_memory(data)
+                continue
 
-            if plan_prefix is not None:
-                plan_task = task[plan_prefix:].strip()
+            if lower in ("/history",):
+                cli.print_history(task_history)
+                continue
+
+            if lower in ("/cost",):
+                cli.print_session_cost(session_input_tokens, session_output_tokens, len(task_history))
+                continue
+
+            # Plan command
+            plan_task: str | None = None
+            if lower.startswith("/plan "):
+                plan_task = task[6:].strip()
+            elif lower.startswith("plan "):
+                plan_task = task[5:].strip()
+            elif lower.startswith("план "):
+                plan_task = task[len("план "):].strip()
+
+            if plan_task is not None:
                 if not plan_task:
-                    print("❓ Укажите задачу: plan <описание>\n")
+                    cli.print_error("Укажите задачу: /plan <описание>")
                     continue
                 context = ContextManager()
                 agent = AgentLoop(llm, executor, context, config, all_tools)
                 try:
                     plan_text = await agent.plan(plan_task)
-                    print(f"\n\U0001f4cb План:\n{plan_text}\n")
-                    print("Введите 'go' для выполнения этого плана или новую задачу.\n")
+                    cli.print_plan(plan_text)
+                    usage = agent.get_usage()
+                    session_input_tokens += usage["input_tokens"]
+                    session_output_tokens += usage["output_tokens"]
                 except Exception as exc:
-                    print(f"\n\u274c Ошибка планирования: {exc}\n")
+                    cli.print_error(f"Ошибка планирования: {exc}")
                 last_plan_task = plan_task
                 continue
 
-            # Execute last plan with 'go' / 'выполняй'
-            if task.lower() in ("go", "\u0432\u044b\u043f\u043e\u043b\u043d\u044f\u0439") and last_plan_task:
+            # Execute last plan
+            if lower in ("/go", "go", "выполняй") and last_plan_task:
                 task = last_plan_task
                 last_plan_task = None
 
+            if lower in ("/go", "go", "выполняй") and not task:
+                cli.print_error("Нет плана для выполнения. Используйте /plan <задача>")
+                continue
+
+            # --- Execute task ---
+            task_history.append(task)
             context = ContextManager()
-            agent = AgentLoop(llm, executor, context, config, all_tools)
+            agent = AgentLoop(
+                llm, executor, context, config, all_tools,
+                on_event=cli.handle_event,
+            )
 
             try:
                 result = await agent.run(task)
+                cli.print_result(result)
                 usage = agent.get_usage()
-                print(f"\n\u2705 Результат: {result}")
-                print(f"\U0001f4ca [{usage['steps']} шагов, {usage['input_tokens']//1000}K input, {usage['output_tokens']//1000}K output]\n")
+                session_input_tokens += usage["input_tokens"]
+                session_output_tokens += usage["output_tokens"]
+                cli.print_usage(usage["steps"], usage["input_tokens"], usage["output_tokens"])
             except KeyboardInterrupt:
-                print("\n⚠️ Прервано пользователем.\n")
+                cli.print_error("Прервано пользователем.")
             except Exception as exc:
-                print(f"\n❌ Ошибка: {exc}\n")
+                cli.print_error(f"Ошибка: {exc}")
     finally:
         await mcp.stop()
-        print("MCP-сервер остановлен.")
+        cli.print_status("MCP-сервер остановлен.")
 
 
 if __name__ == "__main__":
