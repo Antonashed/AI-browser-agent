@@ -18,8 +18,20 @@ class TestLoadConfig:
 
     def test_default_values(self, monkeypatch):
         monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-test-key")
+        monkeypatch.delenv("LLM_MODEL", raising=False)
+        monkeypatch.delenv("LLM_MODEL_STRONG", raising=False)
+        monkeypatch.delenv("LLM_MAX_TOKENS", raising=False)
+        monkeypatch.delenv("MAX_AGENT_STEPS", raising=False)
+        monkeypatch.delenv("SCREENSHOT_ENABLED", raising=False)
+        monkeypatch.delenv("MCP_BROWSER_COMMAND", raising=False)
+        monkeypatch.delenv("MCP_BROWSER_ARGS", raising=False)
+        monkeypatch.delenv("BROWSER_HEADLESS", raising=False)
+        monkeypatch.delenv("BROWSER_VIEWPORT_WIDTH", raising=False)
+        monkeypatch.delenv("BROWSER_VIEWPORT_HEIGHT", raising=False)
+        monkeypatch.delenv("MAX_EMAILS_TO_SCAN", raising=False)
+        monkeypatch.delenv("MAX_VACANCIES", raising=False)
         cfg = load_config()
-        assert cfg.llm_model == "claude-3-5-haiku-20241022"
+        assert cfg.llm_model == "claude-haiku-4-20250414"
         assert cfg.llm_model_strong == "claude-sonnet-4-20250514"
         assert cfg.llm_max_tokens == 4096
         assert cfg.max_agent_steps == 50
