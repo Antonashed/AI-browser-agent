@@ -86,3 +86,54 @@ class TestTruncateSnapshot:
         result = ToolExecutor._truncate_snapshot(long_text, max_chars=500)
         assert len(result) <= 600  # some slack for truncation marker
         assert "truncated" in result.lower()
+
+
+SAMPLE_SNAPSHOT = """\
+- banner "Site" [ref=e1]
+  - link "Logo" [ref=e2]
+- main "Content" [ref=e3]
+  - heading "Title" [ref=e4]
+  - paragraph "Text" [ref=e5]
+- contentinfo [ref=e6]
+  - text "Footer" """
+
+
+@pytest.mark.asyncio
+class TestPageOverviewAndGetZone:
+    async def test_page_overview_returns_summary(
+        self, executor: ToolExecutor, mock_mcp_client: AsyncMock
+    ) -> None:
+        mock_mcp_client.call_tool.return_value = SAMPLE_SNAPSHOT
+        tc = ToolCall(id="10", name="page_overview", args={})
+        result = await executor.execute(tc)
+        assert "Zones:" in result
+        assert "banner" in result
+        assert "main" in result
+        assert "Total:" in result
+
+    async def test_get_zone_returns_filtered(
+        self, executor: ToolExecutor, mock_mcp_client: AsyncMock
+    ) -> None:
+        mock_mcp_client.call_tool.return_value = SAMPLE_SNAPSHOT
+        tc = ToolCall(id="11", name="get_zone", args={"zone": "main"})
+        result = await executor.execute(tc)
+        assert "Title" in result
+        assert "Logo" not in result
+
+    async def test_get_zone_all(
+        self, executor: ToolExecutor, mock_mcp_client: AsyncMock
+    ) -> None:
+        mock_mcp_client.call_tool.return_value = SAMPLE_SNAPSHOT
+        tc = ToolCall(id="12", name="get_zone", args={"zone": "all"})
+        result = await executor.execute(tc)
+        assert "banner" in result
+        assert "main" in result
+        assert "contentinfo" in result
+
+    async def test_get_zone_missing(
+        self, executor: ToolExecutor, mock_mcp_client: AsyncMock
+    ) -> None:
+        mock_mcp_client.call_tool.return_value = SAMPLE_SNAPSHOT
+        tc = ToolCall(id="13", name="get_zone", args={"zone": "nonexistent"})
+        result = await executor.execute(tc)
+        assert "not found" in result.lower()

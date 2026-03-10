@@ -17,7 +17,7 @@ from agent.llm_client import LLMClient
 from agent.mcp_client import MCPClient
 from agent.memory import Memory
 from agent.tool_executor import ToolExecutor
-from agent.tools import merge_tools
+from agent.tools import get_all_tools
 
 METRICS_LOG_PATH = Path("session_metrics.jsonl")
 
@@ -66,7 +66,7 @@ async def main() -> None:
     try:
         executor = ToolExecutor(mcp, memory)
         mcp_tools = await executor.init_mcp_tools()
-        all_tools = merge_tools(mcp_tools)
+        all_tools = get_all_tools(mcp_tools)
 
         llm = LLMClient(
             api_key=config.anthropic_api_key,

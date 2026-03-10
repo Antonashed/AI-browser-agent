@@ -75,7 +75,38 @@ CUSTOM_TOOLS: list[dict] = [
     },
 ]
 
+COMPOUND_TOOLS: list[dict] = [
+    {
+        "name": "page_overview",
+        "description": "Get a compact overview of the current page structure: semantic zones (banner, navigation, main, etc.) with element counts. Use this first on complex/unknown pages instead of browser_snapshot.",
+        "input_schema": {
+            "type": "object",
+            "properties": {},
+        },
+    },
+    {
+        "name": "get_zone",
+        "description": "Get the accessibility tree for a specific page zone. Use after page_overview to read a particular zone (e.g. 'main', 'navigation'). Pass 'all' for the full snapshot.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "zone": {
+                    "type": "string",
+                    "description": "Zone name: 'banner', 'navigation', 'main', 'contentinfo', 'complementary', 'search', 'form', 'region', 'page', or 'all'.",
+                },
+                "max_chars": {
+                    "type": "integer",
+                    "description": "Maximum characters to return (default: 6000).",
+                },
+            },
+            "required": ["zone"],
+        },
+    },
+]
+
 _CUSTOM_TOOL_NAMES: set[str] = {t["name"] for t in CUSTOM_TOOLS}
+_COMPOUND_TOOL_NAMES: set[str] = {t["name"] for t in COMPOUND_TOOLS}
+_ALL_LOCAL_NAMES: set[str] = _CUSTOM_TOOL_NAMES | _COMPOUND_TOOL_NAMES
 
 
 def get_custom_tool_names() -> list[str]:
@@ -83,5 +114,11 @@ def get_custom_tool_names() -> list[str]:
 
 
 def merge_tools(mcp_tools: list[dict]) -> list[dict]:
-    filtered = [t for t in mcp_tools if t["name"] not in _CUSTOM_TOOL_NAMES]
+    filtered = [t for t in mcp_tools if t["name"] not in _ALL_LOCAL_NAMES]
     return filtered + list(CUSTOM_TOOLS)
+
+
+def get_all_tools(mcp_tools: list[dict]) -> list[dict]:
+    """Merge MCP, custom, and compound tools into one list for the LLM."""
+    filtered = [t for t in mcp_tools if t["name"] not in _ALL_LOCAL_NAMES]
+    return filtered + list(CUSTOM_TOOLS) + list(COMPOUND_TOOLS)

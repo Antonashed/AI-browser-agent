@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## [2026-03-10] — Генеральное ревью перед ручными тестами
+
+- Полный code review всех модулей `agent/` и тестов `tests/`
+- Удалён дублирующийся `return zones` (мёртвый код) в `agent/page_parser.py`
+
+## [2026-03-10] — Блок 16: Page Zoning + Prompt Improvements
+
+- **Page Parser** (`agent/page_parser.py`): Новый модуль — парсинг a11y tree по ARIA landmark ролям (banner, navigation, main, contentinfo и др.); `parse_zones()`, `zone_summary()`, `extract_zone()`; вложенные landmarks остаются дочерними элементами родительской зоны; fallback в зону `page` если нет landmarks
+- **Compound Tools** (`agent/tools.py`): `page_overview` — компактный обзор зон страницы с кол-вом элементов; `get_zone` — получение a11y tree конкретной зоны; вынесены в отдельный список `COMPOUND_TOOLS` (не ломают `merge_tools` и существующие тесты); добавлена `get_all_tools()` для объединения MCP + custom + compound
+- **Tool Routing** (`agent/tool_executor.py`): `page_overview` → MCP browser_snapshot → zone_summary; `get_zone` → MCP browser_snapshot → extract_zone с truncation; backward compatibility browser_snapshot сохранена
+- **System Prompt** (`agent/prompts.py`): 3 новые секции — «Page Observation Strategy» (page_overview → get_zone workflow), «Scrolling & Dynamic Content» (скролл + re-observe для SPA/lazy-loading), «Efficient Navigation» (вкладки для batch-парсинга)
+- **main.py**: `merge_tools` → `get_all_tools` для включения compound tools
+- 15 новых тестов: 5 parser (zones, counts, fallback, summary, empty), 5 extract (main, nav, all, missing, label), 4 executor (overview, zone filtered, zone all, zone missing), 1 truncate
+
 ## [2026-03-10] — Блок 14: Функциональные доработки (CAPTCHA, аудит, маскирование, метрики)
 
 - **CAPTCHA/2FA** (`prompts.py`, `events.py`): Добавлены инструкции в system prompt для обнаружения CAPTCHA/reCAPTCHA/2FA → остановка + `ask_user()`; новый `EventType.CAPTCHA_DETECTED`

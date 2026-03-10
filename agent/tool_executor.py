@@ -7,6 +7,7 @@ if TYPE_CHECKING:
     from agent.memory import Memory
 
 from agent.llm_client import ToolCall
+from agent.page_parser import extract_zone, parse_zones, zone_summary
 
 
 class ToolExecutor:
@@ -33,6 +34,16 @@ class ToolExecutor:
                 return result
 
             match tool_call.name:
+                case "page_overview":
+                    snapshot = await self._mcp.call_tool("browser_snapshot", {})
+                    zones = parse_zones(snapshot)
+                    return zone_summary(zones)
+                case "get_zone":
+                    zone_name = tool_call.args["zone"]
+                    max_chars = tool_call.args.get("max_chars", 6000)
+                    snapshot = await self._mcp.call_tool("browser_snapshot", {})
+                    text = extract_zone(snapshot, zone_name)
+                    return self._truncate_snapshot(text, max_chars=max_chars)
                 case "remember":
                     self._memory.save(tool_call.args["key"], tool_call.args["value"])
                     return f"Saved '{tool_call.args['key']}'."
