@@ -9,7 +9,8 @@ from dotenv import load_dotenv
 @dataclass
 class Config:
     anthropic_api_key: str
-    llm_model: str = "claude-sonnet-4-20250514"
+    llm_model: str = "claude-3-5-haiku-20241022"
+    llm_model_strong: str = "claude-sonnet-4-20250514"
     llm_max_tokens: int = 4096
     max_agent_steps: int = 50
     screenshot_enabled: bool = True
@@ -49,7 +50,8 @@ def load_config() -> Config:
 
     return Config(
         anthropic_api_key=api_key,
-        llm_model=os.environ.get("LLM_MODEL", "claude-sonnet-4-20250514"),
+        llm_model=os.environ.get("LLM_MODEL", "claude-3-5-haiku-20241022"),
+        llm_model_strong=os.environ.get("LLM_MODEL_STRONG", "claude-sonnet-4-20250514"),
         llm_max_tokens=_parse_int(os.environ.get("LLM_MAX_TOKENS", "4096"), "LLM_MAX_TOKENS", 4096),
         max_agent_steps=_parse_int(os.environ.get("MAX_AGENT_STEPS", "50"), "MAX_AGENT_STEPS", 50),
         screenshot_enabled=_parse_bool(os.environ.get("SCREENSHOT_ENABLED", "true")),

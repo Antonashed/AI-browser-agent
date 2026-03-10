@@ -29,13 +29,15 @@ class CLI:
         self._thinking_lines: list[str] = []
         self._thinking_active = False
 
-    def print_banner(self, tool_count: int, mcp_count: int, mode: str) -> None:
+    def print_banner(self, tool_count: int, mcp_count: int, mode: str, model: str = "") -> None:
         banner = Text()
         banner.append("AI Browser Agent", style="bold cyan")
         banner.append("\n")
         banner.append(f"Tools: {tool_count} ", style="info")
         banner.append(f"(MCP: {mcp_count}, custom: {tool_count - mcp_count})", style="dim")
         banner.append(f"\nMode: {mode}", style="dim")
+        if model:
+            banner.append(f"\nModel: {model}", style="dim")
         self.console.print(Panel(banner, border_style="cyan", padding=(0, 1)))
 
     def print_help(self) -> None:
@@ -47,6 +49,7 @@ class CLI:
         table.add_row("/plan <задача>", "Составить план (без выполнения)")
         table.add_row("/go", "Выполнить последний план")
         table.add_row("/history", "Список задач за сессию")
+        table.add_row("/strong <задача>", "Выполнить на сильной модели")
         table.add_row("/cost", "Расход токенов за сессию")
         table.add_row("/exit, /quit", "Завершить работу")
         self.console.print(table)

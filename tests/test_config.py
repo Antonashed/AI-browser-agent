@@ -19,7 +19,8 @@ class TestLoadConfig:
     def test_default_values(self, monkeypatch):
         monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-test-key")
         cfg = load_config()
-        assert cfg.llm_model == "claude-sonnet-4-20250514"
+        assert cfg.llm_model == "claude-3-5-haiku-20241022"
+        assert cfg.llm_model_strong == "claude-sonnet-4-20250514"
         assert cfg.llm_max_tokens == 4096
         assert cfg.max_agent_steps == 50
         assert cfg.screenshot_enabled is True

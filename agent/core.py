@@ -56,6 +56,7 @@ class AgentLoop:
         self._start_time: float = 0.0
         self._task: str = ""
         self._success: bool = False
+        self._escalated: bool = False
 
     def _emit(self, event: AgentEvent) -> None:
         if self._on_event:
@@ -139,9 +140,17 @@ class AgentLoop:
                     args=tc.args,
                 ))
 
-            # Circuit breaker: too many consecutive errors
+            # Auto-escalate to strong model after 3 consecutive errors
             if step_had_error:
                 consecutive_errors += 1
+                if consecutive_errors >= 3 and not self._escalated and self._config.llm_model_strong:
+                    self._llm.set_model(self._config.llm_model_strong)
+                    self._escalated = True
+                    logger.info("Escalated to strong model: %s", self._config.llm_model_strong)
+                    self._emit(AgentEvent(
+                        type=EventType.STATUS,
+                        data={"text": f"Переключаюсь на сильную модель: {self._config.llm_model_strong}"},
+                    ))
                 if consecutive_errors >= 5:
                     logger.error("Circuit breaker: 5 consecutive errors — aborting")
                     return "Прервано: слишком много ошибок подряд (circuit breaker)."

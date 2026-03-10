@@ -95,7 +95,7 @@ async def main() -> None:
         )
 
         mode = "Standalone"
-        cli.print_banner(len(all_tools), len(mcp_tools), mode)
+        cli.print_banner(len(all_tools), len(mcp_tools), mode, config.llm_model)
 
         # Session tracking
         session_input_tokens = 0
@@ -173,7 +173,20 @@ async def main() -> None:
                     cli.print_error("Нет плана для выполнения. Используйте /plan <задача>")
                     continue
 
+            # /strong — force strong model for this task
+            force_strong = False
+            if lower.startswith("/strong "):
+                task = task[8:].strip()
+                if not task:
+                    cli.print_error("Укажите задачу: /strong <описание>")
+                    continue
+                force_strong = True
+
             # --- Execute task ---
+            if force_strong:
+                llm.set_model(config.llm_model_strong)
+                cli.print_status(f"Модель: {config.llm_model_strong} (принудительно)")
+
             task_history.append(task)
             context = ContextManager()
             agent = AgentLoop(
@@ -209,6 +222,8 @@ async def main() -> None:
                 continue
             except Exception as exc:
                 cli.print_error(f"Ошибка: {exc}")
+            finally:
+                llm.reset_model()
     finally:
         await mcp.stop()
         cli.print_status("MCP-сервер остановлен.")

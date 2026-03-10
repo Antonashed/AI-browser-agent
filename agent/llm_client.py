@@ -58,6 +58,7 @@ class LLMResponse:
 class LLMClient:
     def __init__(self, api_key: str, model: str, max_tokens: int = 4096, proxy: str = "") -> None:
         self._model = model
+        self._default_model = model
         self._max_tokens = max_tokens
         if proxy:
             sync_http = httpx.Client(proxy=proxy)
@@ -67,6 +68,18 @@ class LLMClient:
         else:
             self._client = anthropic.Anthropic(api_key=api_key)
             self._async_client = anthropic.AsyncAnthropic(api_key=api_key)
+
+    def set_model(self, model: str) -> None:
+        """Switch the active model."""
+        self._model = model
+
+    def get_model(self) -> str:
+        """Return the currently active model name."""
+        return self._model
+
+    def reset_model(self) -> None:
+        """Reset to the default model."""
+        self._model = self._default_model
 
     async def send_message(
         self,
