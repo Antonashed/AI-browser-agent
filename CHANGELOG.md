@@ -1,5 +1,39 @@
 # CHANGELOG
 
+## [2026-03-10] — Бесконечные retry для LLM-запросов
+
+- `llm_client.py`: `send_message()` и `send_message_stream()` теперь используют `while True` вместо ограниченного числа попыток
+- Экспоненциальный backoff с потолком `MAX_RETRY_DELAY = 30` секунд
+- Убраны константы `MAX_RETRIES` и `RETRY_DELAYS`
+- 89 тестов проходят
+
+## [2026-03-10] — Переход на standalone режим (MCP запускает свой Chromium)
+
+- Удалён CDP-режим: убраны `cdp_endpoint` из `Config`, `_parse_cdp_endpoint()`, `CDP_ENDPOINT` из `.env`/`.env.example`
+- `main.py`: упрощена логика запуска MCP — всегда standalone (viewport, headless, storage)
+- `cli.py`: `print_connecting()` упрощён под standalone
+- `start.bat`: убран запуск Chrome с `--remote-debugging-port`
+- Удалён `test_live.py` (CDP-тестовый скрипт)
+- Удалены 4 теста `TestCDPEndpoint` из `test_config.py`
+- Обновлены `README.md` и `.env.example`
+- 89 тестов проходят
+
+## [2026-03-10] — Поддержка VPN-прокси для Anthropic API
+
+- Добавлена настройка `ANTHROPIC_PROXY` в config и `.env.example`
+- `LLMClient` принимает параметр `proxy` и создаёт `httpx.Client`/`httpx.AsyncClient` с прокси
+- Запросы к Anthropic API идут через прокси, MCP работает локально без прокси
+
+## [2026-03-10] — Логирование в отдельный файл
+
+- Добавлены настройки `LOG_FILE` и `LOG_LEVEL` в config и `.env.example`
+- Если `LOG_FILE` указан — логи пишутся в файл, терминал остаётся чистым для Rich UI
+- Для просмотра логов в реальном времени: `Get-Content agent.log -Wait -Tail 50`
+
+## [2025-07-18] — Обновление README
+
+- Полностью переписан README.md: добавлены ключевые фичи (zoning, memory, safety, streaming), подробная установка, быстрый старт, таблица slash-команд, обновлённая архитектура
+
 ## [2026-03-10] — Генеральное ревью перед ручными тестами
 
 - Полный code review всех модулей `agent/` и тестов `tests/`

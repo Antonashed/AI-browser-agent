@@ -28,7 +28,6 @@ class TestLoadConfig:
         assert cfg.browser_headless is False
         assert cfg.browser_viewport_width == 1280
         assert cfg.browser_viewport_height == 900
-        assert cfg.cdp_endpoint == "http://localhost:9222"
         assert cfg.max_emails_to_scan == 20
         assert cfg.max_vacancies == 5
 
@@ -58,33 +57,6 @@ class TestLoadConfig:
         assert cfg.browser_viewport_height == 1080
         assert cfg.max_emails_to_scan == 50
         assert cfg.max_vacancies == 10
-
-
-class TestCDPEndpoint:
-    """Tests for CDP_ENDPOINT configuration."""
-
-    def test_cdp_endpoint_default(self, monkeypatch):
-        monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-test-key")
-        cfg = load_config()
-        assert cfg.cdp_endpoint == "http://localhost:9222"
-
-    def test_cdp_endpoint_none(self, monkeypatch):
-        monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-test-key")
-        monkeypatch.setenv("CDP_ENDPOINT", "none")
-        cfg = load_config()
-        assert cfg.cdp_endpoint == ""
-
-    def test_cdp_endpoint_none_case_insensitive(self, monkeypatch):
-        monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-test-key")
-        monkeypatch.setenv("CDP_ENDPOINT", "None")
-        cfg = load_config()
-        assert cfg.cdp_endpoint == ""
-
-    def test_cdp_endpoint_custom(self, monkeypatch):
-        monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-test-key")
-        monkeypatch.setenv("CDP_ENDPOINT", "http://192.168.1.100:9222")
-        cfg = load_config()
-        assert cfg.cdp_endpoint == "http://192.168.1.100:9222"
 
 
 class TestIntValidation:

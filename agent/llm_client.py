@@ -7,18 +7,20 @@ from dataclasses import dataclass, field
 from typing import Any
 
 import anthropic
+import httpx
 
 from agent.events import AgentEvent, EventType
 
 logger = logging.getLogger(__name__)
 
-MAX_RETRIES = 3
-RETRY_DELAYS = [1, 2, 4]
+MAX_RETRY_DELAY = 30
 
 _RETRYABLE_ERRORS = (
     anthropic.RateLimitError,
     anthropic.InternalServerError,
     anthropic.APIConnectionError,
+    httpx.ConnectError,
+    httpx.ReadError,
 )
 
 # 529 Overloaded is not a separate class in anthropic SDK v0.52;
@@ -46,11 +48,17 @@ class LLMResponse:
 
 
 class LLMClient:
-    def __init__(self, api_key: str, model: str, max_tokens: int = 4096) -> None:
+    def __init__(self, api_key: str, model: str, max_tokens: int = 4096, proxy: str = "") -> None:
         self._model = model
         self._max_tokens = max_tokens
-        self._client = anthropic.Anthropic(api_key=api_key)
-        self._async_client = anthropic.AsyncAnthropic(api_key=api_key)
+        if proxy:
+            sync_http = httpx.Client(proxy=proxy)
+            async_http = httpx.AsyncClient(proxy=proxy)
+            self._client = anthropic.Anthropic(api_key=api_key, http_client=sync_http)
+            self._async_client = anthropic.AsyncAnthropic(api_key=api_key, http_client=async_http)
+        else:
+            self._client = anthropic.Anthropic(api_key=api_key)
+            self._async_client = anthropic.AsyncAnthropic(api_key=api_key)
 
     async def send_message(
         self,
@@ -63,8 +71,8 @@ class LLMClient:
         ]
         cached_tools = self._apply_cache_to_tools(tools)
 
-        last_error: Exception | None = None
-        for attempt in range(MAX_RETRIES):
+        attempt = 0
+        while True:
             try:
                 response = await asyncio.to_thread(
                     self._client.messages.create,
@@ -76,28 +84,24 @@ class LLMClient:
                 )
                 return self._parse_response(response)
             except _RETRYABLE_ERRORS as exc:
-                last_error = exc
-                if attempt < MAX_RETRIES - 1:
-                    delay = RETRY_DELAYS[attempt]
-                    logger.warning(
-                        "Anthropic API error (attempt %d/%d): %s — retrying in %ds",
-                        attempt + 1, MAX_RETRIES, exc, delay,
-                    )
-                    await asyncio.sleep(delay)
+                attempt += 1
+                delay = min(attempt * 2, MAX_RETRY_DELAY)
+                logger.warning(
+                    "Anthropic API error (attempt %d): %s — retrying in %ds",
+                    attempt, exc, delay,
+                )
+                await asyncio.sleep(delay)
             except _APIStatusError as exc:
                 if exc.status_code in _RETRYABLE_STATUS_CODES:
-                    last_error = exc
-                    if attempt < MAX_RETRIES - 1:
-                        delay = RETRY_DELAYS[attempt]
-                        logger.warning(
-                            "Anthropic API overloaded (attempt %d/%d): %s — retrying in %ds",
-                            attempt + 1, MAX_RETRIES, exc, delay,
-                        )
-                        await asyncio.sleep(delay)
+                    attempt += 1
+                    delay = min(attempt * 2, MAX_RETRY_DELAY)
+                    logger.warning(
+                        "Anthropic API overloaded (attempt %d): %s — retrying in %ds",
+                        attempt, exc, delay,
+                    )
+                    await asyncio.sleep(delay)
                 else:
                     raise
-
-        raise last_error  # type: ignore[misc]
 
     @staticmethod
     def _apply_cache_to_tools(tools: list[dict]) -> list[dict]:
@@ -149,8 +153,8 @@ class LLMClient:
         ]
         cached_tools = self._apply_cache_to_tools(tools)
 
-        last_error: Exception | None = None
-        for attempt in range(MAX_RETRIES):
+        attempt = 0
+        while True:
             try:
                 text_parts: list[str] = []
                 thinking_parts: list[str] = []
@@ -221,25 +225,21 @@ class LLMClient:
                 )
                 return
             except _RETRYABLE_ERRORS as exc:
-                last_error = exc
-                if attempt < MAX_RETRIES - 1:
-                    delay = RETRY_DELAYS[attempt]
-                    logger.warning(
-                        "Anthropic streaming error (attempt %d/%d): %s — retrying in %ds",
-                        attempt + 1, MAX_RETRIES, exc, delay,
-                    )
-                    await asyncio.sleep(delay)
+                attempt += 1
+                delay = min(attempt * 2, MAX_RETRY_DELAY)
+                logger.warning(
+                    "Anthropic streaming error (attempt %d): %s — retrying in %ds",
+                    attempt, exc, delay,
+                )
+                await asyncio.sleep(delay)
             except _APIStatusError as exc:
                 if exc.status_code in _RETRYABLE_STATUS_CODES:
-                    last_error = exc
-                    if attempt < MAX_RETRIES - 1:
-                        delay = RETRY_DELAYS[attempt]
-                        logger.warning(
-                            "Anthropic streaming overloaded (attempt %d/%d): %s — retrying in %ds",
-                            attempt + 1, MAX_RETRIES, exc, delay,
-                        )
-                        await asyncio.sleep(delay)
+                    attempt += 1
+                    delay = min(attempt * 2, MAX_RETRY_DELAY)
+                    logger.warning(
+                        "Anthropic streaming overloaded (attempt %d): %s — retrying in %ds",
+                        attempt, exc, delay,
+                    )
+                    await asyncio.sleep(delay)
                 else:
                     raise
-
-        raise last_error  # type: ignore[misc]

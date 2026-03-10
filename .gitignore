@@ -13,3 +13,6 @@ agent_log.jsonl
 memory.json
 browser_state.json
 test_scenario.md
+ANALYSIS.md
+PLAN.md
+PLAN_V2.md

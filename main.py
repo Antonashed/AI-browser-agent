@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 from agent.cli import CLI
-from agent.config import load_config
+from agent.config import Config, load_config
 from agent.context import ContextManager
 from agent.core import AgentLoop
 from agent.llm_client import LLMClient
@@ -22,45 +22,62 @@ from agent.tools import get_all_tools
 METRICS_LOG_PATH = Path("session_metrics.jsonl")
 
 
-async def main() -> None:
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
-        datefmt="%H:%M:%S",
-    )
+def _setup_logging(config: Config) -> None:
+    """Configure logging: to file if LOG_FILE is set, otherwise stderr."""
 
+    class _FlushFilter(logging.Filter):
+        """Flush the handler stream after every log record."""
+        def __init__(self, target_handler: logging.FileHandler) -> None:
+            super().__init__()
+            self._handler = target_handler
+
+        def filter(self, record: logging.LogRecord) -> bool:
+            # Always allow the record; flush is a side-effect
+            self._handler.flush()
+            return True
+
+    log_fmt = "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+    level = getattr(logging, config.log_level, logging.INFO)
+
+    root = logging.getLogger()
+    root.setLevel(level)
+    # Remove any pre-existing handlers
+    root.handlers.clear()
+
+    if config.log_file:
+        handler: logging.Handler = logging.FileHandler(config.log_file, encoding="utf-8")
+        handler.addFilter(_FlushFilter(handler))
+    else:
+        handler = logging.StreamHandler()
+
+    handler.setLevel(level)
+    handler.setFormatter(logging.Formatter(log_fmt, datefmt="%H:%M:%S"))
+    root.addHandler(handler)
+
+
+async def main() -> None:
     cli = CLI()
     config = load_config()
+    _setup_logging(config)
     memory = Memory(load_env_defaults=True)
 
     mcp = MCPClient()
 
-    # Build MCP server args
+    # Build MCP server args (standalone — MCP launches its own Chromium)
     mcp_args = [config.mcp_browser_args]
-
-    if config.cdp_endpoint:
-        mcp_args.append(f"--cdp-endpoint={config.cdp_endpoint}")
-        cli.print_connecting("cdp", config.cdp_endpoint)
-    else:
-        if config.browser_headless:
-            mcp_args.append("--headless")
-        mcp_args.append(f"--viewport-size={config.browser_viewport_width},{config.browser_viewport_height}")
-        if config.browser_storage_path:
-            storage = config.browser_storage_path
-            if os.path.exists(storage):
-                mcp_args.append(f"--storage-state={storage}")
-            mcp_args.append(f"--save-storage={storage}")
-        cli.print_connecting(f"headless={config.browser_headless}")
+    if config.browser_headless:
+        mcp_args.append("--headless")
+    mcp_args.append(f"--viewport-size={config.browser_viewport_width}x{config.browser_viewport_height}")
+    if config.browser_storage_path:
+        storage = config.browser_storage_path
+        if os.path.exists(storage):
+            mcp_args.append(f"--storage-state={storage}")
 
     cli.print_status("Запускаю MCP-сервер (Playwright)…")
     try:
         await mcp.start(config.mcp_browser_command, mcp_args)
     except Exception as exc:
-        if config.cdp_endpoint:
-            cli.print_error(f"Не удалось подключиться к браузеру ({config.cdp_endpoint}).")
-            cli.print_status("Запустите Chrome: chrome.exe --remote-debugging-port=9222")
-        else:
-            cli.print_error(f"Не удалось запустить MCP-сервер: {exc}")
+        cli.print_error(f"Не удалось запустить MCP-сервер: {exc}")
         sys.exit(1)
 
     try:
@@ -72,9 +89,10 @@ async def main() -> None:
             api_key=config.anthropic_api_key,
             model=config.llm_model,
             max_tokens=config.llm_max_tokens,
+            proxy=config.anthropic_proxy,
         )
 
-        mode = f"CDP ({config.cdp_endpoint})" if config.cdp_endpoint else "Standalone"
+        mode = "Standalone"
         cli.print_banner(len(all_tools), len(mcp_tools), mode)
 
         # Session tracking

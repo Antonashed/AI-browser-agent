@@ -100,11 +100,8 @@ class CLI:
     def print_status(self, message: str) -> None:
         self.console.print(f"  [dim]{message}[/dim]")
 
-    def print_connecting(self, mode: str, endpoint: str = "") -> None:
-        if endpoint:
-            self.console.print(f"  [info]Режим:[/info] подключение к браузеру ({endpoint})")
-        else:
-            self.console.print(f"  [info]Режим:[/info] MCP запускает свой браузер ({mode})")
+    def print_connecting(self, headless: bool = False) -> None:
+        self.console.print(f"  [info]Режим:[/info] standalone (headless={headless})")
 
     # --- Event handling for streaming ---
 

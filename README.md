@@ -1,93 +1,128 @@
 # MyAgent — AI Browser Agent
 
-Автономный AI-агент, который получает текстовую задачу и **сам** выполняет её в веб-браузере. Никакого хардкода шагов, селекторов или URL.
+Автономный AI-агент, который получает текстовую задачу на естественном языке и **сам** выполняет её в веб-браузере. Никакого хардкода шагов, селекторов или URL — агент думает, планирует и действует самостоятельно.
+
+## Ключевые фичи
+
+### 🧠 Автономное мышление (ReAct + Extended Thinking)
+Агент работает по паттерну **ReAct**: наблюдает страницу → рассуждает (с использованием extended thinking Claude) → выполняет одно действие → наблюдает результат. До **50 шагов** на задачу с автоматическим сжатием контекста.
+
+### 🔍 Page Zoning — умное восприятие страницы
+Вместо отправки всей страницы целиком (тысячи токенов), агент разбивает DOM на **семантические зоны** по ARIA landmark ролям (`banner`, `navigation`, `main`, `contentinfo`). Сначала `page_overview` для обзора, затем `get_zone("main")` для деталей — экономия до **60% токенов** на длинных страницах.
+
+### 🌐 Работа с реальным браузером в реальном времени
+MCP запускает **собственный Chromium** — вы видите каждое действие на экране. Агент кликает, печатает, скроллит — всё происходит прямо перед вами.
+
+### 💾 Персистентная память
+Агент запоминает информацию между сессиями: ваше имя, email, адрес доставки, предпочтения. При следующем запуске `recall()` достанет данные из `memory.json`, а не будет спрашивать заново.
+
+### 🛡️ Безопасность на каждом уровне
+- **CAPTCHA/2FA** — автоматически обнаруживает и останавливается, просит вас решить вручную
+- **Платежи** — никогда не нажмёт «Оплатить» без явного `confirm()` от вас
+- **Секреты** — пароли и токены маскируются в аудит-логах (`***MASKED***`)
+
+### 📊 Полная прозрачность
+- **Streaming** — мысли и действия агента показываются в реальном времени
+- **Аудит-лог** — каждый шаг записывается в `agent_log.jsonl` с session ID и таймстампом
+- **Трекер расхода** — после каждой задачи видно: шаги, токены, стоимость в $
+- **Метрики** — экспорт сессионных метрик в `session_metrics.jsonl`
+
+### ⚡ Режим планирования
+`/plan Найди 5 вакансий Python backend` — агент создаёт план на 5-10 шагов **без выполнения**. Проверьте план, и если всё ок — `/go` для запуска.
+
+### 🔄 Отказоустойчивость
+- **Retry с backoff** — 3 попытки на ошибки API (429, 500, 529) с задержкой 1→2→4с
+- **Circuit breaker** — автоматическая остановка при 5 ошибках подряд
+- **Таймауты** — 60с на каждый tool call, без зависаний
+- **Smart retry** — ошибки возвращаются LLM с флагом `is_error`, агент корректирует стратегию
 
 ## Стек
 
-- **Python 3.13** — основной язык
-- **Microsoft Playwright MCP** — управление браузером через MCP-сервер
-- **Anthropic Claude Sonnet** — LLM для рассуждений и принятия решений
-- **MCP SDK** — протокол взаимодействия с browser-сервером
-- **ReAct паттерн** — observe → think → act
-
-## Как это работает
-
-1. Пользователь вводит задачу на естественном языке
-2. Агент подключается к Playwright MCP-серверу (браузер)
-3. В цикле ReAct: наблюдает страницу (`browser_snapshot`) → думает → выполняет действие
-4. Элементы идентифицируются через `ref`-атрибуты из accessibility tree
-5. При необходимости спрашивает пользователя, запоминает информацию
+| Компонент | Технология |
+|---|---|
+| Язык | Python 3.13 |
+| Браузер | Microsoft Playwright MCP |
+| LLM | Anthropic Claude Sonnet 4 |
+| Протокол | MCP (Model Context Protocol) |
+| CLI | Rich — цветной терминал |
+| Паттерн | ReAct (observe → think → act) |
 
 ## Установка
 
 ### Требования
 
-- Python 3.13+
-- Node.js (для Playwright MCP-сервера)
+- **Python 3.13+**
+- **Node.js 18+** (для Playwright MCP-сервера)
+- **API-ключ Anthropic** ([получить здесь](https://console.anthropic.com/))
 
 ### Шаги
 
 ```bash
-# Клонировать репозиторий
+# 1. Клонировать репозиторий
 git clone <repo-url>
 cd MyAgent
 
-# Создать виртуальное окружение
+# 2. Создать виртуальное окружение
 python -m venv venv
-venv\Scripts\activate     # Windows
-# source venv/bin/activate  # Linux/macOS
+venv\Scripts\activate          # Windows
+# source venv/bin/activate     # Linux/macOS
 
-# Установить зависимости
+# 3. Установить Python-зависимости
 pip install -r requirements.txt
 
-# Установить Playwright MCP-сервер
-npm install -g @playwright/mcp
+# 4. Установить Playwright MCP-сервер
+npx @playwright/mcp@latest --help   # проверка (скачает при первом запуске)
 
-# Создать .env из примера
-copy .env.example .env     # Windows
-# cp .env.example .env     # Linux/macOS
+# 5. Настроить окружение
+copy .env.example .env         # Windows
+# cp .env.example .env         # Linux/macOS
 ```
 
-Отредактируйте `.env` — укажите `ANTHROPIC_API_KEY` и при необходимости другие параметры.
+Откройте `.env` и укажите ваш API-ключ:
+```env
+ANTHROPIC_API_KEY=sk-ant-...
+```
 
-## Использование
-
-### Подключение к открытому браузеру (по умолчанию)
-
-Агент по умолчанию подключается к уже запущенному Chrome через CDP — вы видите все действия агента в реальном времени.
-
-1. Запустите Chrome с удалённой отладкой:
+### Проверка установки
 
 ```bash
-# Windows
-"C:\Program Files\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222
+# Запустить тесты (93 теста)
+python -m pytest
 
-# macOS
-/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222
-
-# Linux
-google-chrome --remote-debugging-port=9222
+# Проверить зависимости
+python -c "import anthropic, mcp, rich; print('OK')"
 ```
 
-2. Запустите агента:
+## Быстрый старт
+
+### 1. Запустите агента
 
 ```bash
 python main.py
 ```
 
-Для автономного режима (MCP запускает свой браузер) установите в `.env`:
+MCP автоматически откроет окно Chromium.
 
-```env
-CDP_ENDPOINT=none
+### 2. Дайте задачу
+
+```
+🤖 Введите задачу: Найди 3 вакансии Python backend разработчика на hh.ru
 ```
 
-### Команды CLI
+Агент сам откроет hh.ru, выполнит поиск, откроет карточки и покажет результат.
+
+## Команды CLI
 
 | Команда | Описание |
 |---|---|
 | `<текст задачи>` | Передать задачу агенту |
-| `memory` / `память` | Просмотреть содержимое памяти |
-| `выход` / `quit` / `exit` | Завершить работу |
+| `/plan <задача>` | Сгенерировать план без выполнения |
+| `/go` | Выполнить последний план |
+| `/memory` | Просмотреть содержимое памяти |
+| `/history` | История задач текущей сессии |
+| `/cost` | Расход токенов и стоимость сессии |
+| `/help` | Справка по командам |
+| `/exit` | Завершить работу |
 
 ## Конфигурация (.env)
 
@@ -97,35 +132,54 @@ CDP_ENDPOINT=none
 | `LLM_MODEL` | Модель LLM | `claude-sonnet-4-20250514` |
 | `LLM_MAX_TOKENS` | Макс. токенов ответа | `4096` |
 | `MAX_AGENT_STEPS` | Лимит шагов агента | `50` |
-| `SCREENSHOT_ENABLED` | Скриншоты | `true` |
-| `MCP_BROWSER_COMMAND` | Команда запуска MCP | `npx` |
-| `MCP_BROWSER_ARGS` | Аргументы MCP | `@playwright/mcp` |
 | `BROWSER_HEADLESS` | Режим без UI | `false` |
-| `BROWSER_VIEWPORT_WIDTH` | Ширина окна | `1280` |
-| `BROWSER_VIEWPORT_HEIGHT` | Высота окна | `900` |
-| `BROWSER_STORAGE_PATH` | Файл сессии браузера | *(пусто)* |
-| `CDP_ENDPOINT` | CDP-эндпоинт браузера (`none` = автономный) | `http://localhost:9222` |
+| `BROWSER_VIEWPORT` | Размер окна | `1280x900` |
+| `BROWSER_STORAGE_PATH` | Файл сессии браузера (cookies) | *(пусто)* |
+| `ANTHROPIC_PROXY` | HTTP-прокси для API | *(пусто)* |
+| `LOG_FILE` | Файл логов | *(пусто)* |
+| `LOG_LEVEL` | Уровень логирования | `INFO` |
+| `MAX_EMAILS_TO_SCAN` | Лимит писем для сканирования | `20` |
+| `MAX_VACANCIES` | Лимит вакансий для поиска | `5` |
+
+MCP запускает Chromium автоматически. Для headless-режима установите `BROWSER_HEADLESS=true`.
+
+## Инструменты агента
+
+Агент имеет доступ к **~20 browser tools** от Playwright MCP (навигация, клики, ввод текста, вкладки, скриншоты) плюс **8 кастомных**:
+
+| Tool | Описание |
+|---|---|
+| `page_overview` | Обзор зон страницы (banner, nav, main, footer) с кол-вом элементов |
+| `get_zone` | Получить a11y tree конкретной зоны (экономит токены) |
+| `remember` / `recall` | Сохранить / извлечь данные из персистентной памяти |
+| `ask_user` | Задать вопрос пользователю |
+| `confirm` | Запросить подтверждение перед опасным действием |
+| `show_preview` | Показать список результатов |
+| `done` | Завершить задачу с отчётом |
 
 ## Архитектура
 
 ```
-main.py                 # CLI точка входа
+main.py                 # CLI точка входа, Rich UI
 agent/
 ├── config.py           # .env → Config dataclass
-├── mcp_client.py       # Подключение к Playwright MCP
-├── tools.py            # 6 кастомных tools + merge с MCP
-├── llm_client.py       # Anthropic API + prompt caching
-├── tool_executor.py    # Роутер: MCP / кастомные tools
-├── context.py          # История, сжатие контекста
-├── memory.py           # Персистентная key-value память
-├── prompts.py          # Системный промпт
-└── core.py             # AgentLoop — ReAct-цикл
+├── core.py             # AgentLoop — ReAct-цикл, streaming, circuit breaker
+├── llm_client.py       # Anthropic API + prompt caching + extended thinking
+├── mcp_client.py       # Подключение к Playwright MCP (standalone)
+├── tools.py            # 6 custom + 2 compound tools, merge с MCP
+├── tool_executor.py    # Роутер: MCP / кастомные / compound tools
+├── page_parser.py      # Зонирование DOM по ARIA landmarks
+├── context.py          # История, auto-сжатие контекста на пороге 15K токенов
+├── memory.py           # Персистентная key-value память (JSON)
+├── prompts.py          # Системный промпт + стратегии навигации
+├── events.py           # 11 типов streaming-событий
+└── cli.py              # Slash-команды (/plan, /go, /cost, /history...)
 ```
 
 ## Тесты
 
 ```bash
-python -m pytest
+python -m pytest    # 93 теста
 ```
 
 ## Лицензия
