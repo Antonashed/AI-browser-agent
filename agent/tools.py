@@ -77,6 +77,14 @@ CUSTOM_TOOLS: list[dict] = [
 
 COMPOUND_TOOLS: list[dict] = [
     {
+        "name": "recall_all",
+        "description": "List ALL stored memory keys and their values. Call this at the START of every task to see what data is available before asking the user.",
+        "input_schema": {
+            "type": "object",
+            "properties": {},
+        },
+    },
+    {
         "name": "page_overview",
         "description": "Get a compact overview of the current page structure: semantic zones (banner, navigation, main, etc.) with element counts. Use this first on complex/unknown pages instead of browser_snapshot.",
         "input_schema": {
@@ -100,6 +108,104 @@ COMPOUND_TOOLS: list[dict] = [
                 },
             },
             "required": ["zone"],
+        },
+    },
+    {
+        "name": "set_plan",
+        "description": "Create a hierarchical execution plan: tasks → subtasks. Each task groups related subtasks. Complete ALL subtasks of task 1 before moving to task 2. Also accepts flat steps list for backward compatibility.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "tasks": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {"type": "string", "description": "Task name (e.g. 'Collect vacancy data')"},
+                            "subtasks": {
+                                "type": "array",
+                                "items": {"type": "string"},
+                                "description": "Ordered subtasks for this task.",
+                            },
+                        },
+                        "required": ["name", "subtasks"],
+                    },
+                    "description": "Hierarchical plan: list of tasks, each with subtasks. Complete all subtasks of task N before starting task N+1.",
+                },
+                "steps": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "description": "(Deprecated) Flat list of steps. Use 'tasks' parameter instead for better structure.",
+                },
+            },
+        },
+    },
+    {
+        "name": "complete_plan_step",
+        "description": "Mark a subtask as completed. Use task_number + subtask_number for hierarchical plans, or step_number for flat plans.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "task_number": {
+                    "type": "integer",
+                    "description": "1-based task number (for hierarchical plans).",
+                },
+                "subtask_number": {
+                    "type": "integer",
+                    "description": "1-based subtask number within the task.",
+                },
+                "step_number": {
+                    "type": "integer",
+                    "description": "(Flat plans) 1-based step number to mark complete.",
+                },
+            },
+        },
+    },
+    {
+        "name": "mark_processed",
+        "description": "Mark an item (vacancy, product, email) as fully processed so you never revisit it. Call this after successfully applying, ordering, or completing an action on an item.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "item_id": {
+                    "type": "string",
+                    "description": "URL or unique identifier of the processed item.",
+                },
+                "action": {
+                    "type": "string",
+                    "description": "What action was completed (e.g. 'applied', 'ordered', 'deleted').",
+                },
+            },
+            "required": ["item_id"],
+        },
+    },
+    {
+        "name": "set_criteria",
+        "description": "Set measurable completion criteria for the task. Extract from the task description (e.g. 'find 3 vacancies and apply' → ['Find 3 relevant vacancies', 'Write cover letter for each', 'Submit 3 applications']). Call right after set_plan().",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "criteria": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "description": "List of measurable criteria that define task completion.",
+                },
+            },
+            "required": ["criteria"],
+        },
+    },
+    {
+        "name": "mark_criterion_done",
+        "description": "Mark a completion criterion as satisfied. Call this when you verify a criterion has been met.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "criterion_number": {
+                    "type": "integer",
+                    "description": "1-based number of the criterion to mark done.",
+                },
+            },
+            "required": ["criterion_number"],
         },
     },
 ]

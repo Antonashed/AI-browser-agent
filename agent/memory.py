@@ -1,14 +1,19 @@
 from __future__ import annotations
 
 import json
+import os
+import tempfile
 from pathlib import Path
 
 
 class Memory:
     """Persistent key-value store backed by a JSON file."""
 
-    def __init__(self, filepath: Path = Path("memory.json"), load_env_defaults: bool = False) -> None:
+    _DEFAULT_PATH = Path("data") / "memory.json"
+
+    def __init__(self, filepath: Path = _DEFAULT_PATH, load_env_defaults: bool = False) -> None:
         self._filepath = filepath
+        self._filepath.parent.mkdir(exist_ok=True)
         self._data: dict[str, str] = {}
         self._load_from_file()
         if load_env_defaults:
@@ -32,7 +37,20 @@ class Memory:
         return list(self._data.keys())
 
     def _persist(self) -> None:
-        self._filepath.write_text(json.dumps(self._data, ensure_ascii=False, indent=2), encoding="utf-8")
+        data = json.dumps(self._data, ensure_ascii=False, indent=2)
+        fd, tmp_path = tempfile.mkstemp(
+            dir=self._filepath.parent, suffix=".tmp"
+        )
+        try:
+            os.write(fd, data.encode("utf-8"))
+            os.close(fd)
+            fd = -1
+            Path(tmp_path).replace(self._filepath)
+        except BaseException:
+            if fd >= 0:
+                os.close(fd)
+            Path(tmp_path).unlink(missing_ok=True)
+            raise
 
     def _load_from_file(self) -> None:
         if self._filepath.exists():

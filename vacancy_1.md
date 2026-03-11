@@ -1,0 +1,1160 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e7]:
+      - link [ref=e8] [cursor=pointer]:
+        - /url: /?hhtmFrom=vacancy
+      - generic [ref=e11]:
+        - button [ref=e13] [cursor=pointer]:
+          - img [ref=e20]
+        - group
+      - button "Москва" [ref=e25] [cursor=pointer]:
+        - generic [ref=e31]:
+          - img [ref=e32]
+          - generic [ref=e37]: Москва
+      - button [ref=e40] [cursor=pointer]:
+        - img [ref=e47]
+      - link [ref=e52] [cursor=pointer]:
+        - /url: /applicant/favorite_vacancies?hhtmFrom=vacancy&hhtmFromLabel=header
+        - img [ref=e59]
+      - button [ref=e64] [cursor=pointer]:
+        - img [ref=e71]
+      - button "Создать резюме" [ref=e74] [cursor=pointer]:
+        - generic [ref=e77]: Создать резюме
+      - button [ref=e80] [cursor=pointer]:
+        - img [ref=e87]
+    - generic [ref=e92]:
+      - generic [ref=e98]:
+        - generic [ref=e105]:
+          - generic [ref=e110]:
+            - generic [ref=e111]:
+              - heading "Senior Python разработчик в команду MLOps платформы" [level=1] [ref=e112]
+              - text: Уровень дохода не указан
+            - generic [ref=e114]:
+              - paragraph [ref=e115]: "Опыт работы: более 6 лет"
+              - generic [ref=e118]: Полная занятость
+              - paragraph [ref=e119]: "График: 5/2"
+              - generic [ref=e122]: "Рабочие часы: 8"
+              - paragraph [ref=e123]: "Формат работы: на месте работодателя, удалённо или гибрид"
+              - paragraph [ref=e125]:
+                - text: Сейчас эту вакансию смотрят
+                - generic [ref=e126]: 4 человека
+          - generic [ref=e130]:
+            - button "Откликнуться" [ref=e132] [cursor=pointer]:
+              - generic [ref=e135]: Откликнуться
+            - button "Добавить в избранное" [ref=e137] [cursor=pointer]:
+              - img "Добавить в избранное" [ref=e141]
+            - button "Ещё" [ref=e145] [cursor=pointer]:
+              - img "Ещё" [ref=e149]
+        - generic [ref=e159]:
+          - generic [ref=e160]:
+            - link "HeadHunter" [ref=e161] [cursor=pointer]:
+              - /url: /employer/1455?hhtmFrom=vacancy
+              - generic "HeadHunter" [ref=e163]:
+                - img "HeadHunter" [ref=e164]
+            - generic [ref=e165]:
+              - generic [ref=e166]:
+                - link "ООО HeadHunter::Analytics/Data Science" [ref=e168] [cursor=pointer]:
+                  - /url: /employer/1455?dpt=hh-1455-ds&hhtmFrom=vacancy
+                  - generic [ref=e169]: ООО HeadHunter::Analytics/Data Science
+                - link [ref=e172] [cursor=pointer]:
+                  - /url: https://feedback.hh.ru/article/details/id/5951
+                  - img [ref=e174]
+              - generic [ref=e184]:
+                - generic [ref=e186]: 4,8
+                - button "10 отзывов" [ref=e193]:
+                  - generic [ref=e196]: 10 отзывов
+          - generic [ref=e198]:
+            - generic [ref=e203]:
+              - generic [ref=e204]: Открытый
+              - generic [ref=e205]: Показывает отзывы от сотрудников
+            - generic [ref=e210]:
+              - generic [ref=e211]: IT-компания
+              - generic [ref=e212]: У работодателя есть аккредитация
+        - generic [ref=e214]:
+          - generic [ref=e224]:
+            - generic [ref=e225]:
+              - generic [ref=e230]:
+                - text: создаём и поддерживаем
+                - text: высоконагруженные
+                - text: продукты
+              - generic [ref=e231]:
+                - generic [ref=e232]: Технический департамент разрабатывает масштабируемые, надёжные и инновационные решения, которые обеспечивают бесперебойную работу сервисов
+                - generic [ref=e234]:
+                  - generic [ref=e235]:
+                    - generic [ref=e236]: ~600
+                    - generic [ref=e237]: человек в IT, data, product
+                  - generic [ref=e238]:
+                    - generic [ref=e239]: 60+
+                    - generic [ref=e240]: команд в техническом департаменте
+                  - generic [ref=e241]:
+                    - generic [ref=e242]: 30%
+                    - generic [ref=e243]: времени закладываем на работу с тех. долгом
+                  - generic [ref=e244]:
+                    - generic [ref=e245]: стенды
+                    - generic [ref=e246]: личные, а не общие
+                  - generic [ref=e247]:
+                    - generic [ref=e248]: 1 млн+
+                    - generic [ref=e249]: событий обрабатываем и храним телеметрию
+                  - generic [ref=e250]:
+                    - generic [ref=e251]: 99,99%
+                    - generic [ref=e252]: uptime
+            - generic [ref=e255]:
+              - paragraph [ref=e256]: Мы используем технологии машинного обучения в разных задачах, таких как рекомендации, поисковое ранжирование, предсказание перфоманса вакансий. 70% откликов на вакансии в hh.ru начинаются с наших автоматических рекомендаций. Для того, чтобы дата-саентисты могли более эффективно улучшать и выпускать свои модели в прод - мы развиваем свою внутреннюю ML-платформу силами команды MLOps.
+              - paragraph [ref=e257]: В эту команду мы ищем senior python-разработчика, перед которым будут стоять как стандартные задачи (написание сервисов, организация пайплайнов, написание и поддержка feature-стора, model-registry), так и более специфичные - написание фреймворка для инференс-сервисов, организация архитектуры подготовки данных, мониторинга перформанса моделей и многое другое.
+              - heading "Обязанности:" [level=2] [ref=e258]:
+                - strong [ref=e259]: "Обязанности:"
+              - list [ref=e260]:
+                - listitem [ref=e261]: Разрабатывать внутренние библиотеки и сервисы, связанных с машинным обучением.
+                - listitem [ref=e262]: Развивать инструментарий ML-платформы.
+                - listitem [ref=e263]: Заниматься мониторингом и обеспечением бесперебойной работы ML-платформы.
+                - listitem [ref=e264]: Принимать участие в выборе и имплементации решений для управления жизненным циклом ML моделей.
+                - listitem [ref=e265]: Помогать выстраивать MLOps и CI/CD процессы.
+              - heading "Требования:" [level=2] [ref=e266]:
+                - strong [ref=e267]: "Требования:"
+              - list [ref=e268]:
+                - listitem [ref=e269]: Крепкое знание python3 (asyncio, mutiprocessing/multithreading, организация кода, работа с менеджерами зависимостями), понимание как оно внутри работает.
+                - listitem [ref=e270]: Умение проектировать и развивать архитектуру сервисов.
+                - listitem [ref=e271]: Опыт работы с базами, очередями.
+                - listitem [ref=e272]: Опыт работы с fastapi.
+              - heading "Будет плюсом:" [level=2] [ref=e273]:
+                - strong [ref=e274]: "Будет плюсом:"
+              - list [ref=e275]:
+                - listitem [ref=e276]: Опыт работы с ML-инструментами (например, feast, seldon, triton, clearml, mlflow)
+                - listitem [ref=e277]: Опыт работы с bash, k8s, nfs
+                - listitem [ref=e278]: Опыт работы с различными хранилищами - clickhouse, hdfs, s3
+                - listitem [ref=e279]: Опыт построения пайплайнов обработки данных (желательно на airflow)
+                - listitem [ref=e280]: Опыт построения пайплайнов обучения моделей
+                - listitem [ref=e281]: Опыт сборки, выкатки, мониторинга, траблшутинга сервисов
+              - heading "Условия:" [level=2] [ref=e282]:
+                - strong [ref=e283]: "Условия:"
+              - list [ref=e284]:
+                - listitem [ref=e285]: Оформление по ТК РФ в аккредитованную ИТ компанию
+                - listitem [ref=e286]: Удаленный или гибридный формат работы в Москве (м. Алексеевская)
+                - listitem [ref=e287]: Хороший тренажерный зал в офисе и душ при нем. А также занятия йогой, настольный теннис и кикер
+                - listitem [ref=e288]: Кофе в кофемашинах, чай, печенье, фрукты на кухне
+                - listitem [ref=e289]: Корпоративный ДМС c первого месяца работы (решаем вопросы со здоровьем быстро и удобно)
+                - listitem [ref=e290]: Если вам есть, что рассказать и чему научить, или хочется поучиться, — мы даём возможность участвовать (и как слушатель, и как тренер) в специализированных конференциях и внутренних семинарах, в т.ч. в Школе программистов
+              - paragraph
+            - generic [ref=e292]:
+              - generic [ref=e293]: почему с нами круто?
+              - generic [ref=e295]:
+                - generic [ref=e296]:
+                  - generic [ref=e298]: сложные и масштабные задачи
+                  - generic [ref=e299]:
+                    - text: работаем с высокими
+                    - text: нагрузками и инновационными технологиями
+                - generic [ref=e300]:
+                  - generic [ref=e302]: влияние на продукт
+                  - generic [ref=e303]:
+                    - text: каждый вклад напрямую
+                    - text: улучшает опыт миллионов
+                    - text: пользователей
+                - generic [ref=e304]:
+                  - generic [ref=e306]: культура открытости
+                  - generic [ref=e307]:
+                    - text: обмен знаниями, код-ревью
+                    - text: и эксперименты с новыми
+                    - text: подходами
+                - generic [ref=e308]:
+                  - generic [ref=e310]:
+                    - text: профессиональный
+                    - text: рост
+                  - generic [ref=e311]:
+                    - text: конференции, обучение,
+                    - text: внутренние митапы и менторство
+              - generic [ref=e312]:
+                - generic [ref=e313]: "работа у нас это:"
+                - generic [ref=e314]:
+                  - generic [ref=e315]:
+                    - generic [ref=e317]: "1"
+                    - generic [ref=e318]: well-being-программа, которая помогает улучшить ментальное и физическое здоровье, разобраться с финансовыми и юридическими вопросами
+                  - generic [ref=e319]:
+                    - generic [ref=e321]: "2"
+                    - generic [ref=e322]: дмс с первого месяца работы — со стоматологией, страхованием жизни и скидками на дмс для семьи
+                  - generic [ref=e323]:
+                    - generic [ref=e325]: "3"
+                    - generic [ref=e326]: "развитие и обучение сотрудников: курсы, тренинги, вебинары, менторство, конференции"
+                  - generic [ref=e327]:
+                    - generic [ref=e329]: "4"
+                    - generic [ref=e330]: гибридный и удаленный формат работы
+                  - generic [ref=e331]:
+                    - generic [ref=e333]: "5"
+                    - generic [ref=e334]: комфортные офисы в 10 городах России
+                  - generic [ref=e335]:
+                    - generic [ref=e337]: "6"
+                    - generic [ref=e338]: аккредитованная IT-компания
+              - generic [ref=e339]:
+                - generic [ref=e341]:
+                  - text: ждём только
+                  - text: тебя
+                - generic [ref=e342]: "*команда hh"
+          - generic [ref=e344]:
+            - generic [ref=e345]:
+              - heading "Ключевые навыки" [level=2] [ref=e347]
+              - list [ref=e350]:
+                - listitem [ref=e351]:
+                  - generic [ref=e353]: Python
+                - listitem [ref=e354]:
+                  - generic [ref=e356]: FastAPI
+                - listitem [ref=e357]:
+                  - generic [ref=e359]: Flask
+                - listitem [ref=e360]:
+                  - generic [ref=e362]: Apache Spark
+                - listitem [ref=e363]:
+                  - generic [ref=e365]: Apache Airflow
+                - listitem [ref=e366]:
+                  - generic [ref=e368]: Kubernetes
+                - listitem [ref=e369]:
+                  - generic [ref=e371]: Backend
+            - generic [ref=e372]:
+              - heading "Задайте вопрос работодателю" [level=2] [ref=e374]
+              - generic [ref=e376]: Он получит его с откликом на вакансию
+              - generic [ref=e378]:
+                - generic [ref=e379] [cursor=pointer]:
+                  - checkbox "Где располагается место работы?" [ref=e380]
+                  - generic [ref=e385]: Где располагается место работы?
+                - generic [ref=e386] [cursor=pointer]:
+                  - checkbox "Какой график работы?" [ref=e387]
+                  - generic [ref=e392]: Какой график работы?
+                - generic [ref=e393] [cursor=pointer]:
+                  - checkbox "Вакансия открыта?" [ref=e394]
+                  - generic [ref=e399]: Вакансия открыта?
+                - generic [ref=e400] [cursor=pointer]:
+                  - checkbox "Какая оплата труда?" [ref=e401]
+                  - generic [ref=e406]: Какая оплата труда?
+                - generic [ref=e407] [cursor=pointer]:
+                  - checkbox "Как с вами связаться?" [ref=e408]
+                  - generic [ref=e413]: Как с вами связаться?
+                - generic [ref=e414] [cursor=pointer]:
+                  - checkbox "Другой вопрос" [ref=e415]
+                  - generic [ref=e420]: Другой вопрос
+            - generic [ref=e421]:
+              - heading "Где предстоит работать" [level=2] [ref=e423]
+              - generic [ref=e426]:
+                - text: Москва,
+                - generic [ref=e427]: Алексеевская
+                - text: ", улица Годовикова, 9с10"
+              - generic [ref=e439]:
+                - generic [ref=e441]:
+                  - text: © Яндекс
+                  - link "Условия использования" [ref=e443] [cursor=pointer]:
+                    - /url: https://yandex.ru/legal/maps_termsofuse/?lang=ru
+                - link [ref=e445] [cursor=pointer]:
+                  - /url: ""
+              - link "Показать на большой карте" [ref=e456]:
+                - /url: /search/vacancy/map?vacancy_id=129811262&hhtmFrom=vacancy
+                - generic [ref=e458]: Показать на большой карте
+        - generic [ref=e459]:
+          - generic [ref=e465]: Вакансия опубликована 6 марта 2026 в Москве
+          - generic [ref=e467]:
+            - generic [ref=e472]:
+              - button "Откликнуться" [ref=e474] [cursor=pointer]:
+                - generic [ref=e477]: Откликнуться
+              - button "Пожаловаться на вакансию" [ref=e483] [cursor=pointer]:
+                - generic [ref=e486]: Пожаловаться на вакансию
+            - generic [ref=e491]:
+              - generic [ref=e493]:
+                - img [ref=e494]
+                - generic [ref=e497]:
+                  - generic [ref=e499]: Dream Job
+                  - generic [ref=e500]: Отзывы о компании
+              - generic [ref=e504]:
+                - generic [ref=e510]:
+                  - generic [ref=e511]:
+                    - generic [ref=e514]:
+                      - generic [ref=e516]: 4,8
+                      - generic [ref=e524]: отлично
+                    - generic [ref=e526]:
+                      - generic [ref=e527]: Открытый
+                      - generic [ref=e528]: высоко ценит отзывы
+                    - generic [ref=e531]:
+                      - generic [ref=e532]: 94%
+                      - generic [ref=e533]: рекомендует
+                  - button "Оставить отзыв" [ref=e534] [cursor=pointer]:
+                    - generic [ref=e537]: Оставить отзыв
+                - generic [ref=e538]:
+                  - generic [ref=e541]:
+                    - generic [ref=e543]: Награды работодателя
+                    - generic [ref=e544]: На основе отзывов сотрудников
+                  - button "Лидер обратной связи У 1% работодателей Забота о сотрудниках У 1.1% работодателей Корпоративная культура У 2.9% работодателей" [ref=e546] [cursor=pointer]:
+                    - generic [ref=e555]:
+                      - generic [ref=e557]:
+                        - img [ref=e562]
+                        - generic [ref=e567]:
+                          - generic [ref=e574]: Лидер обратной связи
+                          - generic [ref=e581]: У 1% работодателей
+                      - generic [ref=e583]:
+                        - img [ref=e588]
+                        - generic [ref=e591]:
+                          - generic [ref=e598]: Забота о сотрудниках
+                          - generic [ref=e605]: У 1.1% работодателей
+                      - generic [ref=e607]:
+                        - img [ref=e612]
+                        - generic [ref=e618]:
+                          - generic [ref=e625]: Корпоративная культура
+                          - generic [ref=e632]: У 2.9% работодателей
+                - generic [ref=e637]: Что говорят сотрудники
+                - generic [ref=e644]:
+                  - button "Преимущества и льготы На основании 10 отзывов Медицинское страхование — 8 Своевременная оплата труда — 8 Удаленная работа — 8" [ref=e646] [cursor=pointer]:
+                    - generic [ref=e651]:
+                      - generic [ref=e652]:
+                        - generic [ref=e653]: Преимущества и льготы
+                        - generic [ref=e654]:
+                          - text: На основании
+                          - generic [ref=e655]: 10 отзывов
+                      - generic [ref=e656]:
+                        - generic [ref=e658]: Медицинское страхование — 8
+                        - generic [ref=e660]: Своевременная оплата труда — 8
+                        - generic [ref=e662]: Удаленная работа — 8
+                  - button "Отзыв сотрудника 5,0 Апрель 2023 Удобный график работы, очень лояльное руководство, отличная система адаптации для новичков." [ref=e664] [cursor=pointer]:
+                    - generic [ref=e672]:
+                      - generic [ref=e673]:
+                        - generic [ref=e675]: Отзыв сотрудника
+                        - generic [ref=e676]:
+                          - generic [ref=e678]: 5,0
+                          - generic [ref=e685]: Апрель 2023
+                      - generic [ref=e686]: Удобный график работы, очень лояльное руководство, отличная система адаптации для новичков.
+                  - button "Отзыв сотрудника 5,0 Февраль 2025 Компания отличается сильной Agile-культурой и стремлением к engineering excellence. Дружелюбная команда и комфортный офис создают отличные условия для работы." [ref=e688] [cursor=pointer]:
+                    - generic [ref=e696]:
+                      - generic [ref=e697]:
+                        - generic [ref=e699]: Отзыв сотрудника
+                        - generic [ref=e700]:
+                          - generic [ref=e702]: 5,0
+                          - generic [ref=e709]: Февраль 2025
+                      - generic [ref=e710]: Компания отличается сильной Agile-культурой и стремлением к engineering excellence. Дружелюбная команда и комфортный офис создают отличные условия для работы.
+                  - button "Отзыв сотрудника 5,0 Ноябрь 2024 Лояльное руководство, прекрасная команда. Все условия для спокойной и продуктивной работы. Компания активно развивается и вся команда прикладывает максимально своих усилий, так как все замотивированы на результат и на решение поставленных задач. В коллективе на первом месте взаимопомощь и человеческое адекватное общение." [ref=e712] [cursor=pointer]:
+                    - generic [ref=e720]:
+                      - generic [ref=e721]:
+                        - generic [ref=e723]: Отзыв сотрудника
+                        - generic [ref=e724]:
+                          - generic [ref=e726]: 5,0
+                          - generic [ref=e733]: Ноябрь 2024
+                      - generic [ref=e734]: Лояльное руководство, прекрасная команда. Все условия для спокойной и продуктивной работы. Компания активно развивается и вся команда прикладывает максимально своих усилий, так как все замотивированы на результат и на решение поставленных задач. В коллективе на первом месте взаимопомощь и человеческое адекватное общение.
+                  - button "Продуктовый аналитик 5,0 Сентябрь 2024 Удаленка, возможность профессионального развития и обучения за счет компании, отличный коллектив, много корпоративных плюшек, хорошее дмс, гибкое начало рабочего дня." [ref=e736] [cursor=pointer]:
+                    - generic [ref=e744]:
+                      - generic [ref=e745]:
+                        - generic [ref=e747]: Продуктовый аналитик
+                        - generic [ref=e748]:
+                          - generic [ref=e750]: 5,0
+                          - generic [ref=e757]: Сентябрь 2024
+                      - generic [ref=e758]: Удаленка, возможность профессионального развития и обучения за счет компании, отличный коллектив, много корпоративных плюшек, хорошее дмс, гибкое начало рабочего дня.
+                  - button "Machine learning engineer 4,2 Апрель 2025 коллектив, заботливое отношение к сотрудникам, удаленка из любой страны" [ref=e760] [cursor=pointer]:
+                    - generic [ref=e768]:
+                      - generic [ref=e769]:
+                        - generic [ref=e771]: Machine learning engineer
+                        - generic [ref=e772]:
+                          - generic [ref=e774]: 4,2
+                          - generic [ref=e781]: Апрель 2025
+                      - generic [ref=e782]: коллектив, заботливое отношение к сотрудникам, удаленка из любой страны
+                  - button "Аналитик 5,0 Май 2024 Коллектив самый лучший, все зайки и лапочки. Офис тоже нормич" [ref=e784] [cursor=pointer]:
+                    - generic [ref=e792]:
+                      - generic [ref=e793]:
+                        - generic [ref=e795]: Аналитик
+                        - generic [ref=e796]:
+                          - generic [ref=e798]: 5,0
+                          - generic [ref=e805]: Май 2024
+                      - generic [ref=e806]: Коллектив самый лучший, все зайки и лапочки. Офис тоже нормич
+                  - button "Продуктовый аналитик 5,0 Август 2024 Очень человечное отношене к сотрудникам, поощрение повышения квалификации" [ref=e808] [cursor=pointer]:
+                    - generic [ref=e816]:
+                      - generic [ref=e817]:
+                        - generic [ref=e819]: Продуктовый аналитик
+                        - generic [ref=e820]:
+                          - generic [ref=e822]: 5,0
+                          - generic [ref=e829]: Август 2024
+                      - generic [ref=e830]: Очень человечное отношене к сотрудникам, поощрение повышения квалификации
+                  - button "Главный методолог управления и анализа данных 4,8 Октябрь 2023 1) Классная корпоративная культура; 2) Открытые и доброжелательные коллеги; 3) Чувство заботы со стороны компании; 4) Отличные условия труда;" [ref=e832] [cursor=pointer]:
+                    - generic [ref=e840]:
+                      - generic [ref=e841]:
+                        - generic [ref=e843]: Главный методолог управления и анализа данных
+                        - generic [ref=e844]:
+                          - generic [ref=e846]: 4,8
+                          - generic [ref=e853]: Октябрь 2023
+                      - generic [ref=e854]: 1) Классная корпоративная культура; 2) Открытые и доброжелательные коллеги; 3) Чувство заботы со стороны компании; 4) Отличные условия труда;
+                  - button "Junior Product Analyst 5,0 Апрель 2023 Экологичное общение внутри коллектива, большая степень свободы, очень человечное отношение руководителей, хорошие зарплаты" [ref=e856] [cursor=pointer]:
+                    - generic [ref=e864]:
+                      - generic [ref=e865]:
+                        - generic [ref=e867]: Junior Product Analyst
+                        - generic [ref=e868]:
+                          - generic [ref=e870]: 5,0
+                          - generic [ref=e877]: Апрель 2023
+                      - generic [ref=e878]: Экологичное общение внутри коллектива, большая степень свободы, очень человечное отношение руководителей, хорошие зарплаты
+                  - button "Аналитик 5,0 Сентябрь 2022 интересные задачи, хороший коллектив, налаженные процессы взаимодействия, отличный офис со всякими плюшками" [ref=e880] [cursor=pointer]:
+                    - generic [ref=e888]:
+                      - generic [ref=e889]:
+                        - generic [ref=e891]: Аналитик
+                        - generic [ref=e892]:
+                          - generic [ref=e894]: 5,0
+                          - generic [ref=e901]: Сентябрь 2022
+                      - generic [ref=e902]: интересные задачи, хороший коллектив, налаженные процессы взаимодействия, отличный офис со всякими плюшками
+            - generic [ref=e913]:
+              - generic [ref=e914]:
+                - heading "Курсы по профессии «Аналитик DWH»" [level=6] [ref=e917]
+                - paragraph [ref=e918]: Посмотрите на карьерной платформе от hh.ru
+              - button "Посмотреть" [ref=e922] [cursor=pointer]:
+                - generic [ref=e925]: Посмотреть
+        - generic [ref=e927]:
+          - generic [ref=e929]:
+            - heading "Подходящие вакансии в этой компании" [level=2] [ref=e930]
+            - generic [ref=e932]:
+              - button "Добавить в избранное Скрыть DevOps инженер (Hadoop) Опыт 3-6 лет Можно удалённо Вакансии HeadHunter::Infrastructure engineers ООО HeadHunter::Infrastructure engineers 4.5 • 236 отзывов Москва ● Алексеевская Развитие и поддержка сервисов платформы (HDFS, Trino, Airflow, Spark, Flink). Оптимизация процессов и технологий внутри платформы. Переезд мониторинга на prometheus. Опыт работы с Hadoop. Владение Python/Go/Bash и умение писать скрипты автоматизации. Желание осваивать новые технологии. Понимание важности документации. Откликнуться" [ref=e936] [cursor=pointer]:
+                - generic [ref=e940]:
+                  - generic [ref=e941]:
+                    - generic [ref=e942]:
+                      - button "Добавить в избранное" [ref=e943]:
+                        - img [ref=e944]
+                      - button "Скрыть" [ref=e947]:
+                        - img [ref=e948]
+                    - heading "DevOps инженер (Hadoop)" [level=2] [ref=e951]:
+                      - link "DevOps инженер (Hadoop)" [ref=e953]:
+                        - /url: https://hh.ru/vacancy/131098771?hhtmFromLabel=suitable_employer_vacancies&hhtmFrom=vacancy
+                        - generic [ref=e956]:
+                          - text: DevOps инженер (Hadoop)
+                          - img [ref=e958]
+                    - generic [ref=e963]:
+                      - generic [ref=e965]: Опыт 3-6 лет
+                      - generic [ref=e967]: Можно удалённо
+                    - generic [ref=e969]:
+                      - generic [ref=e971]:
+                        - link [ref=e972]:
+                          - /url: https://feedback.hh.ru/article/details/id/5951
+                          - img [ref=e974]
+                        - img [ref=e982]
+                      - generic:
+                        - generic:
+                          - link "Вакансии HeadHunter::Infrastructure engineers":
+                            - /url: /employer/1455?dpt=hh-1455-ie&hhtmFrom=vacancy
+                            - generic:
+                              - img "HeadHunter::Infrastructure engineers"
+                      - link "ООО HeadHunter::Infrastructure engineers" [ref=e990]:
+                        - /url: /employer/1455?dpt=hh-1455-ie&hhtmFrom=vacancy
+                        - generic [ref=e993]: ООО HeadHunter::Infrastructure engineers
+                      - generic [ref=e996]:
+                        - img [ref=e997]
+                        - generic [ref=e1001]: "4.5"
+                        - generic [ref=e1002]: •
+                        - generic [ref=e1005]: 236 отзывов
+                      - generic [ref=e1006]:
+                        - text: Москва
+                        - generic [ref=e1009]:
+                          - generic [ref=e1010]: ●
+                          - generic [ref=e1011]: Алексеевская
+                    - generic [ref=e1014]:
+                      - generic [ref=e1015]: Развитие и поддержка сервисов платформы (HDFS, Trino, Airflow, Spark, Flink). Оптимизация процессов и технологий внутри платформы. Переезд мониторинга на prometheus.
+                      - generic [ref=e1016]: Опыт работы с Hadoop. Владение Python/Go/Bash и умение писать скрипты автоматизации. Желание осваивать новые технологии. Понимание важности документации.
+                  - button "Откликнуться" [ref=e1021]:
+                    - generic [ref=e1024]: Откликнуться
+              - 'button "Добавить в избранное Скрыть Аналитик клиентской эффективности Опыт 1-3 года Вакансии HeadHunter::Бизнес аналитики ООО HeadHunter::Бизнес аналитики 4.5 • 236 отзывов Москва ● Белорусская и еще 3 ● ● ● Подготовка табличных выгрузок по запросу от менеджеров по продажам: сбор и структурирование данных о тратах на hh.ru, выручке и использовании... Опыт продуктовой или коммерческой аналитики: выручка, расходы, окупаемость инициатив. Уверенный уровень Excel и SQL; опыт работы с Python для автоматизации... Откликнуться" [ref=e1029] [cursor=pointer]':
+                - generic [ref=e1033]:
+                  - generic [ref=e1034]:
+                    - generic [ref=e1035]:
+                      - button "Добавить в избранное" [ref=e1036]:
+                        - img [ref=e1037]
+                      - button "Скрыть" [ref=e1040]:
+                        - img [ref=e1041]
+                    - heading "Аналитик клиентской эффективности" [level=2] [ref=e1044]:
+                      - link "Аналитик клиентской эффективности" [ref=e1046]:
+                        - /url: https://hh.ru/vacancy/130323737?hhtmFromLabel=suitable_employer_vacancies&hhtmFrom=vacancy
+                        - generic [ref=e1049]:
+                          - text: Аналитик клиентской эффективности
+                          - img [ref=e1051]
+                    - generic [ref=e1058]: Опыт 1-3 года
+                    - generic [ref=e1060]:
+                      - generic [ref=e1062]:
+                        - link [ref=e1063]:
+                          - /url: https://feedback.hh.ru/article/details/id/5951
+                          - img [ref=e1065]
+                        - img [ref=e1073]
+                      - generic:
+                        - generic:
+                          - link "Вакансии HeadHunter::Бизнес аналитики":
+                            - /url: /employer/1455?dpt=hh-1455-ba&hhtmFrom=vacancy
+                            - generic:
+                              - img "HeadHunter::Бизнес аналитики"
+                      - link "ООО HeadHunter::Бизнес аналитики" [ref=e1081]:
+                        - /url: /employer/1455?dpt=hh-1455-ba&hhtmFrom=vacancy
+                        - generic [ref=e1084]: ООО HeadHunter::Бизнес аналитики
+                      - generic [ref=e1087]:
+                        - img [ref=e1088]
+                        - generic [ref=e1092]: "4.5"
+                        - generic [ref=e1093]: •
+                        - generic [ref=e1096]: 236 отзывов
+                      - generic [ref=e1097]:
+                        - text: Москва
+                        - generic [ref=e1100]:
+                          - generic [ref=e1101]: ●
+                          - generic [ref=e1102]: Белорусская
+                        - generic [ref=e1103]: и еще 3
+                        - generic [ref=e1105]: ●
+                        - generic [ref=e1107]: ●
+                        - generic [ref=e1109]: ●
+                    - generic [ref=e1112]:
+                      - generic [ref=e1113]: "Подготовка табличных выгрузок по запросу от менеджеров по продажам: сбор и структурирование данных о тратах на hh.ru, выручке и использовании..."
+                      - generic [ref=e1114]: "Опыт продуктовой или коммерческой аналитики: выручка, расходы, окупаемость инициатив. Уверенный уровень Excel и SQL; опыт работы с Python для автоматизации..."
+                  - button "Откликнуться" [ref=e1119]:
+                    - generic [ref=e1122]: Откликнуться
+              - button "Добавить в избранное Скрыть Senior Product Manager (Оценка навыков) Опыт 3-6 лет Вакансии HeadHunter::Product Management ООО HeadHunter::Product Management 4.5 • 236 отзывов Москва ● Белорусская и еще 3 ● ● ● Разрабатывать и внедрять стратегию для проекта оценки навыков и карьерной платформы. Формировать команду единомышленников. Управлять жизненным циклом продукта от идеи... У тебя есть навыки лидерства и умение анализировать целевую аудиторию, определять требования к продукту и продвигать его на рынке. Откликнуться" [ref=e1127] [cursor=pointer]:
+                - generic [ref=e1131]:
+                  - generic [ref=e1132]:
+                    - generic [ref=e1133]:
+                      - button "Добавить в избранное" [ref=e1134]:
+                        - img [ref=e1135]
+                      - button "Скрыть" [ref=e1138]:
+                        - img [ref=e1139]
+                    - heading "Senior Product Manager (Оценка навыков)" [level=2] [ref=e1142]:
+                      - link "Senior Product Manager (Оценка навыков)" [ref=e1144]:
+                        - /url: https://hh.ru/vacancy/131123518?hhtmFromLabel=suitable_employer_vacancies&hhtmFrom=vacancy
+                        - generic [ref=e1146]: Senior Product Manager (Оценка навыков)
+                    - generic [ref=e1151]: Опыт 3-6 лет
+                    - generic [ref=e1153]:
+                      - generic [ref=e1155]:
+                        - link [ref=e1156]:
+                          - /url: https://feedback.hh.ru/article/details/id/5951
+                          - img [ref=e1158]
+                        - img [ref=e1166]
+                      - generic:
+                        - generic:
+                          - link "Вакансии HeadHunter::Product Management":
+                            - /url: /employer/1455?dpt=hh-1455-product&hhtmFrom=vacancy
+                            - generic:
+                              - img "HeadHunter::Product Management"
+                      - link "ООО HeadHunter::Product Management" [ref=e1174]:
+                        - /url: /employer/1455?dpt=hh-1455-product&hhtmFrom=vacancy
+                        - generic [ref=e1177]: ООО HeadHunter::Product Management
+                      - generic [ref=e1180]:
+                        - img [ref=e1181]
+                        - generic [ref=e1185]: "4.5"
+                        - generic [ref=e1186]: •
+                        - generic [ref=e1189]: 236 отзывов
+                      - generic [ref=e1190]:
+                        - text: Москва
+                        - generic [ref=e1193]:
+                          - generic [ref=e1194]: ●
+                          - generic [ref=e1195]: Белорусская
+                        - generic [ref=e1196]: и еще 3
+                        - generic [ref=e1198]: ●
+                        - generic [ref=e1200]: ●
+                        - generic [ref=e1202]: ●
+                    - generic [ref=e1205]:
+                      - generic [ref=e1206]: Разрабатывать и внедрять стратегию для проекта оценки навыков и карьерной платформы. Формировать команду единомышленников. Управлять жизненным циклом продукта от идеи...
+                      - generic [ref=e1207]: У тебя есть навыки лидерства и умение анализировать целевую аудиторию, определять требования к продукту и продвигать его на рынке.
+                  - button "Откликнуться" [ref=e1212]:
+                    - generic [ref=e1215]: Откликнуться
+              - button "Добавить в избранное Скрыть Аналитик данных Опыт 3-6 лет Вакансии HeadHunter::Бизнес аналитики ООО HeadHunter::Бизнес аналитики 4.5 • 236 отзывов Москва ● Белорусская и еще 3 ● ● ● Формирование выгрузок с помощью SQL-запросов. Взаимодействие с разработчиками БД по вопросам качества данных. Анализ данных о поведении клиентов из... Продвинутый уровень SQL (виды джойнов, подзапросы, аналитические функции, оптимизация запросов, оконные функции). Знание инструментов визуализации (FineBI, Tableau , PowerBI). Откликнуться" [ref=e1220] [cursor=pointer]:
+                - generic [ref=e1224]:
+                  - generic [ref=e1225]:
+                    - generic [ref=e1226]:
+                      - button "Добавить в избранное" [ref=e1227]:
+                        - img [ref=e1228]
+                      - button "Скрыть" [ref=e1231]:
+                        - img [ref=e1232]
+                    - heading "Аналитик данных" [level=2] [ref=e1235]:
+                      - link "Аналитик данных" [ref=e1237]:
+                        - /url: https://hh.ru/vacancy/129764189?hhtmFromLabel=suitable_employer_vacancies&hhtmFrom=vacancy
+                        - generic [ref=e1240]:
+                          - text: Аналитик данных
+                          - img [ref=e1242]
+                    - generic [ref=e1249]: Опыт 3-6 лет
+                    - generic [ref=e1251]:
+                      - generic [ref=e1253]:
+                        - link [ref=e1254]:
+                          - /url: https://feedback.hh.ru/article/details/id/5951
+                          - img [ref=e1256]
+                        - img [ref=e1264]
+                      - generic:
+                        - generic:
+                          - link "Вакансии HeadHunter::Бизнес аналитики":
+                            - /url: /employer/1455?dpt=hh-1455-ba&hhtmFrom=vacancy
+                            - generic:
+                              - img "HeadHunter::Бизнес аналитики"
+                      - link "ООО HeadHunter::Бизнес аналитики" [ref=e1272]:
+                        - /url: /employer/1455?dpt=hh-1455-ba&hhtmFrom=vacancy
+                        - generic [ref=e1275]: ООО HeadHunter::Бизнес аналитики
+                      - generic [ref=e1278]:
+                        - img [ref=e1279]
+                        - generic [ref=e1283]: "4.5"
+                        - generic [ref=e1284]: •
+                        - generic [ref=e1287]: 236 отзывов
+                      - generic [ref=e1288]:
+                        - text: Москва
+                        - generic [ref=e1291]:
+                          - generic [ref=e1292]: ●
+                          - generic [ref=e1293]: Белорусская
+                        - generic [ref=e1294]: и еще 3
+                        - generic [ref=e1296]: ●
+                        - generic [ref=e1298]: ●
+                        - generic [ref=e1300]: ●
+                    - generic [ref=e1303]:
+                      - generic [ref=e1304]: Формирование выгрузок с помощью SQL-запросов. Взаимодействие с разработчиками БД по вопросам качества данных. Анализ данных о поведении клиентов из...
+                      - generic [ref=e1305]: Продвинутый уровень SQL (виды джойнов, подзапросы, аналитические функции, оптимизация запросов, оконные функции). Знание инструментов визуализации (FineBI, Tableau , PowerBI).
+                  - button "Откликнуться" [ref=e1310]:
+                    - generic [ref=e1313]: Откликнуться
+              - button "Добавить в избранное Скрыть AI/LLM Engineer в GenAI Evaluation Опыт 3-6 лет Можно удалённо Вакансии HeadHunter::Analytics/Data Science ООО HeadHunter::Analytics/Data Science 4.5 • 236 отзывов Москва ● Алексеевская Помогать выстраивать процессы разработки и валидации GenAI-решений на основе Evaluation-driven-development подхода. Разрабатывать высокопроизводительный сервис для массового тестирования... Уверенное владение Python, и опыт разработки production-ready ML/GenAI-сервисов. Опыт построения и внедрения систем оценки качества ML / GenAI... Откликнуться" [ref=e1318] [cursor=pointer]:
+                - generic [ref=e1322]:
+                  - generic [ref=e1323]:
+                    - generic [ref=e1324]:
+                      - button "Добавить в избранное" [ref=e1325]:
+                        - img [ref=e1326]
+                      - button "Скрыть" [ref=e1329]:
+                        - img [ref=e1330]
+                    - heading "AI/LLM Engineer в GenAI Evaluation" [level=2] [ref=e1333]:
+                      - link "AI/LLM Engineer в GenAI Evaluation" [ref=e1335]:
+                        - /url: https://hh.ru/vacancy/129527597?hhtmFromLabel=suitable_employer_vacancies&hhtmFrom=vacancy
+                        - generic [ref=e1337]: AI/LLM Engineer в GenAI Evaluation
+                    - generic [ref=e1340]:
+                      - generic [ref=e1342]: Опыт 3-6 лет
+                      - generic [ref=e1344]: Можно удалённо
+                    - generic [ref=e1346]:
+                      - generic [ref=e1348]:
+                        - link [ref=e1349]:
+                          - /url: https://feedback.hh.ru/article/details/id/5951
+                          - img [ref=e1351]
+                        - img [ref=e1359]
+                      - generic:
+                        - generic:
+                          - link "Вакансии HeadHunter::Analytics/Data Science":
+                            - /url: /employer/1455?dpt=hh-1455-ds&hhtmFrom=vacancy
+                            - generic:
+                              - img "HeadHunter::Analytics/Data Science"
+                      - link "ООО HeadHunter::Analytics/Data Science" [ref=e1367]:
+                        - /url: /employer/1455?dpt=hh-1455-ds&hhtmFrom=vacancy
+                        - generic [ref=e1370]: ООО HeadHunter::Analytics/Data Science
+                      - generic [ref=e1373]:
+                        - img [ref=e1374]
+                        - generic [ref=e1378]: "4.5"
+                        - generic [ref=e1379]: •
+                        - generic [ref=e1382]: 236 отзывов
+                      - generic [ref=e1383]:
+                        - text: Москва
+                        - generic [ref=e1386]:
+                          - generic [ref=e1387]: ●
+                          - generic [ref=e1388]: Алексеевская
+                    - generic [ref=e1391]:
+                      - generic [ref=e1392]: Помогать выстраивать процессы разработки и валидации GenAI-решений на основе Evaluation-driven-development подхода. Разрабатывать высокопроизводительный сервис для массового тестирования...
+                      - generic [ref=e1393]: Уверенное владение Python, и опыт разработки production-ready ML/GenAI-сервисов. Опыт построения и внедрения систем оценки качества ML / GenAI...
+                  - button "Откликнуться" [ref=e1398]:
+                    - generic [ref=e1401]: Откликнуться
+              - button "Добавить в избранное Скрыть Senior NLP / RecSys Data Scientist (команда рекомендаций соискателям) Опыт 3-6 лет Можно удалённо Вакансии HeadHunter::Analytics/Data Science ООО HeadHunter::Analytics/Data Science 4.5 • 236 отзывов Москва ● Белорусская и еще 3 ● ● ● Совместно с продактами и продуктовыми аналитиками исследовать поведение пользователей. Экспериментировать с таргетами двусторонней заинтересованности между пользователем и вакансией. Опыт реализации и применения моделей машинного обучения для продакшена. Опыт построения NLP-моделей или рекомендаций/персонализированного поиска. Владение python с... Откликнуться" [ref=e1406] [cursor=pointer]:
+                - generic [ref=e1410]:
+                  - generic [ref=e1411]:
+                    - generic [ref=e1412]:
+                      - button "Добавить в избранное" [ref=e1413]:
+                        - img [ref=e1414]
+                      - button "Скрыть" [ref=e1417]:
+                        - img [ref=e1418]
+                    - heading "Senior NLP / RecSys Data Scientist (команда рекомендаций соискателям)" [level=2] [ref=e1421]:
+                      - link "Senior NLP / RecSys Data Scientist (команда рекомендаций соискателям)" [ref=e1423]:
+                        - /url: https://hh.ru/vacancy/130629246?hhtmFromLabel=suitable_employer_vacancies&hhtmFrom=vacancy
+                        - generic [ref=e1425]: Senior NLP / RecSys Data Scientist (команда рекомендаций соискателям)
+                    - generic [ref=e1428]:
+                      - generic [ref=e1430]: Опыт 3-6 лет
+                      - generic [ref=e1432]: Можно удалённо
+                    - generic [ref=e1434]:
+                      - generic [ref=e1436]:
+                        - link [ref=e1437]:
+                          - /url: https://feedback.hh.ru/article/details/id/5951
+                          - img [ref=e1439]
+                        - img [ref=e1447]
+                      - generic:
+                        - generic:
+                          - link "Вакансии HeadHunter::Analytics/Data Science":
+                            - /url: /employer/1455?dpt=hh-1455-ds&hhtmFrom=vacancy
+                            - generic:
+                              - img "HeadHunter::Analytics/Data Science"
+                      - link "ООО HeadHunter::Analytics/Data Science" [ref=e1455]:
+                        - /url: /employer/1455?dpt=hh-1455-ds&hhtmFrom=vacancy
+                        - generic [ref=e1458]: ООО HeadHunter::Analytics/Data Science
+                      - generic [ref=e1461]:
+                        - img [ref=e1462]
+                        - generic [ref=e1466]: "4.5"
+                        - generic [ref=e1467]: •
+                        - generic [ref=e1470]: 236 отзывов
+                      - generic [ref=e1471]:
+                        - text: Москва
+                        - generic [ref=e1474]:
+                          - generic [ref=e1475]: ●
+                          - generic [ref=e1476]: Белорусская
+                        - generic [ref=e1477]: и еще 3
+                        - generic [ref=e1479]: ●
+                        - generic [ref=e1481]: ●
+                        - generic [ref=e1483]: ●
+                    - generic [ref=e1486]:
+                      - generic [ref=e1487]: Совместно с продактами и продуктовыми аналитиками исследовать поведение пользователей. Экспериментировать с таргетами двусторонней заинтересованности между пользователем и вакансией.
+                      - generic [ref=e1488]: Опыт реализации и применения моделей машинного обучения для продакшена. Опыт построения NLP-моделей или рекомендаций/персонализированного поиска. Владение python с...
+                  - button "Откликнуться" [ref=e1493]:
+                    - generic [ref=e1496]: Откликнуться
+            - button "Загрузить еще вакансии" [ref=e1499] [cursor=pointer]
+          - generic [ref=e1500]:
+            - generic [ref=e1501]:
+              - heading "Вам подойдут эти вакансии" [level=2] [ref=e1502]
+              - generic [ref=e1504]:
+                - button "Добавить в избранное Скрыть Python Backend Developer (AI Agents & MCP Infrastructure) Опыт 3-6 лет Вакансии Сбер. IT Сбер. IT 4.0 • 25561 отзыв Москва Разрабатывать MCP-серверы для подключения бизнес-систем как инструментов агентов. Строить RAG-пайплайны с кастомной логикой извлечения, ранжирования и синтеза... Опыт коммерческой разработки на Python от 3 лет с глубоким пониманием ООП, паттернов проектирования и принципов SOLID. Практический опыт проектирования... Откликнуться" [ref=e1507] [cursor=pointer]:
+                  - generic [ref=e1511]:
+                    - generic [ref=e1512]:
+                      - generic [ref=e1513]:
+                        - button "Добавить в избранное" [ref=e1514]:
+                          - img [ref=e1515]
+                        - button "Скрыть" [ref=e1518]:
+                          - img [ref=e1519]
+                      - heading "Python Backend Developer (AI Agents & MCP Infrastructure)" [level=2] [ref=e1522]:
+                        - link "Python Backend Developer (AI Agents & MCP Infrastructure)" [ref=e1524]:
+                          - /url: https://hh.ru/vacancy/131124682?hhtmFromLabel=suitable_vacancies&hhtmFrom=vacancy
+                          - generic [ref=e1526]: Python Backend Developer (AI Agents & MCP Infrastructure)
+                      - generic [ref=e1531]: Опыт 3-6 лет
+                      - generic [ref=e1533]:
+                        - generic [ref=e1535]:
+                          - link [ref=e1536]:
+                            - /url: https://feedback.hh.ru/article/details/id/5951
+                            - img [ref=e1538]
+                          - link [ref=e1542]:
+                            - /url: http://hrbrand.ru/?utm_source=hh.ru&utm_medium=referral&utm_campaign=icon&utm_term=applicant
+                            - img [ref=e1544]
+                        - link "Вакансии Сбер. IT" [ref=e1555]:
+                          - /url: /employer/3529?dpt=3529-3529-it&hhtmFrom=vacancy
+                          - img "Сбер. IT" [ref=e1557]
+                        - link "Сбер. IT" [ref=e1558]:
+                          - /url: /employer/3529?dpt=3529-3529-it&hhtmFrom=vacancy
+                          - generic [ref=e1560]: Сбер. IT
+                        - generic [ref=e1563]:
+                          - img [ref=e1564]
+                          - generic [ref=e1568]: "4.0"
+                          - generic [ref=e1569]: •
+                          - generic [ref=e1572]: 25561 отзыв
+                        - generic [ref=e1573]: Москва
+                      - generic [ref=e1577]:
+                        - generic [ref=e1578]: Разрабатывать MCP-серверы для подключения бизнес-систем как инструментов агентов. Строить RAG-пайплайны с кастомной логикой извлечения, ранжирования и синтеза...
+                        - generic [ref=e1579]: Опыт коммерческой разработки на Python от 3 лет с глубоким пониманием ООП, паттернов проектирования и принципов SOLID. Практический опыт проектирования...
+                    - button "Откликнуться" [ref=e1584]:
+                      - generic [ref=e1587]: Откликнуться
+                - 'button "Добавить в избранное Скрыть AI-инженер Опыт 3-6 лет Aiti Guru 4.9 • 3 отзыва Москва ● Автозаводская и еще 3 ● ● ● Реализация AI/ML-решений по спецификациям: пайплайны на базе LLM, RAG, классификация, извлечение данных из документов, интеграции с внешними AI... Коммерческий опыт разработки на Python от 3 лет. Коммерческий опыт с AI от 1 года (LLM, RAG, эмбеддинги; понимание ограничений... Откликнуться" [ref=e1591] [cursor=pointer]':
+                  - generic [ref=e1595]:
+                    - generic [ref=e1596]:
+                      - generic [ref=e1597]:
+                        - button "Добавить в избранное" [ref=e1598]:
+                          - img [ref=e1599]
+                        - button "Скрыть" [ref=e1602]:
+                          - img [ref=e1603]
+                      - heading "AI-инженер" [level=2] [ref=e1606]:
+                        - link "AI-инженер" [ref=e1608]:
+                          - /url: https://hh.ru/vacancy/131129922?hhtmFromLabel=suitable_vacancies&hhtmFrom=vacancy
+                          - generic [ref=e1610]: AI-инженер
+                      - generic [ref=e1615]: Опыт 3-6 лет
+                      - generic [ref=e1617]:
+                        - generic [ref=e1619]:
+                          - link [ref=e1620]:
+                            - /url: https://feedback.hh.ru/article/details/id/5951
+                            - img [ref=e1622]
+                          - img [ref=e1630]
+                        - link "Aiti Guru" [ref=e1638]:
+                          - /url: /employer/5600787?hhtmFrom=vacancy
+                          - generic [ref=e1640]: Aiti Guru
+                        - generic [ref=e1643]:
+                          - img [ref=e1644]
+                          - generic [ref=e1648]: "4.9"
+                          - generic [ref=e1649]: •
+                          - generic [ref=e1652]: 3 отзыва
+                        - generic [ref=e1653]:
+                          - text: Москва
+                          - generic [ref=e1656]:
+                            - generic [ref=e1657]: ●
+                            - generic [ref=e1658]: Автозаводская
+                          - generic [ref=e1659]: и еще 3
+                          - generic [ref=e1661]: ●
+                          - generic [ref=e1663]: ●
+                          - generic [ref=e1665]: ●
+                      - generic [ref=e1668]:
+                        - generic [ref=e1669]: "Реализация AI/ML-решений по спецификациям: пайплайны на базе LLM, RAG, классификация, извлечение данных из документов, интеграции с внешними AI..."
+                        - generic [ref=e1670]: Коммерческий опыт разработки на Python от 3 лет. Коммерческий опыт с AI от 1 года (LLM, RAG, эмбеддинги; понимание ограничений...
+                    - button "Откликнуться" [ref=e1675]:
+                      - generic [ref=e1678]: Откликнуться
+                - 'button "Добавить в избранное Скрыть Ведущий разработчик (Python) Опыт 3-6 лет ООО Мультифактор 4.9 • 16 отзывов Москва ● Шаболовская Управление доверием доменов (Domain Trusts): проектирование и разработка механизмов доверия между доменами, включая Forest Trusts и External Trusts. Опыт работы в роли Ведущий разработчик (Senior) не менее 3 лет. Опыт построения архитектуры сложных серверных и инфраструктурных систем. Откликнуться" [ref=e1682] [cursor=pointer]':
+                  - generic [ref=e1686]:
+                    - generic [ref=e1687]:
+                      - generic [ref=e1688]:
+                        - button "Добавить в избранное" [ref=e1689]:
+                          - img [ref=e1690]
+                        - button "Скрыть" [ref=e1693]:
+                          - img [ref=e1694]
+                      - heading "Ведущий разработчик (Python)" [level=2] [ref=e1697]:
+                        - link "Ведущий разработчик (Python)" [ref=e1699]:
+                          - /url: https://hh.ru/vacancy/130996156?hhtmFromLabel=suitable_vacancies&hhtmFrom=vacancy
+                          - generic [ref=e1701]: Ведущий разработчик (Python)
+                      - generic [ref=e1706]: Опыт 3-6 лет
+                      - generic [ref=e1708]:
+                        - link [ref=e1711]:
+                          - /url: https://feedback.hh.ru/article/details/id/5951
+                          - img [ref=e1713]
+                        - link "ООО Мультифактор" [ref=e1719]:
+                          - /url: /employer/5042196?hhtmFrom=vacancy
+                          - generic [ref=e1722]: ООО Мультифактор
+                        - generic [ref=e1725]:
+                          - img [ref=e1726]
+                          - generic [ref=e1730]: "4.9"
+                          - generic [ref=e1731]: •
+                          - generic [ref=e1734]: 16 отзывов
+                        - generic [ref=e1735]:
+                          - text: Москва
+                          - generic [ref=e1738]:
+                            - generic [ref=e1739]: ●
+                            - generic [ref=e1740]: Шаболовская
+                      - generic [ref=e1743]:
+                        - generic [ref=e1744]: "Управление доверием доменов (Domain Trusts): проектирование и разработка механизмов доверия между доменами, включая Forest Trusts и External Trusts."
+                        - generic [ref=e1745]: Опыт работы в роли Ведущий разработчик (Senior) не менее 3 лет. Опыт построения архитектуры сложных серверных и инфраструктурных систем.
+                    - button "Откликнуться" [ref=e1750]:
+                      - generic [ref=e1753]: Откликнуться
+                - 'button "Добавить в избранное Скрыть Python developer Опыт 3-6 лет Вакансии Сбер. IT Сбер. IT 4.0 • 25561 отзыв Москва Разработка и поддержка backend-приложений на Python (Django/FastAPI/Flask). Разработка RAG’ов. Оптимизация производительности сервисов. Интеграция с внешними API... Опыт коммерческой разработки на Python от 3-х лет. Знание фреймворков: Django/ FastAPI/ Flask. Опыт работы с базами данных (SQL... Откликнуться Связаться" [ref=e1760] [cursor=pointer]':
+                  - generic [ref=e1764]:
+                    - generic [ref=e1765]:
+                      - generic [ref=e1766]:
+                        - button "Добавить в избранное" [ref=e1767]:
+                          - img [ref=e1768]
+                        - button "Скрыть" [ref=e1771]:
+                          - img [ref=e1772]
+                      - heading "Python developer" [level=2] [ref=e1775]:
+                        - link "Python developer" [ref=e1777]:
+                          - /url: https://hh.ru/vacancy/131090802?hhtmFromLabel=suitable_vacancies&hhtmFrom=vacancy
+                          - generic [ref=e1779]: Python developer
+                      - generic [ref=e1784]: Опыт 3-6 лет
+                      - generic [ref=e1786]:
+                        - generic [ref=e1788]:
+                          - link [ref=e1789]:
+                            - /url: https://feedback.hh.ru/article/details/id/5951
+                            - img [ref=e1791]
+                          - link [ref=e1795]:
+                            - /url: http://hrbrand.ru/?utm_source=hh.ru&utm_medium=referral&utm_campaign=icon&utm_term=applicant
+                            - img [ref=e1797]
+                        - link "Вакансии Сбер. IT" [ref=e1808]:
+                          - /url: /employer/3529?dpt=3529-3529-it&hhtmFrom=vacancy
+                          - img "Сбер. IT" [ref=e1810]
+                        - link "Сбер. IT" [ref=e1811]:
+                          - /url: /employer/3529?dpt=3529-3529-it&hhtmFrom=vacancy
+                          - generic [ref=e1813]: Сбер. IT
+                        - generic [ref=e1816]:
+                          - img [ref=e1817]
+                          - generic [ref=e1821]: "4.0"
+                          - generic [ref=e1822]: •
+                          - generic [ref=e1825]: 25561 отзыв
+                        - generic [ref=e1826]: Москва
+                      - generic [ref=e1830]:
+                        - generic [ref=e1831]: Разработка и поддержка backend-приложений на Python (Django/FastAPI/Flask). Разработка RAG’ов. Оптимизация производительности сервисов. Интеграция с внешними API...
+                        - generic [ref=e1832]: "Опыт коммерческой разработки на Python от 3-х лет. Знание фреймворков: Django/ FastAPI/ Flask. Опыт работы с базами данных (SQL..."
+                    - generic [ref=e1836]:
+                      - button "Откликнуться" [ref=e1837]:
+                        - generic [ref=e1840]: Откликнуться
+                      - button "Связаться" [ref=e1842]:
+                        - generic [ref=e1845]: Связаться
+                - 'button "Добавить в избранное Скрыть Senior Python developer 3 500 – 4 500 $ за месяц, на руки Опыт более 6 лет Можно удалённо Выплаты: два раза в месяц Кадровое агентство Алексея Сухорукова 4.2 • 10 отзывов Москва Вакансия открыта в связи с увеличением объема работ по новым проектам. Создание и поддержка unit и integration тестов с использованием... Опыт коммерческой разработки от 5 лет с Python, FastAPI. Уверенное владение базовыми архитектурными паттернами. Знание SQLAlchemy, умение составлять сложные SQL... Откликнуться Связаться" [ref=e1849] [cursor=pointer]':
+                  - generic [ref=e1853]:
+                    - generic [ref=e1854]:
+                      - generic [ref=e1855]:
+                        - button "Добавить в избранное" [ref=e1856]:
+                          - img [ref=e1857]
+                        - button "Скрыть" [ref=e1860]:
+                          - img [ref=e1861]
+                      - heading "Senior Python developer" [level=2] [ref=e1864]:
+                        - link "Senior Python developer" [ref=e1866]:
+                          - /url: https://hh.ru/vacancy/130456983?hhtmFromLabel=suitable_vacancies&hhtmFrom=vacancy
+                          - generic [ref=e1868]: Senior Python developer
+                      - generic [ref=e1870]:
+                        - generic [ref=e1871]: 3 500 – 4 500 $ за месяц, на руки
+                        - generic [ref=e1873]:
+                          - generic [ref=e1875]: Опыт более 6 лет
+                          - generic [ref=e1877]: Можно удалённо
+                          - generic [ref=e1880]: "Выплаты: два раза в месяц"
+                      - generic [ref=e1882]:
+                        - link [ref=e1885]:
+                          - /url: https://feedback.hh.ru/article/details/id/5951
+                          - img [ref=e1887]
+                        - link "Кадровое агентство Алексея Сухорукова" [ref=e1893]:
+                          - /url: /employer/48184?hhtmFrom=vacancy
+                          - generic [ref=e1895]: Кадровое агентство Алексея Сухорукова
+                        - generic [ref=e1898]:
+                          - img [ref=e1899]
+                          - generic [ref=e1903]: "4.2"
+                          - generic [ref=e1904]: •
+                          - generic [ref=e1907]: 10 отзывов
+                        - generic [ref=e1908]: Москва
+                      - generic [ref=e1912]:
+                        - generic [ref=e1913]: Вакансия открыта в связи с увеличением объема работ по новым проектам. Создание и поддержка unit и integration тестов с использованием...
+                        - generic [ref=e1914]: Опыт коммерческой разработки от 5 лет с Python, FastAPI. Уверенное владение базовыми архитектурными паттернами. Знание SQLAlchemy, умение составлять сложные SQL...
+                    - generic [ref=e1918]:
+                      - button "Откликнуться" [ref=e1919]:
+                        - generic [ref=e1922]: Откликнуться
+                      - button "Связаться" [ref=e1924]:
+                        - generic [ref=e1927]: Связаться
+                - button "Добавить в избранное Скрыть Python-разработчик/+GO Опыт 3-6 лет Вакансии ИЦ АЙ-ТЕКО ООО ИЦ АЙ-ТЕКО 4.3 • 80 отзывов Москва ● Деловой центр Разработка и поддержка сервисов сбора и обработки данных о состоянии кластеров Hadoop/GreenPlum (метаданные, fsimage, логи). Интеграция с внутренними системами... Высшее образование. Опыт коммерческой разработки от 4 лет. Опыт с Golang. Опыт работы с Linux и Bash. Готовность к гибриду... Откликнуться Связаться" [ref=e1931] [cursor=pointer]:
+                  - generic [ref=e1935]:
+                    - generic [ref=e1936]:
+                      - generic [ref=e1937]:
+                        - button "Добавить в избранное" [ref=e1938]:
+                          - img [ref=e1939]
+                        - button "Скрыть" [ref=e1942]:
+                          - img [ref=e1943]
+                      - heading "Python-разработчик/+GO" [level=2] [ref=e1946]:
+                        - link "Python-разработчик/+GO" [ref=e1948]:
+                          - /url: https://hh.ru/vacancy/131117105?hhtmFromLabel=suitable_vacancies&hhtmFrom=vacancy
+                          - generic [ref=e1950]: Python-разработчик/+GO
+                      - generic [ref=e1955]: Опыт 3-6 лет
+                      - generic [ref=e1957]:
+                        - link [ref=e1960]:
+                          - /url: https://feedback.hh.ru/article/details/id/5951
+                          - img [ref=e1962]
+                        - generic:
+                          - generic:
+                            - link "Вакансии ИЦ АЙ-ТЕКО":
+                              - /url: /employer/872178?hhtmFrom=vacancy
+                              - generic:
+                                - img "ИЦ АЙ-ТЕКО"
+                        - link "ООО ИЦ АЙ-ТЕКО" [ref=e1968]:
+                          - /url: /employer/872178?hhtmFrom=vacancy
+                          - generic [ref=e1971]: ООО ИЦ АЙ-ТЕКО
+                        - generic [ref=e1974]:
+                          - img [ref=e1975]
+                          - generic [ref=e1979]: "4.3"
+                          - generic [ref=e1980]: •
+                          - generic [ref=e1983]: 80 отзывов
+                        - generic [ref=e1984]:
+                          - text: Москва
+                          - generic [ref=e1987]:
+                            - generic [ref=e1988]: ●
+                            - generic [ref=e1989]: Деловой центр
+                      - generic [ref=e1992]:
+                        - generic [ref=e1993]: Разработка и поддержка сервисов сбора и обработки данных о состоянии кластеров Hadoop/GreenPlum (метаданные, fsimage, логи). Интеграция с внутренними системами...
+                        - generic [ref=e1994]: Высшее образование. Опыт коммерческой разработки от 4 лет. Опыт с Golang. Опыт работы с Linux и Bash. Готовность к гибриду...
+                    - generic [ref=e1998]:
+                      - button "Откликнуться" [ref=e1999]:
+                        - generic [ref=e2002]: Откликнуться
+                      - button "Связаться" [ref=e2004]:
+                        - generic [ref=e2007]: Связаться
+            - generic [ref=e2012]:
+              - generic [ref=e2013]: Вакансии из других подборок
+              - list [ref=e2015]:
+                - listitem [ref=e2016]:
+                  - link "Разработчик" [ref=e2018]:
+                    - /url: /vacancies/razrabotchik
+                    - generic [ref=e2020]: Разработчик
+                - listitem [ref=e2021]:
+                  - link "Разработчик программного обеспечения" [ref=e2023]:
+                    - /url: /vacancies/razrabotchik_programmnogo_obespecheniya
+                    - generic [ref=e2025]: Разработчик программного обеспечения
+                - listitem [ref=e2026]:
+                  - link "Главный программист" [ref=e2028]:
+                    - /url: /vacancies/glavnyj-programmist
+                    - generic [ref=e2030]: Главный программист
+                - listitem [ref=e2031]:
+                  - link "Главный разработчик" [ref=e2033]:
+                    - /url: /vacancies/glavnyj-razrabotchik
+                    - generic [ref=e2035]: Главный разработчик
+                - listitem [ref=e2036]:
+                  - link "Старший разработчик" [ref=e2038]:
+                    - /url: /vacancies/starshij-razrabotchik
+                    - generic [ref=e2040]: Старший разработчик
+                - listitem [ref=e2041]:
+                  - link "Старший программист" [ref=e2043]:
+                    - /url: /vacancies/starshij-programmist
+                    - generic [ref=e2045]: Старший программист
+                - listitem [ref=e2046]:
+                  - link "SQL developer" [ref=e2048]:
+                    - /url: /vacancies/sql-developer
+                    - generic [ref=e2050]: SQL developer
+                - listitem [ref=e2051]:
+                  - link "Программист" [ref=e2053]:
+                    - /url: /vacancies/programmist
+                    - generic [ref=e2055]: Программист
+                - listitem [ref=e2056]:
+                  - link "Специалист по автоматизации" [ref=e2058]:
+                    - /url: /vacancies/spetsialist-po-avtomatizatsii
+                    - generic [ref=e2060]: Специалист по автоматизации
+                - listitem [ref=e2061]:
+                  - link "Специалист по интеграции" [ref=e2063]:
+                    - /url: /vacancies/spetsialist-po-integratsii
+                    - generic [ref=e2065]: Специалист по интеграции
+      - generic [ref=e2070]:
+        - generic [ref=e2071]:
+          - generic [ref=e2073]:
+            - generic [ref=e2074]: HeadHunter
+            - list [ref=e2076]:
+              - listitem [ref=e2077]:
+                - link "О компании" [ref=e2079]:
+                  - /url: /article/28?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2081]: О компании
+              - listitem [ref=e2082]:
+                - link "Помощь" [ref=e2084]:
+                  - /url: https://feedback.hh.ru/ticket/add?utm_source=hh.ru&utm_medium=referral&utm_campaign=from_footer_new
+                  - generic [ref=e2086]: Помощь
+              - listitem [ref=e2087]:
+                - link "Наши вакансии" [ref=e2089]:
+                  - /url: /employer/1455?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2091]: Наши вакансии
+              - listitem [ref=e2092]:
+                - link "Реклама на сайте" [ref=e2094]:
+                  - /url: /article/promoproducts?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2096]: Реклама на сайте
+              - listitem [ref=e2097]:
+                - link "Требования к ПО" [ref=e2099]:
+                  - /url: /article/176?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2101]: Требования к ПО
+              - listitem [ref=e2102]:
+                - link "Безопасный HeadHunter" [ref=e2104]:
+                  - /url: /safety?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2106]: Безопасный HeadHunter
+              - listitem [ref=e2107]:
+                - link "HeadHunter API" [ref=e2109]:
+                  - /url: https://dev.hh.ru/?utm_source=hh.ru&utm_medium=referral&utm_campaign=from_footer_new
+                  - generic [ref=e2111]: HeadHunter API
+              - listitem [ref=e2112]:
+                - link "Партнерам" [ref=e2114]:
+                  - /url: /partners?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2116]: Партнерам
+              - listitem [ref=e2117]:
+                - link "Инвесторам" [ref=e2119]:
+                  - /url: https://investor.hh.ru/
+                  - generic [ref=e2121]: Инвесторам
+              - listitem [ref=e2122]:
+                - link "Каталог компаний" [ref=e2124]:
+                  - /url: /employers_company?hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2126]: Каталог компаний
+              - listitem [ref=e2127]:
+                - link "Поиск по вакансиям в Москве" [ref=e2129]:
+                  - /url: /vacancies
+                  - generic [ref=e2131]: Поиск по вакансиям в Москве
+              - listitem [ref=e2132]:
+                - link "Работа рядом с метро" [ref=e2134]:
+                  - /url: /metro?hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2136]: Работа рядом с метро
+              - listitem [ref=e2137]:
+                - 'button "Сетка: соцсеть для нетворкинга" [ref=e2139]':
+                  - generic [ref=e2144]: "Сетка: соцсеть для нетворкинга"
+          - generic [ref=e2147]:
+            - generic [ref=e2148]: Соискателям
+            - list [ref=e2150]:
+              - listitem [ref=e2151]:
+                - link "hh PRO" [ref=e2153]:
+                  - /url: /applicant-services/hhpro?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2155]: hh PRO
+              - listitem [ref=e2156]:
+                - link "Готовое резюме" [ref=e2158]:
+                  - /url: /article/expert_resume?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2160]: Готовое резюме
+              - listitem [ref=e2161]:
+                - link "Все сервисы" [ref=e2163]:
+                  - /url: /services?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2165]: Все сервисы
+              - listitem [ref=e2166]:
+                - link "Профориентация" [ref=e2168]:
+                  - /url: /article/proforientation_promo?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2170]: Профориентация
+              - listitem [ref=e2171]:
+                - link "Хочу у вас работать" [ref=e2173]:
+                  - /url: /applicant-services/hhpro?rte=true&from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2175]: Хочу у вас работать
+              - listitem [ref=e2176]:
+                - link "Производственный календарь" [ref=e2178]:
+                  - /url: /calendar?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2180]: Производственный календарь
+              - listitem [ref=e2181]:
+                - link "Экспертная рекомендация" [ref=e2183]:
+                  - /url: /article/resume_audit?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2185]: Экспертная рекомендация
+            - generic [ref=e2187]: Новости и статьи
+            - list [ref=e2189]:
+              - listitem [ref=e2190]:
+                - link "Рынок труда" [ref=e2192]:
+                  - /url: /articles/labour-market?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2194]: Рынок труда
+              - listitem [ref=e2195]:
+                - link "О компаниях в игровой форме" [ref=e2197]:
+                  - /url: /articles/guide-to-companies/special-projects?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2199]: О компаниях в игровой форме
+              - listitem [ref=e2200]:
+                - link "Жизнь в компании" [ref=e2202]:
+                  - /url: /articles/guide-to-companies/insider?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2204]: Жизнь в компании
+              - listitem [ref=e2205]:
+                - link "ИТ-проекты" [ref=e2207]:
+                  - /url: /articles/guide-to-companies/it-projects?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2209]: ИТ-проекты
+              - listitem [ref=e2210]:
+                - link "Рейтинг работодателей России" [ref=e2212]:
+                  - /url: https://rating.hh.ru/poll?utm_source=hh.ru&utm_medium=referral&utm_campaign=from_footer_new
+                  - generic [ref=e2214]: Рейтинг работодателей России
+          - generic [ref=e2217]:
+            - generic [ref=e2218]: Молодым специалистам
+            - list [ref=e2220]:
+              - listitem [ref=e2221]:
+                - link "Карьера для молодых специалистов" [ref=e2223]:
+                  - /url: /students?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e2225]: Карьера для молодых специалистов
+              - listitem [ref=e2226]:
+                - link "Школа программистов" [ref=e2228]:
+                  - /url: http://school.hh.ru/?utm_source=hh.ru&utm_medium=referral&utm_campaign=from_footer_new
+                  - generic [ref=e2230]: Школа программистов
+              - listitem [ref=e2231]:
+                - link "Карьера в некоммерческих организациях" [ref=e2233]:
+                  - /url: https://nko.hh.ru/?utm_source=hh.ru&utm_medium=referral&utm_campaign=from_footer_new
+                  - generic [ref=e2235]: Карьера в некоммерческих организациях
+            - list [ref=e2237]:
+              - listitem [ref=e2238]:
+                - generic [ref=e2239]: Боты для уведомлений
+                - generic [ref=e2241]:
+                  - button "chatBotTelegram" [ref=e2242] [cursor=pointer]:
+                    - img "chatBotTelegram" [ref=e2246]
+                  - button "chatBotViber" [ref=e2248] [cursor=pointer]:
+                    - img "chatBotViber" [ref=e2252]
+                  - button "chatBotVk" [ref=e2255] [cursor=pointer]:
+                    - img "chatBotVk" [ref=e2259]
+            - generic [ref=e2264]: Мобильное приложение
+        - list [ref=e2270]:
+          - listitem [ref=e2271]:
+            - link "Этика и комплаенс" [ref=e2273]:
+              - /url: /article/compliance?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+              - generic [ref=e2275]: Этика и комплаенс
+          - listitem [ref=e2276]:
+            - link "Оказание услуг" [ref=e2278]:
+              - /url: /conditions?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+              - generic [ref=e2280]: Оказание услуг
+          - listitem [ref=e2281]:
+            - link "Использование сайтов" [ref=e2283]:
+              - /url: /terms?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+              - generic [ref=e2285]: Использование сайтов
+          - listitem [ref=e2286]:
+            - link "Защита персональных данных" [ref=e2288]:
+              - /url: /article/personal_data?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+              - generic [ref=e2290]: Защита персональных данных
+          - listitem [ref=e2291]:
+            - link "Пользовательское соглашение" [ref=e2293]:
+              - /url: /account/agreement?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+              - generic [ref=e2295]: Пользовательское соглашение
+          - listitem [ref=e2296]:
+            - link "ИТ аккредитация" [ref=e2298]:
+              - /url: /article/it-accreditation?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+              - generic [ref=e2300]: ИТ аккредитация
+        - generic [ref=e2306]:
+          - text: На информационном ресурсе hh.ru
+          - link "применяются рекомендательные технологии" [ref=e2307] [cursor=pointer]:
+            - /url: /article/recommendation_technologies?hhtmFrom=vacancy
+          - text: (информационные технологии предоставления информации на основе сбора, систематизации и анализа сведений, относящихся к предпочтениям пользователей сети «Интернет», находящихся на территории Российской Федерации)
+        - generic [ref=e2312]:
+          - generic [ref=e2313]:
+            - button [ref=e2314] [cursor=pointer]
+            - button "vk" [ref=e2322] [cursor=pointer]:
+              - img "vk" [ref=e2329]
+            - button "dzen" [ref=e2332] [cursor=pointer]:
+              - img "dzen" [ref=e2339]
+            - button "telegram" [ref=e2342] [cursor=pointer]:
+              - img "telegram" [ref=e2349]
+          - generic [ref=e2352]:
+            - list [ref=e2353]:
+              - listitem [ref=e2354]:
+                - button "Русский" [ref=e2356]:
+                  - generic [ref=e2360]:
+                    - img [ref=e2361]
+                    - text: Русский
+            - generic [ref=e2365]: © 2026 ООО «Хэдхантер»
+  - generic [ref=e2368]:
+    - generic [ref=e2369]:
+      - generic [ref=e2370]: Откликайтесь, чтобы работодатель заметил вас и смог пригласить на собеседование
+      - generic [ref=e2371]:
+        - link "Откликнуться" [ref=e2373] [cursor=pointer]:
+          - /url: /applicant/vacancy_response?vacancyId=129811262&employerId=1455&hhtmFrom=vacancy
+        - button "Закрыть" [ref=e2374] [cursor=pointer]
+    - img [ref=e2376] [cursor=pointer]

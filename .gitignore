@@ -9,10 +9,10 @@ __pycache__/
 *.db
 *.sqlite3
 *.log
-agent_log.jsonl
-memory.json
+/data/
+*.png
+page_state.md
+resume_snapshot.md
+*_snapshot.md
 browser_state.json
-test_scenario.md
-ANALYSIS.md
-PLAN.md
-PLAN_V2.md
+поиск_вакансий_hh_ru.json

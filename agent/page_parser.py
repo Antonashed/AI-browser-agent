@@ -158,3 +158,35 @@ def extract_zone(snapshot: str, zone_name: str) -> str:
 
     available = ", ".join(z.role for z in zones)
     return f"Zone '{zone_name}' not found. Available zones: {available}"
+
+
+# Patterns for counting interactive elements
+_INTERACTIVE_ROLES = {"button", "link", "textbox", "checkbox", "radio", "combobox", "listbox", "menuitem", "tab", "switch"}
+
+
+def page_stats(snapshot: str) -> str:
+    """Return compact page statistics: title, total elements, interactive elements, scroll hints."""
+    lines = snapshot.split("\n")
+    total_elements = sum(1 for ln in lines if ln.lstrip().startswith("-"))
+
+    interactive_count = 0
+    title = ""
+    for line in lines:
+        m = _NODE_RE.match(line)
+        if m:
+            role = m.group("role")
+            if role in _INTERACTIVE_ROLES:
+                interactive_count += 1
+            if role == "document" and m.group("label") and not title:
+                title = m.group("label")
+
+    parts = []
+    if title:
+        parts.append(f"Page: {title}")
+    parts.append(f"Elements: {total_elements} total, {interactive_count} interactive")
+
+    # Scroll hint: check if content seems truncated or very long
+    if total_elements > 100:
+        parts.append("⚠️ Large page — consider using get_zone() for specific sections")
+
+    return " | ".join(parts)

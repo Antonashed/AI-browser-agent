@@ -5,8 +5,10 @@ from typing import Any
 
 
 MAX_SUMMARY_CHARS = 2000
-MAX_RESULT_CHARS = 3000
+MAX_RESULT_CHARS = 5000
 _MAX_ARG_VALUE_LEN = 200
+# Overhead for system prompt + tool definitions (tokens)
+_SYSTEM_TOOLS_OVERHEAD = 3500
 
 
 @dataclass
@@ -28,6 +30,16 @@ class ContextManager:
         self._goal: str | None = None
         self._steps: list[Step] = []
         self._summary: str | None = None
+        self._plan_text: str | None = None
+        self._task_context_text: str | None = None
+
+    def set_plan_text(self, text: str | None) -> None:
+        """Set or clear the plan status text injected into every goal message."""
+        self._plan_text = text
+
+    def set_task_context_text(self, text: str | None) -> None:
+        """Set or clear the task context summary injected into every goal message."""
+        self._task_context_text = text
 
     def set_goal(self, goal: str) -> None:
         self._goal = goal
@@ -35,11 +47,20 @@ class ContextManager:
     def add_step(self, step: Step) -> None:
         if step.result and len(step.result) > MAX_RESULT_CHARS:
             step.result = step.result[:MAX_RESULT_CHARS] + "\n... [truncated]"
+        # Don't store thinking in context — it wastes tokens (LLM already has it)
+        step.thinking = None
         self._steps.append(step)
 
     def add_text_response(self, text: str) -> None:
         """Add a text-only assistant response to the context."""
         self._steps.append(Step(result=text))
+
+    def add_system_note(self, note: str) -> None:
+        """Inject a system-level note into context as a text response.
+
+        Appears as an assistant→user exchange so the LLM sees the note.
+        """
+        self._steps.append(Step(result=f"[SYSTEM] {note}"))
 
     def get_step_count(self) -> int:
         return len(self._steps)
@@ -56,12 +77,16 @@ class ContextManager:
                     text += val
             if s.args:
                 text += str(s.args)
-        return len(text) // 4
+        if not text:
+            return 0
+        return int(len(text) / 3.5) + _SYSTEM_TOOLS_OVERHEAD
 
     def reset(self) -> None:
         self._goal = None
         self._steps.clear()
         self._summary = None
+        self._plan_text = None
+        self._task_context_text = None
 
     def set_summary(self, summary: str) -> None:
         self._summary = summary
@@ -75,6 +100,10 @@ class ContextManager:
 
         # First user message: goal + optional summary
         goal_text = f"Task: {self._goal}"
+        if self._task_context_text:
+            goal_text += f"\n\n{self._task_context_text}"
+        elif self._plan_text:
+            goal_text += f"\n\n{self._plan_text}"
         if self._summary:
             goal_text += f"\n\nSummary of previous steps:\n{self._summary}"
         messages.append({"role": "user", "content": goal_text})
@@ -136,6 +165,7 @@ class ContextManager:
     async def compress_old_steps(self, llm_client: Any = None, keep_recent: int = 7) -> None:
         """Summarize old steps, keeping only the most recent ones.
 
+        Preserves milestone steps (remember calls) to maintain task progress awareness.
         Uses deterministic local summarization by default.
         If llm_client is provided, uses it for summarization instead.
         """
@@ -144,6 +174,19 @@ class ContextManager:
 
         old_steps = self._steps[:-keep_recent]
         recent_steps = self._steps[-keep_recent:]
+
+        # Extract milestone steps (remember calls) to preserve progress tracking
+        milestones = [
+            s for s in old_steps
+            if s.action == "remember" and s.args
+        ]
+        milestone_text = ""
+        if milestones:
+            milestone_lines = [
+                f"  - {s.args.get('key', '?')}: {s.args.get('value', '?')}"
+                for s in milestones
+            ]
+            milestone_text = "\nMilestones saved:\n" + "\n".join(milestone_lines)
 
         if llm_client is not None:
             old_text = "\n".join(
@@ -158,22 +201,25 @@ class ContextManager:
                 system="You are a concise summarizer. Summarize the agent's steps in 2-3 sentences.",
                 tools=[],
             )
-            summary_text = response.text or old_text[:500]
+            summary_text = (response.text or old_text[:500]) + milestone_text
         else:
             lines = [
                 f"Step {i}: {s.action}({(s.result or '')[:100]})"
                 for i, s in enumerate(old_steps, 1)
             ]
-            summary_text = "\n".join(lines)
+            summary_text = "\n".join(lines) + milestone_text
 
         if self._summary and llm_client is None:
             self._summary += "\n" + summary_text
         else:
             self._summary = summary_text
 
-        # Cap summary size to prevent unbounded growth
+        # Cap summary size to prevent unbounded growth, keeping beginning + end
         if self._summary and len(self._summary) > MAX_SUMMARY_CHARS:
-            self._summary = self._summary[-MAX_SUMMARY_CHARS:]
+            half = MAX_SUMMARY_CHARS // 2
+            head = self._summary[:half].rsplit("\n", 1)[0]
+            tail = self._summary[-half:].split("\n", 1)[-1]
+            self._summary = head + "\n[...compressed...]\n" + tail
 
         self._steps = recent_steps
 

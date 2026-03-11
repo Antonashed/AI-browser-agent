@@ -12,7 +12,7 @@ class Config:
     llm_model: str = "claude-haiku-4-5-20251001"
     llm_model_strong: str = "claude-sonnet-4-20250514"
     llm_max_tokens: int = 4096
-    max_agent_steps: int = 50
+    max_agent_steps: int = 80
     screenshot_enabled: bool = True
     mcp_browser_command: str = "npx"
     mcp_browser_args: str = "@playwright/mcp"
@@ -36,9 +36,12 @@ def _parse_int(value: str, name: str, default: int) -> int:
     if not stripped:
         return default
     try:
-        return int(stripped)
+        result = int(stripped)
     except ValueError:
         raise ValueError(f"{name} must be an integer, got: {value!r}")
+    if result <= 0:
+        raise ValueError(f"{name} must be a positive integer, got: {result}")
+    return result
 
 
 def load_config() -> Config:
@@ -53,7 +56,7 @@ def load_config() -> Config:
         llm_model=os.environ.get("LLM_MODEL", "claude-haiku-4-5-20251001"),
         llm_model_strong=os.environ.get("LLM_MODEL_STRONG", "claude-sonnet-4-20250514"),
         llm_max_tokens=_parse_int(os.environ.get("LLM_MAX_TOKENS", "4096"), "LLM_MAX_TOKENS", 4096),
-        max_agent_steps=_parse_int(os.environ.get("MAX_AGENT_STEPS", "50"), "MAX_AGENT_STEPS", 50),
+        max_agent_steps=_parse_int(os.environ.get("MAX_AGENT_STEPS", "80"), "MAX_AGENT_STEPS", 80),
         screenshot_enabled=_parse_bool(os.environ.get("SCREENSHOT_ENABLED", "true")),
         mcp_browser_command=os.environ.get("MCP_BROWSER_COMMAND", "npx"),
         mcp_browser_args=os.environ.get("MCP_BROWSER_ARGS", "@playwright/mcp"),

@@ -51,6 +51,8 @@ class CLI:
         table.add_row("/history", "Список задач за сессию")
         table.add_row("/strong <задача>", "Выполнить на сильной модели")
         table.add_row("/cost", "Расход токенов за сессию")
+        table.add_row("/preset", "Сохранить последнюю задачу как пресет")
+        table.add_row("/presets", "Список сохранённых пресетов")
         table.add_row("/exit, /quit", "Завершить работу")
         self.console.print(table)
 
@@ -106,6 +108,17 @@ class CLI:
     def print_connecting(self, headless: bool = False) -> None:
         self.console.print(f"  [info]Режим:[/info] standalone (headless={headless})")
 
+    def print_presets(self, names: list[str]) -> None:
+        if not names:
+            self.console.print("  (нет сохранённых пресетов)", style="dim")
+            return
+        self.console.print("  [bold]Пресеты:[/bold]")
+        for i, name in enumerate(names, 1):
+            self.console.print(f"    {i}. {name}")
+
+    def print_preset_saved(self, name: str, path: str) -> None:
+        self.console.print(f"  [success]✓[/success] Пресет [bold]{name}[/bold] сохранён: {path}")
+
     # --- Event handling for streaming ---
 
     def handle_event(self, event: AgentEvent) -> None:
@@ -114,7 +127,9 @@ class CLI:
             case EventType.THINKING_DELTA:
                 self._handle_thinking_delta(event.data.get("text", ""))
             case EventType.TEXT_DELTA:
-                pass  # text deltas are part of text-only responses, not displayed during tool loop
+                self._finish_thinking()
+                text = event.data.get("text", "")
+                self.console.print(f"  [info]{text}[/info]", end="")
             case EventType.TOOL_START:
                 self._finish_thinking()
                 name = event.data.get("name", "?")

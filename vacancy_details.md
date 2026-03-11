@@ -1,0 +1,811 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e7]:
+      - link [ref=e8] [cursor=pointer]:
+        - /url: /?hhtmFrom=vacancy
+      - generic [ref=e11]:
+        - button [ref=e13] [cursor=pointer]:
+          - img [ref=e20]
+        - group
+      - button "Москва" [ref=e25] [cursor=pointer]:
+        - generic [ref=e31]:
+          - img [ref=e32]
+          - generic [ref=e37]: Москва
+      - button [ref=e40] [cursor=pointer]:
+        - img [ref=e47]
+      - link [ref=e52] [cursor=pointer]:
+        - /url: /applicant/favorite_vacancies?hhtmFrom=vacancy&hhtmFromLabel=header
+        - img [ref=e59]
+      - button [ref=e64] [cursor=pointer]:
+        - img [ref=e71]
+      - button "Создать резюме" [ref=e74] [cursor=pointer]:
+        - generic [ref=e77]: Создать резюме
+      - button [ref=e80] [cursor=pointer]:
+        - img [ref=e87]
+    - generic [ref=e92]:
+      - generic [ref=e98]:
+        - generic [ref=e105]:
+          - generic [ref=e110]:
+            - generic [ref=e111]:
+              - heading "Python developer" [level=1] [ref=e112]: Python developer
+              - text: Уровень дохода не указан
+            - generic [ref=e114]:
+              - paragraph [ref=e115]: "Опыт работы: 3–6 лет"
+              - generic [ref=e118]: Полная занятость
+              - paragraph [ref=e119]: "График: 5/2"
+              - generic [ref=e122]: "Рабочие часы: 8"
+              - paragraph [ref=e123]: "Формат работы: удалённо"
+              - paragraph [ref=e125]:
+                - text: Сейчас эту вакансию смотрят
+                - generic [ref=e126]: 9 человек
+          - generic [ref=e130]:
+            - button "Откликнуться" [ref=e132] [cursor=pointer]:
+              - generic [ref=e135]: Откликнуться
+            - button "Добавить в избранное" [ref=e137] [cursor=pointer]:
+              - img "Добавить в избранное" [ref=e141]
+            - button "Ещё" [ref=e145] [cursor=pointer]:
+              - img "Ещё" [ref=e149]
+        - generic [ref=e159]:
+          - generic [ref=e160]:
+            - link "eXpress" [ref=e161] [cursor=pointer]:
+              - /url: /employer/3087089?hhtmFrom=vacancy
+              - generic "eXpress" [ref=e163]:
+                - img "eXpress" [ref=e164]
+            - generic [ref=e165]:
+              - generic [ref=e166]:
+                - link "eXpress" [ref=e168] [cursor=pointer]:
+                  - /url: /employer/3087089?hhtmFrom=vacancy
+                  - generic [ref=e169]: eXpress
+                - link [ref=e172] [cursor=pointer]:
+                  - /url: https://feedback.hh.ru/article/details/id/5951
+                  - img [ref=e174]
+              - generic [ref=e184]:
+                - generic [ref=e186]: 4,2
+                - button "21 отзыв" [ref=e193]:
+                  - generic [ref=e196]: 21 отзыв
+          - generic [ref=e203]:
+            - generic [ref=e204]: IT-компания
+            - generic [ref=e205]: У работодателя есть аккредитация
+        - generic [ref=e209]:
+          - generic [ref=e211]:
+            - paragraph [ref=e212]:
+              - strong [ref=e213]: Что такое eXpress
+            - list [ref=e214]:
+              - listitem [ref=e215]:
+                - text: —
+                - strong [ref=e216]: Лидер рынка коммуникаций
+                - text: . Мы – №1 на рынке (итоговый рейтинг корпоративных мессенджеров CNEWS, декабрь 2022, 2023, 2024).
+              - listitem [ref=e217]:
+                - text: —
+                - strong [ref=e218]: Доказанное качество.
+                - text: Доверие крупнейших российских заказчиков и амбициозные проекты с 11 компаниями из топ-20 списка РБК500.
+              - listitem [ref=e219]:
+                - text: —
+                - strong [ref=e220]: Постоянный рост.
+                - text: Сегодня в нашей команде более 270 сотрудников и мы активно расширяемся.
+              - listitem [ref=e221]:
+                - text: —
+                - strong [ref=e222]: Уникальные технологии.
+                - text: Мы с нуля создали собственный протокол передачи данных. Сегодня это единственный распределенный (федеративный) протокол онлайн-коммуникаций в мире.
+              - listitem [ref=e223]:
+                - text: —
+                - strong [ref=e224]: Мы придумали смартаппы
+                - text: и приложение-криптоконтейнер, которые полностью перевернули понятие «защищенная корпоративная мобильность».
+              - listitem [ref=e225]:
+                - text: —
+                - strong [ref=e226]: Мы не копируем чужое
+                - text: . Мы создаем новое, что до нас никто не создавал.
+            - paragraph [ref=e227]:
+              - strong [ref=e228]: "О направлении Business Solutions:"
+            - paragraph [ref=e229]: Наша команда отвечает за разработку платформы чат-ботов и SmartApps, которые глубоко интегрируются в бизнес-системы клиентов. Сейчас мы ищем опытного Python-разработчика, который любит технологические вызовы и готов принимать участие во всём цикле создания нового функционала — от проектирования до релиза.
+            - paragraph [ref=e230]:
+              - strong [ref=e231]: "Чем предстоит заниматься:"
+            - list [ref=e232]:
+              - listitem [ref=e233]: — Разрабатывать и поддерживать новые возможности платформы с учётом высоких нагрузок и безопасности данных.
+              - listitem [ref=e234]: — Создавать чат-боты и SmartApps, интегрируя их с системами заказчиков.
+              - listitem [ref=e235]: — Разрабатывать админку и веб-сервисы, улучшать существующую инфраструктуру.
+              - listitem [ref=e236]: — Участвовать в code review и прорабатывать архитектурные решения вместе с командой.
+              - listitem [ref=e237]: — Оценивать задачи и проектировать новые фичи в тесном взаимодействии с аналитиками, тестировщиками и РП.
+            - paragraph [ref=e238]:
+              - strong [ref=e239]: "Технологический стек:"
+            - list [ref=e240]:
+              - listitem [ref=e241]:
+                - text: —
+                - text: Python 3
+              - listitem [ref=e242]: — FastAPI
+              - listitem [ref=e243]: — PostgreSQL
+              - listitem [ref=e244]: — SQLAlchemy 1.4+
+              - listitem [ref=e245]: — Redis
+              - listitem [ref=e246]: — Docker, Linux
+              - listitem [ref=e247]: — pytest
+              - listitem [ref=e248]: — Mypy, Black, we-make-python-styleguide
+            - paragraph [ref=e249]:
+              - strong [ref=e250]: "Требования к кандидатам:"
+            - list [ref=e251]:
+              - listitem [ref=e252]: — Коммерческий опыт на Python от 3х лет.
+              - listitem [ref=e253]: — Практический опыт асинхронной разработки от 2-ух лет (FastAPI, Django, AIOHTTP и т.д.).
+              - listitem [ref=e254]: — Умение писать и использовать unit-тесты (Pytest или другие фреймворки).
+              - listitem [ref=e255]: — Базовое знание Docker и принципов контейнеризации, опыт работы в Linux-среде.
+              - listitem [ref=e256]: — Опыт использования и понимание SQLAlchemy и Redis.
+            - paragraph [ref=e257]:
+              - strong [ref=e258]: "Будет плюсом:"
+            - list [ref=e259]:
+              - listitem [ref=e260]: — Опыт написания чат-ботов, Telegram MiniApps, ai-ассистентов.
+              - listitem [ref=e261]: — Опыт интеграции с внешними системами (REST, gRPC, WebSockets).
+              - listitem [ref=e262]: — Навыки оптимизации производительности (профилирование, рефакторинг).
+            - paragraph [ref=e263]:
+              - strong [ref=e264]: "Что готовы тебе предложить:"
+            - list [ref=e265]:
+              - listitem [ref=e266]:
+                - text: —
+                - strong [ref=e267]: "Масштабный и высоконагруженный проект:"
+                - text: возможность заниматься широким кругом задач, прокачивать свои инженерные скиллы и влиять на выбор подходов/технологий/библиотек;
+              - listitem [ref=e268]:
+                - text: —
+                - strong [ref=e269]: "Атмосфера профессионализма:"
+                - text: тебя будут окружать опытные коллеги –
+                - strong [ref=e270]
+                - text: единомышленники по всей стране, которые с удовольствием делятся опытом и знаниями друг с другом;
+              - listitem [ref=e271]:
+                - text: —
+                - strong [ref=e272]: "Сложные и интересные задачи:"
+                - text: мессенджер — это сложно, поэтому и интересно. Мы постоянно развиваемся и стараемся не только реализовывать новую функциональность, но и улучшать старый, проводя рефакторинг кода;
+              - listitem [ref=e273]:
+                - text: —
+                - strong [ref=e274]: "Наш стек:"
+                - text: мы работаем с Git и JIRA и у нас развитая инженерная культура разработки, прозрачный процесс код ревью. Мы оперативно внедряем новые фичи, доставляя их клиенту через настроенные процессы CI/CD и высокопрофессиональную команду QA;
+              - listitem [ref=e275]:
+                - text: —
+                - strong [ref=e276]: "Условия работы:"
+                - text: оформление по ТК РФ; полностью белая конкурентная заработная плата, ориентируемся на ожидания кандидата в первую очередь;
+              - listitem [ref=e277]:
+                - text: —
+                - strong [ref=e278]: "Обучение:"
+                - text: наставничество,
+                - strong [ref=e279]
+                - text: внутреннее обучение в команде или внешние конференции, курсы;
+              - listitem [ref=e280]:
+                - text: —
+                - strong [ref=e281]: "Здоровье:"
+                - text: после прохождения испытательного срока - доступ к программе ДМС.
+            - paragraph
+          - generic [ref=e282]:
+            - heading "Ключевые навыки" [level=2] [ref=e284]
+            - list [ref=e287]:
+              - listitem [ref=e288]:
+                - generic [ref=e290]: Python
+              - listitem [ref=e291]:
+                - generic [ref=e293]: Linux
+              - listitem [ref=e294]:
+                - generic [ref=e296]: Redis
+              - listitem [ref=e297]:
+                - generic [ref=e299]: Git
+              - listitem [ref=e300]:
+                - generic [ref=e302]: FastAPI
+          - generic [ref=e303]:
+            - heading "Задайте вопрос работодателю" [level=2] [ref=e305]
+            - generic [ref=e307]: Он получит его с откликом на вакансию
+            - generic [ref=e309]:
+              - generic [ref=e310] [cursor=pointer]:
+                - checkbox "Где располагается место работы?" [ref=e311]
+                - generic [ref=e316]: Где располагается место работы?
+              - generic [ref=e317] [cursor=pointer]:
+                - checkbox "Какой график работы?" [ref=e318]
+                - generic [ref=e323]: Какой график работы?
+              - generic [ref=e324] [cursor=pointer]:
+                - checkbox "Вакансия открыта?" [ref=e325]
+                - generic [ref=e330]: Вакансия открыта?
+              - generic [ref=e331] [cursor=pointer]:
+                - checkbox "Какая оплата труда?" [ref=e332]
+                - generic [ref=e337]: Какая оплата труда?
+              - generic [ref=e338] [cursor=pointer]:
+                - checkbox "Как с вами связаться?" [ref=e339]
+                - generic [ref=e344]: Как с вами связаться?
+              - generic [ref=e345] [cursor=pointer]:
+                - checkbox "Другой вопрос" [ref=e346]
+                - generic [ref=e351]: Другой вопрос
+          - generic [ref=e353]:
+            - heading "Где предстоит работать" [level=2] [ref=e355]
+            - generic [ref=e358]: Москва, Новослободская улица, 24с1
+            - generic [ref=e369]:
+              - generic [ref=e371]:
+                - text: © Яндекс
+                - link "Условия использования" [ref=e373] [cursor=pointer]:
+                  - /url: https://yandex.ru/legal/maps_termsofuse/?lang=ru
+              - link [ref=e375] [cursor=pointer]:
+                - /url: ""
+            - link "Показать на большой карте" [ref=e385]:
+              - /url: /search/vacancy/map?vacancy_id=130919687&hhtmFrom=vacancy
+              - generic [ref=e387]: Показать на большой карте
+        - generic [ref=e393]: Вакансия опубликована 3 марта 2026 в Москве
+        - generic [ref=e395]:
+          - generic [ref=e400]:
+            - button "Откликнуться" [ref=e402] [cursor=pointer]:
+              - generic [ref=e405]: Откликнуться
+            - button "Пожаловаться на вакансию" [ref=e411] [cursor=pointer]:
+              - generic [ref=e414]: Пожаловаться на вакансию
+          - generic [ref=e419]:
+            - generic [ref=e421]:
+              - img [ref=e422]
+              - generic [ref=e425]:
+                - generic [ref=e427]: Dream Job
+                - generic [ref=e428]: Отзывы о компании
+            - generic [ref=e432]:
+              - generic [ref=e438]:
+                - generic [ref=e439]:
+                  - generic [ref=e442]:
+                    - generic [ref=e444]: 4,2
+                    - generic [ref=e452]: очень хорошо
+                  - generic [ref=e454]:
+                    - generic [ref=e455]: Активный
+                    - generic [ref=e456]: отвечает на отзывы
+                  - generic [ref=e459]:
+                    - generic [ref=e460]: 86%
+                    - generic [ref=e461]: рекомендует
+                - button "Оставить отзыв" [ref=e462] [cursor=pointer]:
+                  - generic [ref=e465]: Оставить отзыв
+              - generic [ref=e468]:
+                - generic [ref=e470]: Что говорят сотрудники
+                - generic [ref=e471]: Подобрали отзывы по вашей профессии
+              - generic [ref=e473]:
+                - generic [ref=e478]:
+                  - button "Преимущества и льготы На основании 21 отзыва Удаленная работа — 18 Своевременная оплата труда — 17 Корпоративные мероприятия — 16" [ref=e480] [cursor=pointer]:
+                    - generic [ref=e485]:
+                      - generic [ref=e486]:
+                        - generic [ref=e487]: Преимущества и льготы
+                        - generic [ref=e488]:
+                          - text: На основании
+                          - generic [ref=e489]: 21 отзыва
+                      - generic [ref=e490]:
+                        - generic [ref=e492]: Удаленная работа — 18
+                        - generic [ref=e494]: Своевременная оплата труда — 17
+                        - generic [ref=e496]: Корпоративные мероприятия — 16
+                  - button "Разработчик 3,2 Ноябрь 2025 Отличные коллеги, интересные задачи, современный стек, можно наращивать экспертизу и хорошо прокачаться как специалист. Удаленка в тч по миру. Крутой корпоратив. Отсутствие тайм трекеров." [ref=e498] [cursor=pointer]:
+                    - generic [ref=e506]:
+                      - generic [ref=e507]:
+                        - generic [ref=e509]: Разработчик
+                        - generic [ref=e510]:
+                          - generic [ref=e512]: 3,2
+                          - generic [ref=e519]: Ноябрь 2025
+                      - generic [ref=e520]: Отличные коллеги, интересные задачи, современный стек, можно наращивать экспертизу и хорошо прокачаться как специалист. Удаленка в тч по миру. Крутой корпоратив. Отсутствие тайм трекеров.
+                  - button "Разработчик 3,2 Июнь 2025 Интересные продукты классные команды, корпоративы классные Возможность удаленки для всех и отсутствие душных трекеров типа битрикса (это огромнейший плюс)." [ref=e522] [cursor=pointer]:
+                    - generic [ref=e530]:
+                      - generic [ref=e531]:
+                        - generic [ref=e533]: Разработчик
+                        - generic [ref=e534]:
+                          - generic [ref=e536]: 3,2
+                          - generic [ref=e543]: Июнь 2025
+                      - generic [ref=e544]: Интересные продукты классные команды, корпоративы классные Возможность удаленки для всех и отсутствие душных трекеров типа битрикса (это огромнейший плюс).
+                  - button "QA Engineer 2,3 Декабрь 2025 Свобода в выборе рабочего графика, неплохой уровень заработной платы, неплохой проект" [ref=e546] [cursor=pointer]:
+                    - generic [ref=e554]:
+                      - generic [ref=e555]:
+                        - generic [ref=e557]: QA Engineer
+                        - generic [ref=e558]:
+                          - generic [ref=e560]: 2,3
+                          - generic [ref=e567]: Декабрь 2025
+                      - generic [ref=e568]: Свобода в выборе рабочего графика, неплохой уровень заработной платы, неплохой проект
+                  - button "CIO, DevOps TeamLead 3,3 Май 2025 Крутой перспективный проект, сильная команда разработки, отличные вызовы для роста сотрудников в техническом аспекте." [ref=e570] [cursor=pointer]:
+                    - generic [ref=e578]:
+                      - generic [ref=e579]:
+                        - generic [ref=e581]: CIO, DevOps TeamLead
+                        - generic [ref=e582]:
+                          - generic [ref=e584]: 3,3
+                          - generic [ref=e591]: Май 2025
+                      - generic [ref=e592]: Крутой перспективный проект, сильная команда разработки, отличные вызовы для роста сотрудников в техническом аспекте.
+                  - button "Системный администратор 5,0 Октябрь 2024 Хороший работодатель, хорошие условия труда, карьерный рост, закуски в офисе" [ref=e594] [cursor=pointer]:
+                    - generic [ref=e602]:
+                      - generic [ref=e603]:
+                        - generic [ref=e605]: Системный администратор
+                        - generic [ref=e606]:
+                          - generic [ref=e608]: 5,0
+                          - generic [ref=e615]: Октябрь 2024
+                      - generic [ref=e616]: Хороший работодатель, хорошие условия труда, карьерный рост, закуски в офисе
+                  - button "специалиста по функциональному тестированию категории 7 5,0 Июль 2024 Удаленная работа, свободное начало рабочего дня, нет переработок, твой вклад замечают и хвалят" [ref=e618] [cursor=pointer]:
+                    - generic [ref=e626]:
+                      - generic [ref=e627]:
+                        - generic [ref=e629]: специалиста по функциональному тестированию категории 7
+                        - generic [ref=e630]:
+                          - generic [ref=e632]: 5,0
+                          - generic [ref=e639]: Июль 2024
+                      - generic [ref=e640]: Удаленная работа, свободное начало рабочего дня, нет переработок, твой вклад замечают и хвалят
+                  - button "Отзыв сотрудника 4,5 Март 2026 Сильный и дружный коллектив, в команде очень приятная атмосфера — все готовы прийти на помощь и поддержать в сложных задачах. Руководство всегда открыто к диалогу, любые вопросы можно обсудить напрямую, без лишней бюрократии." [ref=e642] [cursor=pointer]:
+                    - generic [ref=e650]:
+                      - generic [ref=e651]:
+                        - generic [ref=e653]: Отзыв сотрудника
+                        - generic [ref=e654]:
+                          - generic [ref=e656]: 4,5
+                          - generic [ref=e663]: Март 2026
+                      - generic [ref=e664]: Сильный и дружный коллектив, в команде очень приятная атмосфера — все готовы прийти на помощь и поддержать в сложных задачах. Руководство всегда открыто к диалогу, любые вопросы можно обсудить напрямую, без лишней бюрократии.
+                  - button "Специалист технической поддержки 4,5 Май 2025 Добрейший коллектив, каждый всегда готов придти на помощь. Даже если вдруг что-то не знаешь, то ребята из других отделов тоже никогда не откажут в помощи и не оставят в беде. Есть корпоративы, где можно встретиться с командой, полная удаленка, хорошее руководство." [ref=e666] [cursor=pointer]:
+                    - generic [ref=e674]:
+                      - generic [ref=e675]:
+                        - generic [ref=e677]: Специалист технической поддержки
+                        - generic [ref=e678]:
+                          - generic [ref=e680]: 4,5
+                          - generic [ref=e687]: Май 2025
+                      - generic [ref=e688]: Добрейший коллектив, каждый всегда готов придти на помощь. Даже если вдруг что-то не знаешь, то ребята из других отделов тоже никогда не откажут в помощи и не оставят в беде. Есть корпоративы, где можно встретиться с командой, полная удаленка, хорошее руководство.
+                  - button "Отзыв сотрудника 4,7 Февраль 2026 Приятный коллектив, руководство всегда идёт навстречу, уютный офис, забота о сотрудниках (полезные десерты, перекусы, вкусный кофе). Полностью белая ЗП, выплаты без задержек." [ref=e690] [cursor=pointer]:
+                    - generic [ref=e698]:
+                      - generic [ref=e699]:
+                        - generic [ref=e701]: Отзыв сотрудника
+                        - generic [ref=e702]:
+                          - generic [ref=e704]: 4,7
+                          - generic [ref=e711]: Февраль 2026
+                      - generic [ref=e712]: Приятный коллектив, руководство всегда идёт навстречу, уютный офис, забота о сотрудниках (полезные десерты, перекусы, вкусный кофе). Полностью белая ЗП, выплаты без задержек.
+                  - button "Агент поддержки 2,0 Январь 2026 В целом хороший коллектив, отзывчивые ребята работают и очень все дружелюбные. Шикарные корпоративы, которые от и до оплачивают." [ref=e714] [cursor=pointer]:
+                    - generic [ref=e722]:
+                      - generic [ref=e723]:
+                        - generic [ref=e725]: Агент поддержки
+                        - generic [ref=e726]:
+                          - generic [ref=e728]: 2,0
+                          - generic [ref=e735]: Январь 2026
+                      - generic [ref=e736]: В целом хороший коллектив, отзывчивые ребята работают и очень все дружелюбные. Шикарные корпоративы, которые от и до оплачивают.
+                - button "21 отзыв на Dream Job" [ref=e737] [cursor=pointer]:
+                  - generic [ref=e740]:
+                    - generic [ref=e741]: 21 отзыв
+                    - text: на Dream Job
+          - generic [ref=e752]:
+            - generic [ref=e753]:
+              - heading "Курсы по профессии «Python-разработчик»" [level=6] [ref=e756]
+              - paragraph [ref=e757]: Посмотрите на карьерной платформе от hh.ru
+            - button "Посмотреть" [ref=e761] [cursor=pointer]:
+              - generic [ref=e764]: Посмотреть
+        - generic [ref=e775]:
+          - generic [ref=e776]:
+            - heading "Вам подойдут эти вакансии" [level=2] [ref=e777]
+            - generic [ref=e779]:
+              - button "Добавить в избранное Скрыть Старший Backend-инженер (Python/FastAPI) Опыт 3-6 лет Можно удалённо Подработка ООО Миллениал Групп 4.9 • 30 отзывов Москва Отклик без резюме Проектировать и развивать микросервисную архитектуру платформы на Python (FastAPI, Celery). Разрабатывать и поддерживать системы обработки депозитов, вывода средств и криптографической... Опыт коммерческой разработки на Python от 3 лет, уверенное владение FastAPI и Celery. Глубокое понимание принципов построения микросервисной архитектуры. Откликнуться Связаться" [ref=e782] [cursor=pointer]:
+                - generic [ref=e786]:
+                  - generic [ref=e787]:
+                    - generic [ref=e788]:
+                      - button "Добавить в избранное" [ref=e789]:
+                        - img [ref=e790]
+                      - button "Скрыть" [ref=e793]:
+                        - img [ref=e794]
+                    - heading "Старший Backend-инженер (Python/FastAPI)" [level=2] [ref=e797]:
+                      - link "Старший Backend-инженер (Python/FastAPI)" [ref=e799]:
+                        - /url: https://hh.ru/vacancy/131138754?hhtmFromLabel=suitable_vacancies&hhtmFrom=vacancy
+                        - generic [ref=e801]: Старший Backend-инженер (Python/FastAPI)
+                    - generic [ref=e804]:
+                      - generic [ref=e806]: Опыт 3-6 лет
+                      - generic [ref=e808]: Можно удалённо
+                      - generic [ref=e810]: Подработка
+                    - generic [ref=e812]:
+                      - link [ref=e815]:
+                        - /url: https://feedback.hh.ru/article/details/id/5951
+                        - img [ref=e817]
+                      - link "ООО Миллениал Групп" [ref=e823]:
+                        - /url: /employer/5109317?hhtmFrom=vacancy
+                        - generic [ref=e826]: ООО Миллениал Групп
+                      - generic [ref=e829]:
+                        - img [ref=e830]
+                        - generic [ref=e834]: "4.9"
+                        - generic [ref=e835]: •
+                        - generic [ref=e838]: 30 отзывов
+                      - generic [ref=e839]: Москва
+                    - generic [ref=e845]: Отклик без резюме
+                    - generic [ref=e848]:
+                      - generic [ref=e849]: Проектировать и развивать микросервисную архитектуру платформы на Python (FastAPI, Celery). Разрабатывать и поддерживать системы обработки депозитов, вывода средств и криптографической...
+                      - generic [ref=e850]: Опыт коммерческой разработки на Python от 3 лет, уверенное владение FastAPI и Celery. Глубокое понимание принципов построения микросервисной архитектуры.
+                  - generic [ref=e854]:
+                    - button "Откликнуться" [ref=e855]:
+                      - generic [ref=e858]: Откликнуться
+                    - button "Связаться" [ref=e860]:
+                      - generic [ref=e863]: Связаться
+              - 'button "Добавить в избранное Скрыть Python-разработчик 60 000 – 100 000 ₽ за месяц, до вычета налогов Опыт 1-3 года Можно удалённо Выплаты: два раза в месяц ООО Фитбейс 4.4 • 31 отзыв Москва Разрабатывать и поддерживать REST API на Python. Писать асинхронный код и оптимизировать существующие решения. Работать с MySQL, проектировать и оптимизировать... Уверенно владеешь Python. Имеешь опыт работы с MySQL. Знаешь принципы асинхронного программирования (async/await). Работал с библиотеками requests и BeautifulSoup. Откликнуться" [ref=e867] [cursor=pointer]':
+                - generic [ref=e871]:
+                  - generic [ref=e872]:
+                    - generic [ref=e873]:
+                      - button "Добавить в избранное" [ref=e874]:
+                        - img [ref=e875]
+                      - button "Скрыть" [ref=e878]:
+                        - img [ref=e879]
+                    - heading "Python-разработчик" [level=2] [ref=e882]:
+                      - link "Python-разработчик" [ref=e884]:
+                        - /url: https://hh.ru/vacancy/131137759?hhtmFromLabel=suitable_vacancies&hhtmFrom=vacancy
+                        - generic [ref=e886]: Python-разработчик
+                    - generic [ref=e888]:
+                      - generic [ref=e889]: 60 000 – 100 000 ₽ за месяц, до вычета налогов
+                      - generic [ref=e891]:
+                        - generic [ref=e893]: Опыт 1-3 года
+                        - generic [ref=e895]: Можно удалённо
+                        - generic [ref=e898]: "Выплаты: два раза в месяц"
+                    - generic [ref=e900]:
+                      - generic [ref=e902]:
+                        - link [ref=e903]:
+                          - /url: https://feedback.hh.ru/article/details/id/5951
+                          - img [ref=e905]
+                        - img [ref=e913]
+                      - link "ООО Фитбейс" [ref=e921]:
+                        - /url: /employer/5978393?hhtmFrom=vacancy
+                        - generic [ref=e924]: ООО Фитбейс
+                      - generic [ref=e927]:
+                        - img [ref=e928]
+                        - generic [ref=e932]: "4.4"
+                        - generic [ref=e933]: •
+                        - generic [ref=e936]: 31 отзыв
+                      - generic [ref=e937]: Москва
+                    - generic [ref=e941]:
+                      - generic [ref=e942]: Разрабатывать и поддерживать REST API на Python. Писать асинхронный код и оптимизировать существующие решения. Работать с MySQL, проектировать и оптимизировать...
+                      - generic [ref=e943]: Уверенно владеешь Python. Имеешь опыт работы с MySQL. Знаешь принципы асинхронного программирования (async/await). Работал с библиотеками requests и BeautifulSoup.
+                  - button "Откликнуться" [ref=e948]:
+                    - generic [ref=e951]: Откликнуться
+              - button "Добавить в избранное Скрыть Python Backend Developer (AI Agents & MCP Infrastructure) Опыт 3-6 лет Вакансии Сбер. IT Сбер. IT 4.0 • 25561 отзыв Москва Разрабатывать MCP-серверы для подключения бизнес-систем как инструментов агентов. Строить RAG-пайплайны с кастомной логикой извлечения, ранжирования и синтеза... Опыт коммерческой разработки на Python от 3 лет с глубоким пониманием ООП, паттернов проектирования и принципов SOLID. Практический опыт проектирования... Откликнуться" [ref=e955] [cursor=pointer]:
+                - generic [ref=e959]:
+                  - generic [ref=e960]:
+                    - generic [ref=e961]:
+                      - button "Добавить в избранное" [ref=e962]:
+                        - img [ref=e963]
+                      - button "Скрыть" [ref=e966]:
+                        - img [ref=e967]
+                    - heading "Python Backend Developer (AI Agents & MCP Infrastructure)" [level=2] [ref=e970]:
+                      - link "Python Backend Developer (AI Agents & MCP Infrastructure)" [ref=e972]:
+                        - /url: https://hh.ru/vacancy/131124682?hhtmFromLabel=suitable_vacancies&hhtmFrom=vacancy
+                        - generic [ref=e974]: Python Backend Developer (AI Agents & MCP Infrastructure)
+                    - generic [ref=e979]: Опыт 3-6 лет
+                    - generic [ref=e981]:
+                      - generic [ref=e983]:
+                        - link [ref=e984]:
+                          - /url: https://feedback.hh.ru/article/details/id/5951
+                          - img [ref=e986]
+                        - link [ref=e990]:
+                          - /url: http://hrbrand.ru/?utm_source=hh.ru&utm_medium=referral&utm_campaign=icon&utm_term=applicant
+                          - img [ref=e992]
+                      - link "Вакансии Сбер. IT" [ref=e1003]:
+                        - /url: /employer/3529?dpt=3529-3529-it&hhtmFrom=vacancy
+                        - img "Сбер. IT" [ref=e1005]
+                      - link "Сбер. IT" [ref=e1006]:
+                        - /url: /employer/3529?dpt=3529-3529-it&hhtmFrom=vacancy
+                        - generic [ref=e1008]: Сбер. IT
+                      - generic [ref=e1011]:
+                        - img [ref=e1012]
+                        - generic [ref=e1016]: "4.0"
+                        - generic [ref=e1017]: •
+                        - generic [ref=e1020]: 25561 отзыв
+                      - generic [ref=e1021]: Москва
+                    - generic [ref=e1025]:
+                      - generic [ref=e1026]: Разрабатывать MCP-серверы для подключения бизнес-систем как инструментов агентов. Строить RAG-пайплайны с кастомной логикой извлечения, ранжирования и синтеза...
+                      - generic [ref=e1027]: Опыт коммерческой разработки на Python от 3 лет с глубоким пониманием ООП, паттернов проектирования и принципов SOLID. Практический опыт проектирования...
+                  - button "Откликнуться" [ref=e1032]:
+                    - generic [ref=e1035]: Откликнуться
+              - 'button "Добавить в избранное Скрыть Backend-разработчик (Python/TypeScript, Junior) до 80 000 ₽ за месяц, на руки Опыт 1-3 года ИП Спиридонов Павел Игоревич Москва ● Библиотека им.Ленина и еще 3 ● ● ● Отклик без резюме Платформа создаётся под реальные задачи: диагностика знаний, работа с учебными заданиями, личные кабинеты, аналитика, интеграция AI-инструментов. Это долгосрочное направление... Опыт коммерческой разработки или уверенные pet-проекты. Хорошее знание Python и/или TypeScript. Опыт разработки backend API. Базовое понимание работы... Откликнуться Связаться" [ref=e1041] [cursor=pointer]':
+                - generic [ref=e1045]:
+                  - generic [ref=e1046]:
+                    - generic [ref=e1047]:
+                      - button "Добавить в избранное" [ref=e1048]:
+                        - img [ref=e1049]
+                      - button "Скрыть" [ref=e1052]:
+                        - img [ref=e1053]
+                    - heading "Backend-разработчик (Python/TypeScript, Junior)" [level=2] [ref=e1056]:
+                      - link "Backend-разработчик (Python/TypeScript, Junior)" [ref=e1058]:
+                        - /url: https://hh.ru/vacancy/131130590?hhtmFromLabel=suitable_vacancies&hhtmFrom=vacancy
+                        - generic [ref=e1060]: Backend-разработчик (Python/TypeScript, Junior)
+                    - generic [ref=e1062]:
+                      - generic [ref=e1063]: до 80 000 ₽ за месяц, на руки
+                      - generic [ref=e1067]: Опыт 1-3 года
+                    - generic [ref=e1069]:
+                      - link [ref=e1072]:
+                        - /url: https://feedback.hh.ru/article/details/id/5951
+                        - img [ref=e1074]
+                      - link "ИП Спиридонов Павел Игоревич" [ref=e1080]:
+                        - /url: /employer/12251857?hhtmFrom=vacancy
+                        - generic [ref=e1083]: ИП Спиридонов Павел Игоревич
+                      - generic [ref=e1084]:
+                        - text: Москва
+                        - generic [ref=e1087]:
+                          - generic [ref=e1088]: ●
+                          - generic [ref=e1089]: Библиотека им.Ленина
+                        - generic [ref=e1090]: и еще 3
+                        - generic [ref=e1092]: ●
+                        - generic [ref=e1094]: ●
+                        - generic [ref=e1096]: ●
+                    - generic [ref=e1101]: Отклик без резюме
+                    - generic [ref=e1104]:
+                      - generic [ref=e1105]: "Платформа создаётся под реальные задачи: диагностика знаний, работа с учебными заданиями, личные кабинеты, аналитика, интеграция AI-инструментов. Это долгосрочное направление..."
+                      - generic [ref=e1106]: Опыт коммерческой разработки или уверенные pet-проекты. Хорошее знание Python и/или TypeScript. Опыт разработки backend API. Базовое понимание работы...
+                  - generic [ref=e1110]:
+                    - button "Откликнуться" [ref=e1111]:
+                      - generic [ref=e1114]: Откликнуться
+                    - button "Связаться" [ref=e1116]:
+                      - generic [ref=e1119]: Связаться
+              - 'button "Добавить в избранное Скрыть Разработчик-исследователь Python Опыт 1-3 года Вакансии BI.ZONE Направление Разработка BI.ZONE Направление Разработка 4.5 • 69 отзывов Москва ● Бауманская и еще 3 ● ● ● Разрабатывать микросервисы для интеграции различных технологий SOC между собой. Разрабатывать и поддерживать микросервисы для автоматизации задач SOC. Изучать новые технологии... При желании — участвовать в задачах на стыке с AI/ML. Что для нас очень важно: Опыт разработки на Python от... Откликнуться" [ref=e1123] [cursor=pointer]':
+                - generic [ref=e1127]:
+                  - generic [ref=e1128]:
+                    - generic [ref=e1129]:
+                      - button "Добавить в избранное" [ref=e1130]:
+                        - img [ref=e1131]
+                      - button "Скрыть" [ref=e1134]:
+                        - img [ref=e1135]
+                    - heading "Разработчик-исследователь Python" [level=2] [ref=e1138]:
+                      - link "Разработчик-исследователь Python" [ref=e1140]:
+                        - /url: https://hh.ru/vacancy/131080728?hhtmFromLabel=suitable_vacancies&hhtmFrom=vacancy
+                        - generic [ref=e1142]: Разработчик-исследователь Python
+                    - generic [ref=e1147]: Опыт 1-3 года
+                    - generic [ref=e1149]:
+                      - generic [ref=e1151]:
+                        - link [ref=e1152]:
+                          - /url: https://feedback.hh.ru/article/details/id/5951
+                          - img [ref=e1154]
+                        - img [ref=e1162]
+                      - generic [ref=e1170]:
+                        - generic:
+                          - link "Вакансии BI.ZONE Направление Разработка":
+                            - /url: /employer/2367681?dpt=2367681-2367681-dev&hhtmFrom=vacancy
+                            - generic:
+                              - img "BI.ZONE Направление Разработка"
+                      - link "BI.ZONE Направление Разработка" [ref=e1171]:
+                        - /url: /employer/2367681?dpt=2367681-2367681-dev&hhtmFrom=vacancy
+                        - generic [ref=e1173]: BI.ZONE Направление Разработка
+                      - generic [ref=e1176]:
+                        - img [ref=e1177]
+                        - generic [ref=e1181]: "4.5"
+                        - generic [ref=e1182]: •
+                        - generic [ref=e1185]: 69 отзывов
+                      - generic [ref=e1186]:
+                        - text: Москва
+                        - generic [ref=e1189]:
+                          - generic [ref=e1190]: ●
+                          - generic [ref=e1191]: Бауманская
+                        - generic [ref=e1192]: и еще 3
+                        - generic [ref=e1194]: ●
+                        - generic [ref=e1196]: ●
+                        - generic [ref=e1198]: ●
+                    - generic [ref=e1201]:
+                      - generic [ref=e1202]: Разрабатывать микросервисы для интеграции различных технологий SOC между собой. Разрабатывать и поддерживать микросервисы для автоматизации задач SOC. Изучать новые технологии...
+                      - generic [ref=e1203]: "При желании — участвовать в задачах на стыке с AI/ML. Что для нас очень важно: Опыт разработки на Python от..."
+                  - button "Откликнуться" [ref=e1208]:
+                    - generic [ref=e1211]: Откликнуться
+              - button "Добавить в избранное Скрыть Python Developer Опыт 3-6 лет Можно удалённо ИП Волков Ярослав Валерьевич Якутск Участвовать в проекте — от обсуждения задачи до запуска. Разрабатывать новую платформу на Python 3, которой будут пользоваться миллионы клиентов. Любовь к своему делу и живой интерес к IT-сфере. Уверенные знания Python и опыт коммерческой разработки от 3-х... Откликнуться" [ref=e1215] [cursor=pointer]:
+                - generic [ref=e1219]:
+                  - generic [ref=e1220]:
+                    - generic [ref=e1221]:
+                      - button "Добавить в избранное" [ref=e1222]:
+                        - img [ref=e1223]
+                      - button "Скрыть" [ref=e1226]:
+                        - img [ref=e1227]
+                    - heading "Python Developer" [level=2] [ref=e1230]:
+                      - link "Python Developer" [ref=e1232]:
+                        - /url: https://hh.ru/vacancy/131063773?hhtmFromLabel=suitable_vacancies&hhtmFrom=vacancy
+                        - generic [ref=e1234]: Python Developer
+                    - generic [ref=e1237]:
+                      - generic [ref=e1239]: Опыт 3-6 лет
+                      - generic [ref=e1241]: Можно удалённо
+                    - generic [ref=e1243]:
+                      - link [ref=e1246]:
+                        - /url: https://feedback.hh.ru/article/details/id/5951
+                        - img [ref=e1248]
+                      - link "ИП Волков Ярослав Валерьевич" [ref=e1253]:
+                        - /url: /employer/12022065?hhtmFrom=vacancy
+                        - generic [ref=e1256]: ИП Волков Ярослав Валерьевич
+                      - generic [ref=e1257]: Якутск
+                    - generic [ref=e1261]:
+                      - generic [ref=e1262]: Участвовать в проекте — от обсуждения задачи до запуска. Разрабатывать новую платформу на Python 3, которой будут пользоваться миллионы клиентов.
+                      - generic [ref=e1263]: Любовь к своему делу и живой интерес к IT-сфере. Уверенные знания Python и опыт коммерческой разработки от 3-х...
+                  - button "Откликнуться" [ref=e1268]:
+                    - generic [ref=e1271]: Откликнуться
+          - generic [ref=e1276]:
+            - generic [ref=e1277]: Вакансии из других подборок
+            - list [ref=e1279]:
+              - listitem [ref=e1280]:
+                - link "Разработчик" [ref=e1282]:
+                  - /url: /vacancies/razrabotchik
+                  - generic [ref=e1284]: Разработчик
+              - listitem [ref=e1285]:
+                - link "Разработчик программного обеспечения" [ref=e1287]:
+                  - /url: /vacancies/razrabotchik_programmnogo_obespecheniya
+                  - generic [ref=e1289]: Разработчик программного обеспечения
+              - listitem [ref=e1290]:
+                - link "Главный программист" [ref=e1292]:
+                  - /url: /vacancies/glavnyj-programmist
+                  - generic [ref=e1294]: Главный программист
+              - listitem [ref=e1295]:
+                - link "Главный разработчик" [ref=e1297]:
+                  - /url: /vacancies/glavnyj-razrabotchik
+                  - generic [ref=e1299]: Главный разработчик
+              - listitem [ref=e1300]:
+                - link "Старший разработчик" [ref=e1302]:
+                  - /url: /vacancies/starshij-razrabotchik
+                  - generic [ref=e1304]: Старший разработчик
+              - listitem [ref=e1305]:
+                - link "Старший программист" [ref=e1307]:
+                  - /url: /vacancies/starshij-programmist
+                  - generic [ref=e1309]: Старший программист
+              - listitem [ref=e1310]:
+                - link "SQL developer" [ref=e1312]:
+                  - /url: /vacancies/sql-developer
+                  - generic [ref=e1314]: SQL developer
+              - listitem [ref=e1315]:
+                - link "Программист" [ref=e1317]:
+                  - /url: /vacancies/programmist
+                  - generic [ref=e1319]: Программист
+              - listitem [ref=e1320]:
+                - link "Специалист по автоматизации" [ref=e1322]:
+                  - /url: /vacancies/spetsialist-po-avtomatizatsii
+                  - generic [ref=e1324]: Специалист по автоматизации
+              - listitem [ref=e1325]:
+                - link "Специалист по интеграции" [ref=e1327]:
+                  - /url: /vacancies/spetsialist-po-integratsii
+                  - generic [ref=e1329]: Специалист по интеграции
+      - generic [ref=e1334]:
+        - generic [ref=e1335]:
+          - generic [ref=e1337]:
+            - generic [ref=e1338]: HeadHunter
+            - list [ref=e1340]:
+              - listitem [ref=e1341]:
+                - link "О компании" [ref=e1343]:
+                  - /url: /article/28?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1345]: О компании
+              - listitem [ref=e1346]:
+                - link "Помощь" [ref=e1348]:
+                  - /url: https://feedback.hh.ru/ticket/add?utm_source=hh.ru&utm_medium=referral&utm_campaign=from_footer_new
+                  - generic [ref=e1350]: Помощь
+              - listitem [ref=e1351]:
+                - link "Наши вакансии" [ref=e1353]:
+                  - /url: /employer/1455?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1355]: Наши вакансии
+              - listitem [ref=e1356]:
+                - link "Реклама на сайте" [ref=e1358]:
+                  - /url: /article/promoproducts?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1360]: Реклама на сайте
+              - listitem [ref=e1361]:
+                - link "Требования к ПО" [ref=e1363]:
+                  - /url: /article/176?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1365]: Требования к ПО
+              - listitem [ref=e1366]:
+                - link "Безопасный HeadHunter" [ref=e1368]:
+                  - /url: /safety?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1370]: Безопасный HeadHunter
+              - listitem [ref=e1371]:
+                - link "HeadHunter API" [ref=e1373]:
+                  - /url: https://dev.hh.ru/?utm_source=hh.ru&utm_medium=referral&utm_campaign=from_footer_new
+                  - generic [ref=e1375]: HeadHunter API
+              - listitem [ref=e1376]:
+                - link "Партнерам" [ref=e1378]:
+                  - /url: /partners?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1380]: Партнерам
+              - listitem [ref=e1381]:
+                - link "Инвесторам" [ref=e1383]:
+                  - /url: https://investor.hh.ru/
+                  - generic [ref=e1385]: Инвесторам
+              - listitem [ref=e1386]:
+                - link "Каталог компаний" [ref=e1388]:
+                  - /url: /employers_company?hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1390]: Каталог компаний
+              - listitem [ref=e1391]:
+                - link "Поиск по вакансиям в Москве" [ref=e1393]:
+                  - /url: /vacancies
+                  - generic [ref=e1395]: Поиск по вакансиям в Москве
+              - listitem [ref=e1396]:
+                - link "Работа рядом с метро" [ref=e1398]:
+                  - /url: /metro?hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1400]: Работа рядом с метро
+              - listitem [ref=e1401]:
+                - 'button "Сетка: соцсеть для нетворкинга" [ref=e1403]':
+                  - generic [ref=e1408]: "Сетка: соцсеть для нетворкинга"
+          - generic [ref=e1411]:
+            - generic [ref=e1412]: Соискателям
+            - list [ref=e1414]:
+              - listitem [ref=e1415]:
+                - link "hh PRO" [ref=e1417]:
+                  - /url: /applicant-services/hhpro?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1419]: hh PRO
+              - listitem [ref=e1420]:
+                - link "Готовое резюме" [ref=e1422]:
+                  - /url: /article/expert_resume?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1424]: Готовое резюме
+              - listitem [ref=e1425]:
+                - link "Все сервисы" [ref=e1427]:
+                  - /url: /services?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1429]: Все сервисы
+              - listitem [ref=e1430]:
+                - link "Профориентация" [ref=e1432]:
+                  - /url: /article/proforientation_promo?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1434]: Профориентация
+              - listitem [ref=e1435]:
+                - link "Хочу у вас работать" [ref=e1437]:
+                  - /url: /applicant-services/hhpro?rte=true&from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1439]: Хочу у вас работать
+              - listitem [ref=e1440]:
+                - link "Производственный календарь" [ref=e1442]:
+                  - /url: /calendar?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1444]: Производственный календарь
+              - listitem [ref=e1445]:
+                - link "Экспертная рекомендация" [ref=e1447]:
+                  - /url: /article/resume_audit?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1449]: Экспертная рекомендация
+            - generic [ref=e1451]: Новости и статьи
+            - list [ref=e1453]:
+              - listitem [ref=e1454]:
+                - link "Рынок труда" [ref=e1456]:
+                  - /url: /articles/labour-market?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1458]: Рынок труда
+              - listitem [ref=e1459]:
+                - link "О компаниях в игровой форме" [ref=e1461]:
+                  - /url: /articles/guide-to-companies/special-projects?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1463]: О компаниях в игровой форме
+              - listitem [ref=e1464]:
+                - link "Жизнь в компании" [ref=e1466]:
+                  - /url: /articles/guide-to-companies/insider?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1468]: Жизнь в компании
+              - listitem [ref=e1469]:
+                - link "ИТ-проекты" [ref=e1471]:
+                  - /url: /articles/guide-to-companies/it-projects?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1473]: ИТ-проекты
+              - listitem [ref=e1474]:
+                - link "Рейтинг работодателей России" [ref=e1476]:
+                  - /url: https://rating.hh.ru/poll?utm_source=hh.ru&utm_medium=referral&utm_campaign=from_footer_new
+                  - generic [ref=e1478]: Рейтинг работодателей России
+          - generic [ref=e1481]:
+            - generic [ref=e1482]: Молодым специалистам
+            - list [ref=e1484]:
+              - listitem [ref=e1485]:
+                - link "Карьера для молодых специалистов" [ref=e1487]:
+                  - /url: /students?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+                  - generic [ref=e1489]: Карьера для молодых специалистов
+              - listitem [ref=e1490]:
+                - link "Школа программистов" [ref=e1492]:
+                  - /url: http://school.hh.ru/?utm_source=hh.ru&utm_medium=referral&utm_campaign=from_footer_new
+                  - generic [ref=e1494]: Школа программистов
+              - listitem [ref=e1495]:
+                - link "Карьера в некоммерческих организациях" [ref=e1497]:
+                  - /url: https://nko.hh.ru/?utm_source=hh.ru&utm_medium=referral&utm_campaign=from_footer_new
+                  - generic [ref=e1499]: Карьера в некоммерческих организациях
+            - list [ref=e1501]:
+              - listitem [ref=e1502]:
+                - generic [ref=e1503]: Боты для уведомлений
+                - generic [ref=e1505]:
+                  - button "chatBotTelegram" [ref=e1506] [cursor=pointer]:
+                    - img "chatBotTelegram" [ref=e1510]
+                  - button "chatBotViber" [ref=e1512] [cursor=pointer]:
+                    - img "chatBotViber" [ref=e1516]
+                  - button "chatBotVk" [ref=e1519] [cursor=pointer]:
+                    - img "chatBotVk" [ref=e1523]
+            - generic [ref=e1528]: Мобильное приложение
+        - list [ref=e1534]:
+          - listitem [ref=e1535]:
+            - link "Этика и комплаенс" [ref=e1537]:
+              - /url: /article/compliance?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+              - generic [ref=e1539]: Этика и комплаенс
+          - listitem [ref=e1540]:
+            - link "Оказание услуг" [ref=e1542]:
+              - /url: /conditions?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+              - generic [ref=e1544]: Оказание услуг
+          - listitem [ref=e1545]:
+            - link "Использование сайтов" [ref=e1547]:
+              - /url: /terms?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+              - generic [ref=e1549]: Использование сайтов
+          - listitem [ref=e1550]:
+            - link "Защита персональных данных" [ref=e1552]:
+              - /url: /article/personal_data?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+              - generic [ref=e1554]: Защита персональных данных
+          - listitem [ref=e1555]:
+            - link "Пользовательское соглашение" [ref=e1557]:
+              - /url: /account/agreement?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+              - generic [ref=e1559]: Пользовательское соглашение
+          - listitem [ref=e1560]:
+            - link "ИТ аккредитация" [ref=e1562]:
+              - /url: /article/it-accreditation?from=footer_new&hhtmFromLabel=footer_new&hhtmFrom=vacancy
+              - generic [ref=e1564]: ИТ аккредитация
+        - generic [ref=e1570]:
+          - text: На информационном ресурсе hh.ru
+          - link "применяются рекомендательные технологии" [ref=e1571] [cursor=pointer]:
+            - /url: /article/recommendation_technologies?hhtmFrom=vacancy
+          - text: (информационные технологии предоставления информации на основе сбора, систематизации и анализа сведений, относящихся к предпочтениям пользователей сети «Интернет», находящихся на территории Российской Федерации)
+        - generic [ref=e1576]:
+          - generic [ref=e1577]:
+            - button [ref=e1578] [cursor=pointer]
+            - button "vk" [ref=e1586] [cursor=pointer]:
+              - img "vk" [ref=e1593]
+            - button "dzen" [ref=e1596] [cursor=pointer]:
+              - img "dzen" [ref=e1603]
+            - button "telegram" [ref=e1606] [cursor=pointer]:
+              - img "telegram" [ref=e1613]
+          - generic [ref=e1616]:
+            - list [ref=e1617]:
+              - listitem [ref=e1618]:
+                - button "Русский" [ref=e1620]:
+                  - generic [ref=e1624]:
+                    - img [ref=e1625]
+                    - text: Русский
+            - generic [ref=e1629]: © 2026 ООО «Хэдхантер»
+  - iframe

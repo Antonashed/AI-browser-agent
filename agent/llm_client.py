@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import json
 import logging
 from collections.abc import AsyncGenerator
 from dataclasses import dataclass, field
@@ -15,6 +16,7 @@ logger = logging.getLogger(__name__)
 
 MAX_RETRY_DELAY = 30
 RATE_LIMIT_DELAY = 60
+MAX_RETRIES = 10
 
 _RETRYABLE_ERRORS = (
     anthropic.RateLimitError,
@@ -27,7 +29,11 @@ _RETRYABLE_ERRORS = (
 # 529 Overloaded is not a separate class in anthropic SDK v0.52;
 # it arrives as APIStatusError with status_code=529.
 _RETRYABLE_STATUS_CODES = {529}
+# 404 model not found — fallback to a different model
+_FALLBACK_STATUS_CODES = {404}
 _APIStatusError = anthropic.APIStatusError
+
+_FALLBACK_MODEL = "claude-sonnet-4-20250514"
 
 
 def _retry_delay(exc: Exception, attempt: int) -> int:
@@ -93,7 +99,7 @@ class LLMClient:
         cached_tools = self._apply_cache_to_tools(tools)
 
         attempt = 0
-        while True:
+        while attempt < MAX_RETRIES:
             try:
                 response = await asyncio.to_thread(
                     self._client.messages.create,
@@ -108,8 +114,8 @@ class LLMClient:
                 attempt += 1
                 delay = _retry_delay(exc, attempt)
                 logger.warning(
-                    "Anthropic API error (attempt %d): %s — retrying in %ds",
-                    attempt, exc, delay,
+                    "Anthropic API error (attempt %d/%d): %s — retrying in %ds",
+                    attempt, MAX_RETRIES, exc, delay,
                 )
                 await asyncio.sleep(delay)
             except _APIStatusError as exc:
@@ -117,12 +123,20 @@ class LLMClient:
                     attempt += 1
                     delay = _retry_delay(exc, attempt)
                     logger.warning(
-                        "Anthropic API overloaded (attempt %d): %s — retrying in %ds",
-                        attempt, exc, delay,
+                        "Anthropic API overloaded (attempt %d/%d): %s — retrying in %ds",
+                        attempt, MAX_RETRIES, exc, delay,
                     )
                     await asyncio.sleep(delay)
+                elif exc.status_code in _FALLBACK_STATUS_CODES:
+                    logger.warning(
+                        "Model %s not found (404) — falling back to %s",
+                        self._model, _FALLBACK_MODEL,
+                    )
+                    self._model = _FALLBACK_MODEL
+                    attempt += 1
                 else:
                     raise
+        raise RuntimeError(f"LLM API failed after {MAX_RETRIES} retries")
 
     @staticmethod
     def _apply_cache_to_tools(tools: list[dict]) -> list[dict]:
@@ -175,7 +189,7 @@ class LLMClient:
         cached_tools = self._apply_cache_to_tools(tools)
 
         attempt = 0
-        while True:
+        while attempt < MAX_RETRIES:
             try:
                 text_parts: list[str] = []
                 thinking_parts: list[str] = []
@@ -214,10 +228,9 @@ class LLMClient:
                                 current_tool["input_json"] += delta.partial_json
                         elif event.type == "content_block_stop":
                             if current_tool:
-                                import json as _json
                                 try:
-                                    args = _json.loads(current_tool["input_json"]) if current_tool["input_json"] else {}
-                                except _json.JSONDecodeError:
+                                    args = json.loads(current_tool["input_json"]) if current_tool["input_json"] else {}
+                                except json.JSONDecodeError:
                                     args = {}
                                 tool_calls.append(ToolCall(
                                     id=current_tool["id"],
@@ -249,8 +262,8 @@ class LLMClient:
                 attempt += 1
                 delay = _retry_delay(exc, attempt)
                 logger.warning(
-                    "Anthropic streaming error (attempt %d): %s — retrying in %ds",
-                    attempt, exc, delay,
+                    "Anthropic streaming error (attempt %d/%d): %s — retrying in %ds",
+                    attempt, MAX_RETRIES, exc, delay,
                 )
                 await asyncio.sleep(delay)
             except _APIStatusError as exc:
@@ -258,9 +271,17 @@ class LLMClient:
                     attempt += 1
                     delay = _retry_delay(exc, attempt)
                     logger.warning(
-                        "Anthropic streaming overloaded (attempt %d): %s — retrying in %ds",
-                        attempt, exc, delay,
+                        "Anthropic streaming overloaded (attempt %d/%d): %s — retrying in %ds",
+                        attempt, MAX_RETRIES, exc, delay,
                     )
                     await asyncio.sleep(delay)
+                elif exc.status_code in _FALLBACK_STATUS_CODES:
+                    logger.warning(
+                        "Model %s not found (404) — falling back to %s",
+                        self._model, _FALLBACK_MODEL,
+                    )
+                    self._model = _FALLBACK_MODEL
+                    attempt += 1
                 else:
                     raise
+        raise RuntimeError(f"LLM streaming API failed after {MAX_RETRIES} retries")

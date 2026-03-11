@@ -31,13 +31,13 @@ class MCPClient:
         if self._session is not None:
             try:
                 await self._session.__aexit__(None, None, None)
-            except Exception:
+            except (Exception, KeyboardInterrupt):
                 logger.debug("Error closing MCP session", exc_info=True)
             self._session = None
         if self._stdio_context is not None:
             try:
                 await self._stdio_context.__aexit__(None, None, None)
-            except Exception:
+            except (Exception, KeyboardInterrupt):
                 logger.debug("Error closing MCP stdio transport", exc_info=True)
             self._stdio_context = None
 

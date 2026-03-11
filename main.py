@@ -18,10 +18,12 @@ from agent.core import AgentLoop
 from agent.llm_client import LLMClient
 from agent.mcp_client import MCPClient
 from agent.memory import Memory
+from agent.presets import PresetManager
 from agent.tool_executor import ToolExecutor
 from agent.tools import get_all_tools
 
-METRICS_LOG_PATH = Path("session_metrics.jsonl")
+DATA_DIR = Path("data")
+METRICS_LOG_PATH = DATA_DIR / "session_metrics.jsonl"
 
 
 def _setup_logging(config: Config) -> None:
@@ -61,6 +63,7 @@ async def main() -> None:
     cli = CLI()
     config = load_config()
     _setup_logging(config)
+    DATA_DIR.mkdir(exist_ok=True)
     memory = Memory(load_env_defaults=True)
 
     mcp = MCPClient()
@@ -102,6 +105,8 @@ async def main() -> None:
         session_output_tokens = 0
         task_history: list[str] = []
         last_plan_task: str | None = None
+        last_agent: AgentLoop | None = None
+        preset_manager = PresetManager()
 
         while True:
             try:
@@ -136,6 +141,33 @@ async def main() -> None:
 
             if lower in ("/cost",):
                 cli.print_session_cost(session_input_tokens, session_output_tokens, len(task_history))
+                continue
+
+            if lower in ("/presets",):
+                names = preset_manager.list_presets()
+                cli.print_presets(names)
+                continue
+
+            if lower in ("/preset",):
+                if last_agent is None:
+                    cli.print_error("Нет завершённой задачи для создания пресета.")
+                    continue
+                plan_steps = last_agent.get_plan_steps()
+                agent_task = last_agent.get_task()
+                if not plan_steps:
+                    cli.print_error("У последней задачи нет плана. Пресет не создан.")
+                    continue
+                name = input("  Название пресета: ").strip()
+                if not name:
+                    cli.print_error("Название не может быть пустым.")
+                    continue
+                preset = preset_manager.create_from_session(
+                    name=name,
+                    task=agent_task,
+                    plan=plan_steps,
+                )
+                path = preset_manager.save(preset)
+                cli.print_preset_saved(preset.name, str(path))
                 continue
 
             # Plan command
@@ -193,6 +225,7 @@ async def main() -> None:
                 llm, executor, context, config, all_tools,
                 on_event=cli.handle_event,
                 memory=memory,
+                preset_manager=preset_manager,
             )
 
             try:
@@ -202,6 +235,7 @@ async def main() -> None:
                 session_input_tokens += usage["input_tokens"]
                 session_output_tokens += usage["output_tokens"]
                 cli.print_usage(usage["steps"], usage["input_tokens"], usage["output_tokens"])
+                last_agent = agent
 
                 # Save session metrics
                 metrics = agent.export_metrics()
@@ -230,4 +264,7 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        pass

@@ -34,7 +34,7 @@ class TestLoadConfig:
         assert cfg.llm_model == "claude-haiku-4-5-20251001"
         assert cfg.llm_model_strong == "claude-sonnet-4-20250514"
         assert cfg.llm_max_tokens == 4096
-        assert cfg.max_agent_steps == 50
+        assert cfg.max_agent_steps == 80
         assert cfg.screenshot_enabled is True
         assert cfg.mcp_browser_command == "npx"
         assert cfg.mcp_browser_args == "@playwright/mcp"
